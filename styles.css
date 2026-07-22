@@ -327,9 +327,9 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   gap: 26px 20px;
   grid-template-columns: 1fr 1fr;
 }
-/* Mobile : 2 colonnes, la carte garde-fou s'étale en pleine largeur */
+/* Mobile : 2 colonnes en 2 rangées — la carte garde-fou occupe la 4e case */
 @media (max-width: 899px) {
-  .proof .stat.guard { grid-column: 1 / -1; }
+  .proof .stat.guard { padding: 18px 18px; }
 }
 .proof .stat .num {
   font-family: var(--serif);
