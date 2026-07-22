@@ -39,6 +39,30 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   revealEls.forEach((el) => el.classList.add("in"));
 }
 
+/* ---------- Parallaxe souris sur le panneau nuit (desktop, léger) ---------- */
+const night = document.querySelector(".night");
+const heroSection = document.querySelector(".hero");
+if (
+  night && heroSection && !prefersReduced &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches
+) {
+  let raf = null;
+  heroSection.addEventListener("pointermove", (e) => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      const r = night.getBoundingClientRect();
+      const x = (e.clientX - (r.left + r.width / 2)) / r.width;   // -0.5 … 0.5
+      const y = (e.clientY - (r.top + r.height / 2)) / r.height;
+      night.style.transform =
+        `perspective(1000px) rotateY(${(x * 5).toFixed(2)}deg) rotateX(${(-y * 4).toFixed(2)}deg)`;
+      raf = null;
+    });
+  });
+  heroSection.addEventListener("pointerleave", () => {
+    night.style.transform = "";
+  });
+}
+
 /* ---------- Lien Cal.com (chargé au clic uniquement — perf, brief §6) ---------- */
 const calLink = document.querySelector("[data-calcom]");
 if (calLink) {
