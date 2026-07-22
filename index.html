@@ -14,7 +14,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=19" />
 </head>
 <body>
 
@@ -96,27 +96,35 @@
       </div>
     </section>
 
-    <!-- S4 — Le problème -->
+    <!-- S4 — Le problème : le piège aux trois sorties bouchées -->
     <section class="problem" id="probleme">
       <div class="wrap">
         <div class="section-intro">
-          <h2>Le SAV, c'est vous. Et ça ne s'arrête jamais.</h2>
+          <h2>Pendant que vous répondez aux mêmes questions, vos concurrents avancent.</h2>
         </div>
         <div class="problem-grid">
-          <article class="problem-card reveal">
-            <h3>Les soirées y passent</h3>
-            <p>Entre 21&nbsp;h et minuit, après la prépa des commandes. Le dimanche aussi.</p>
+          <article class="problem-card big reveal">
+            <div class="echo-wrap" aria-hidden="true">
+              <div class="echo-stack">
+                <div class="echo e3"><span class="from">Client — 9 h 12</span>Où est ma commande&nbsp;?</div>
+                <div class="echo e2"><span class="from">Client — 14 h 36</span>Où est ma commande&nbsp;?</div>
+                <div class="echo e1"><span class="from">Client — 22 h 05</span>Où est ma commande&nbsp;?</div>
+              </div>
+              <div class="times">×&nbsp;80&nbsp;%</div>
+            </div>
+            <h3>La même journée, en boucle</h3>
+            <p>Où est ma commande, quand serai-je livré, comment renvoyer un article. Matin, midi, 22&nbsp;h — la même journée se répète, et elle ne fait pas grandir votre boutique.</p>
           </article>
           <article class="problem-card reveal">
-            <h3>80&nbsp;% des mêmes questions</h3>
-            <p>Où est ma commande, quand serai-je livré, comment renvoyer un article. En boucle.</p>
+            <h3>Recruter&nbsp;? Ni le temps, ni le process.</h3>
+            <p>Trouver quelqu'un, le former à vos produits, votre ton, vos règles — puis le manager. Des semaines et des milliers d'euros que vous n'avez pas.</p>
           </article>
           <article class="problem-card reveal">
-            <h3>Recruter&nbsp;? Encore pire.</h3>
-            <p>2&nbsp;000–2&nbsp;500&nbsp;€/mois chargés, des semaines de formation sur vos produits et votre ton — et du management en plus. Pour finir par vérifier ses réponses vous-même.</p>
+            <h3>L'IA&nbsp;? Vous savez qu'elle sait faire.</h3>
+            <p>Mais la brancher comment, la surveiller quand&nbsp;? Et confier VOS clients à une boîte qui pourrait répondre n'importe quoi et abîmer votre image — jamais.</p>
           </article>
         </div>
-        <p class="transition-line">C'est exactement pour ça qu'on a construit <span class="brandword">On S'en Occupe</span> — pas un chatbot de plus, pas un salarié de plus.</p>
+        <p class="transition-line">Cette méfiance est saine. <span class="brandword">On S'en Occupe</span> est construit autour d'elle — une IA rédige, un humain vérifie, et ce qui touche à l'argent est verrouillé techniquement. <a href="#comment">La suite vous montre comment.</a></p>
       </div>
     </section>
 
