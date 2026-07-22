@@ -12,9 +12,9 @@
   <meta property="og:image" content="https://onsenoccupe.fr/og-image.png" />
   <meta property="og:locale" content="fr_FR" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="preload" href="fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
 
@@ -46,8 +46,11 @@
           </div>
         </div>
 
-        <div class="scene" aria-label="Exemple : un email client reçu à 22 h 31, traité et vérifié à 22 h 47">
-          <div class="chip float-1"><strong><mark>[412]</mark></strong> tickets ce mois</div>
+        <div class="night" aria-label="Ce soir dans votre boutique : un email client reçu à 22 h 31, traité et vérifié à 22 h 47, sans vous">
+          <div class="night-head">
+            <span class="label">Ce soir, dans votre boutique</span>
+            <span class="clock">22:47</span>
+          </div>
           <article class="mail-card">
             <div class="mail-meta">
               <span class="mail-from">Client — Marie L.</span>
@@ -63,9 +66,20 @@
             <p class="mail-body">Bonjour Marie, votre commande n°<mark>[1847]</mark> a été expédiée <strong>hier soir</strong> par Colissimo. Elle arrive <strong>jeudi au plus tard</strong> — voici votre lien de suivi. Merci pour votre patience&nbsp;!</p>
             <span class="badge-check">✓ Vérifié — Hugo</span>
           </article>
-          <div class="chip float-2"><strong><mark>[92 %]</mark></strong> sans intervention du gérant</div>
-          <div class="chips">
-            <div class="chip">1re réponse &lt; <strong><mark>[2 h]</mark></strong></div>
+          <p class="night-benefit">Parti en 16 minutes, relu par un humain. <strong>Vous, vous aviez déjà décroché.</strong></p>
+          <div class="night-stats">
+            <div class="ns">
+              <div class="v"><mark>[412]</mark></div>
+              <div class="k">tickets ce mois</div>
+            </div>
+            <div class="ns">
+              <div class="v"><mark>[92 %]</mark></div>
+              <div class="k">sans le gérant</div>
+            </div>
+            <div class="ns">
+              <div class="v">&lt; <mark>[2 h]</mark></div>
+              <div class="k">1re réponse</div>
+            </div>
           </div>
         </div>
       </div>
@@ -116,7 +130,7 @@
             <p>Personne ne connaît vos produits comme vous. Un chatbot qui répond n'importe quoi à VOS clients&nbsp;? Hors de question.</p>
           </article>
         </div>
-        <p class="transition-line">C'est exactement pour ça qu'on a construit On S'en Occupe — pas un chatbot de plus.</p>
+        <p class="transition-line">C'est exactement pour ça qu'on a construit <span class="brandword">On S'en Occupe</span> — pas un chatbot de plus.</p>
       </div>
     </section>
 
@@ -366,6 +380,6 @@
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js?v=2" defer></script>
 </body>
 </html>

@@ -6,23 +6,16 @@
    ============================================================ */
 
 @font-face {
-  font-family: "Fraunces";
-  src: url("fonts/fraunces-latin-wght-normal.woff2") format("woff2-variations");
-  font-weight: 100 900;
+  font-family: "Bricolage Grotesque";
+  src: url("fonts/bricolage-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 200 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Fraunces";
-  src: url("fonts/fraunces-latin-wght-italic.woff2") format("woff2-variations");
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
-  font-weight: 100 900;
+  font-family: "Figtree";
+  src: url("fonts/figtree-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 300 900;
   font-style: normal;
   font-display: swap;
 }
@@ -40,8 +33,9 @@
   --r-card: 16px;
   --r-pill: 999px;
   --shadow-card: 0 2px 6px rgba(84, 62, 44, 0.06), 0 18px 44px -18px rgba(84, 62, 44, 0.18);
-  --serif: "Fraunces", Georgia, serif;
-  --sans: "Inter", -apple-system, system-ui, sans-serif;
+  /* --serif = police display (Bricolage Grotesque) — nom de variable conservé */
+  --serif: "Bricolage Grotesque", "Avenir Next", -apple-system, sans-serif;
+  --sans: "Figtree", -apple-system, system-ui, sans-serif;
   --wrap: 1120px;
 }
 
@@ -78,9 +72,9 @@ mark {
 
 h1, h2, h3 {
   font-family: var(--serif);
-  font-weight: 560;
-  letter-spacing: -0.015em;
-  line-height: 1.12;
+  font-weight: 640;
+  letter-spacing: -0.022em;
+  line-height: 1.1;
   text-wrap: balance;
 }
 
@@ -188,14 +182,14 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 /* ============================================================
    S2 — Hero : split copy / scène de 22 h 47
    ============================================================ */
-.hero { padding-block: clamp(40px, 6vw, 84px); overflow: clip; }
+.hero { padding-block: clamp(36px, 5vw, 72px); overflow: clip; }
 .hero .wrap {
   display: grid;
-  gap: 44px;
+  gap: 40px;
   align-items: center;
 }
 @media (min-width: 980px) {
-  .hero .wrap { grid-template-columns: 1.05fr 0.95fr; gap: 56px; }
+  .hero .wrap { grid-template-columns: 1fr 1fr; gap: 52px; }
 }
 
 .eyebrow {
@@ -208,10 +202,17 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   margin-bottom: 18px;
 }
 .hero h1 {
-  font-size: clamp(34px, 6.4vw, 56px);
-  font-weight: 540;
+  font-size: clamp(33px, 5vw, 50px);
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  line-height: 1.08;
 }
-.hero h1 .accent { color: var(--accent); font-style: italic; padding-bottom: 2px; }
+/* Effet surligneur terracotta — statique, chaleureux */
+.hero h1 .accent {
+  color: var(--ink);
+  background-image: linear-gradient(transparent 58%, rgba(196, 85, 45, 0.32) 58%, rgba(196, 85, 45, 0.32) 94%, transparent 94%);
+  padding-inline: 2px;
+}
 .hero .lede {
   margin-top: 20px;
   font-size: clamp(16.5px, 2.2vw, 18.5px);
@@ -230,76 +231,115 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   color: var(--ink-soft);
 }
 
-/* Scène 22 h 47 : cartes email + preuves flottantes */
-.scene {
+/* ---- Panneau nuit : la scène de 22 h 47, figée et théâtrale ---- */
+.night {
   position: relative;
+  background:
+    radial-gradient(120% 70% at 85% -10%, rgba(196, 85, 45, 0.22), transparent 55%),
+    #201C17;
+  border-radius: 24px;
+  padding: clamp(22px, 3.5vw, 34px);
+  box-shadow: 0 30px 70px -30px rgba(32, 28, 23, 0.55);
   display: grid;
+  gap: 16px;
+}
+.night-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 14px;
-  padding: 8px 0 8px;
+  margin-bottom: 2px;
+}
+.night-head .label {
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #B9AE9D;
+}
+.night-head .clock {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4.5vw, 42px);
+  font-weight: 700;
+  color: #F0A379;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 .mail-card {
   background: var(--bg-raised);
-  border: 1px solid var(--line);
   border-radius: var(--r-card);
-  padding: 18px 20px;
-  box-shadow: var(--shadow-card);
-  max-width: 480px;
+  padding: 17px 19px;
+  box-shadow: 0 12px 32px -14px rgba(0, 0, 0, 0.45);
 }
 .mail-card.reply {
-  margin-left: clamp(16px, 5%, 48px);
-  border-color: #EAD9CE;
+  margin-left: clamp(14px, 4%, 36px);
+  border-left: 3px solid var(--accent);
 }
 .mail-meta {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
-.mail-from { font-size: 13.5px; font-weight: 600; }
+.mail-from { font-size: 13.5px; font-weight: 700; }
 .mail-time {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--ink-soft);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.mail-time.late { color: var(--accent); font-weight: 600; }
-.mail-body { font-size: 14.5px; color: var(--ink-soft); }
-.mail-body strong { color: var(--ink); font-weight: 600; }
+.mail-time.late { color: var(--accent-deep); font-weight: 700; }
+.mail-body { font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+.mail-body strong { color: var(--ink); font-weight: 650; }
 .badge-check {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   margin-top: 12px;
   font-size: 12.5px;
-  font-weight: 650;
-  color: #22563E;
-  background: #E4EFE5;
+  font-weight: 700;
+  color: #1E5038;
+  background: #DDEEDD;
   border-radius: var(--r-pill);
-  padding: 4px 12px;
+  padding: 5px 13px;
 }
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 6px;
+/* Ligne de bénéfice : le gérant, lui, a décroché */
+.night-benefit {
+  font-size: 14px;
+  color: #CFC5B4;
+  padding-inline: 4px;
 }
-.chip {
-  background: var(--bg-raised);
-  border: 1px solid var(--line);
-  border-radius: var(--r-pill);
-  box-shadow: 0 8px 20px -12px rgba(84, 62, 44, 0.25);
-  font-size: 13px;
-  padding: 8px 14px;
-  color: var(--ink-soft);
+.night-benefit strong { color: #FBF6EE; font-weight: 650; }
+/* Bandeau de preuve intégré au panneau */
+.night-stats {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid rgba(250, 247, 242, 0.14);
+  padding-top: 16px;
+  margin-top: 2px;
 }
-.chip strong { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
-@media (min-width: 980px) {
-  .scene { padding-right: 12px; }
-  .chip.float-1, .chip.float-2 { position: absolute; }
-  .chip.float-1 { top: -6px; right: 0; }
-  .chip.float-2 { bottom: 18px; right: -4px; }
-  .chips { margin-top: 10px; }
+.night-stats .ns .v {
+  font-family: var(--serif);
+  font-size: clamp(17px, 2.4vw, 21px);
+  font-weight: 700;
+  color: #FBF6EE;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+.night-stats .ns .v mark { font-size: 0.85em; }
+.night-stats .ns .k {
+  font-size: 12px;
+  color: #B9AE9D;
+  margin-top: 2px;
+}
+@media (max-width: 520px) {
+  .night-stats { grid-template-columns: 1fr; gap: 10px; }
+  .night-stats .ns { display: flex; align-items: baseline; gap: 8px; }
+  .night-stats .ns .k { margin-top: 0; }
 }
 
 /* ============================================================
@@ -349,10 +389,11 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   margin-top: 34px;
   font-family: var(--serif);
   font-size: clamp(18px, 2.6vw, 21px);
-  font-style: italic;
+  font-weight: 600;
   color: var(--ink);
   max-width: 56ch;
 }
+.transition-line .brandword { color: var(--accent-deep); }
 
 /* ============================================================
    S5 — Comment ça marche (étapes numérotées)
@@ -423,7 +464,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .case blockquote {
   font-family: var(--serif);
   font-size: clamp(19px, 2.8vw, 24px);
-  font-style: italic;
+  font-weight: 600;
   line-height: 1.4;
   color: #FBF8F2;
 }
@@ -446,7 +487,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .quote-card blockquote {
   font-family: var(--serif);
   font-size: 18px;
-  font-style: italic;
+  font-weight: 560;
   line-height: 1.45;
 }
 .quote-card figcaption {
