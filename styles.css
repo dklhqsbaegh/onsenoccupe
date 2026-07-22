@@ -314,26 +314,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   padding-inline: 4px;
 }
 .scene-benefit strong { color: var(--ink); font-weight: 700; }
-.scene-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 4px;
-}
-.scene-stats .pill {
-  background: var(--bg-raised);
-  border: 1px solid var(--line);
-  border-radius: var(--r-pill);
-  box-shadow: 0 10px 24px -12px rgba(84, 62, 44, 0.4);
-  font-size: 13.5px;
-  padding: 10px 17px;
-  color: var(--ink-soft);
-}
-.scene-stats .pill strong {
-  color: var(--ink);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
+
 
 /* ============================================================
    S3 — Barre de preuve
