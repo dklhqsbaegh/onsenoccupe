@@ -327,9 +327,28 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   gap: 26px 20px;
   grid-template-columns: 1fr 1fr;
 }
-/* Mobile : 2 colonnes en 2 rangées — la carte garde-fou occupe la 4e case */
+/* Version courte du texte garde-fou (mobile uniquement) */
+.proof .guard .txt-short { display: none; }
+
+/* Mobile : grille 2×2 symétrique — 4 cellules-cartes égales */
 @media (max-width: 899px) {
-  .proof .stat.guard { padding: 18px 18px; }
+  .proof .proof-grid { gap: 14px; padding-block: 28px; }
+  .proof .stat {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--r-card);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .proof .stat .num { font-size: 30px; }
+  .proof .stat.guard { padding: 16px; }
+  .proof .stat.guard .num { font-size: 26px; gap: 9px; }
+  .proof .stat.guard .lock { width: 20px; height: 20px; }
+  .proof .stat p { font-size: 13px; margin-top: 5px; max-width: none; }
+  .proof .guard .txt-full { display: none; }
+  .proof .guard .txt-short { display: inline; }
 }
 .proof .stat .num {
   font-family: var(--serif);
