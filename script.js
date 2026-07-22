@@ -39,36 +39,51 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   revealEls.forEach((el) => el.classList.add("in"));
 }
 
-/* ---------- Dérive au scroll de la scène hero (profondeur) ----------
-   Listener passif + rAF, écriture directe des transforms (GPU only).
-   La dérive se joue sur les 650 premiers pixels de défilement. */
+/* ---------- Effet scroll du hero : « la réponse prend le dessus » ----------
+   Uniquement le titre de scène et les 2 cartes (tout ce qui est au-dessus
+   de la ligne bénéfice). En scrollant : la question recule et s'estompe,
+   la réponse vérifiée se redresse et vient au premier plan.
+   Lissage à inertie (lerp) pour un mouvement fluide, transforms GPU only. */
 (() => {
   if (prefersReduced) return;
-  const RANGE = 650;
-  const layers = [
-    { el: document.querySelector(".scene-title"), y: -16, rot0: 0,    rotD: 0   },
-    { el: document.querySelector(".tilt-l"),      y: -34, rot0: -2,   rotD: -0.9 },
-    { el: document.querySelector(".tilt-r"),      y: -86, rot0: 1.4,  rotD: 1   },
-    { el: document.querySelector(".scene-stats"), y: -56, rot0: 0,    rotD: 0   },
-  ].filter(l => l.el);
-  if (!layers.length) return;
+  const title = document.querySelector(".scene-title");
+  const cardL = document.querySelector(".tilt-l");
+  const cardR = document.querySelector(".tilt-r");
+  if (!cardL || !cardR) return;
 
-  let ticking = false;
-  const apply = () => {
-    const p = Math.min(Math.max(window.scrollY / RANGE, 0), 1);
-    for (const { el, y, rot0, rotD } of layers) {
-      const rot = rot0 + rotD * p;
-      el.style.transform = `translate3d(0, ${(y * p).toFixed(1)}px, 0)` + (rot ? ` rotate(${rot.toFixed(2)}deg)` : "");
+  const RANGE = 520;                          // pixels de scroll pour l'effet complet
+  const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
+  let target = 0;
+  let current = 0;
+  let rafId = null;
+
+  const render = () => {
+    current += (target - current) * 0.14;     // inertie douce
+    if (Math.abs(target - current) < 0.001) current = target;
+    const p = ease(current);
+
+    if (title) {
+      title.style.transform = `translate3d(0, ${(-10 * p).toFixed(1)}px, 0)`;
+      title.style.opacity = (1 - 0.35 * p).toFixed(3);
     }
-    ticking = false;
+    // La question recule : monte, s'incline, rétrécit, s'estompe
+    cardL.style.transform =
+      `translate3d(0, ${(-54 * p).toFixed(1)}px, 0) rotate(${(-2 - 2.8 * p).toFixed(2)}deg) scale(${(1 - 0.06 * p).toFixed(3)})`;
+    cardL.style.opacity = (1 - 0.55 * p).toFixed(3);
+    // La réponse prend le dessus : se redresse et grossit légèrement
+    cardR.style.transform =
+      `translate3d(0, ${(-12 * p).toFixed(1)}px, 0) rotate(${(1.4 - 1.4 * p).toFixed(2)}deg) scale(${(1 + 0.055 * p).toFixed(3)})`;
+
+    rafId = current === target ? null : requestAnimationFrame(render);
   };
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(apply);
-    }
-  }, { passive: true });
-  apply();
+
+  const onScroll = () => {
+    target = Math.min(Math.max(window.scrollY / RANGE, 0), 1);
+    if (rafId === null) rafId = requestAnimationFrame(render);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 })();
 
 /* ---------- Lien Cal.com (chargé au clic uniquement — perf, brief §6) ---------- */

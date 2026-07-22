@@ -731,9 +731,11 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   /* -- Effet scroll : les cartes dérivent à des vitesses différentes
         quand le hero quitte l'écran (profondeur). CSS scroll-driven natif,
         zéro JS — les navigateurs sans support restent simplement statiques. -- */
-  /* -- Dérive au scroll (JS, script.js) : les éléments de la scène
-        bougent à des vitesses différentes — profondeur. -- */
-  .tilt-l, .tilt-r, .scene-stats, .scene-title { will-change: transform; }
+  /* -- Effet scroll (JS, script.js) : « la réponse prend le dessus ».
+        Seuls le titre de scène et les 2 cartes bougent — la ligne bénéfice
+        et les pills restent fixes. -- */
+  .tilt-l, .tilt-r, .scene-title { will-change: transform, opacity; }
+  .mail-card.reply { z-index: 2; }
 
   /* -- Reveals au scroll (sections) -- */
   .reveal {
