@@ -189,7 +189,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   align-items: center;
 }
 @media (min-width: 980px) {
-  .hero .wrap { grid-template-columns: 1fr 1fr; gap: 52px; }
+  .hero .wrap { grid-template-columns: 0.95fr 1.05fr; gap: 56px; }
 }
 
 .eyebrow {
@@ -234,34 +234,49 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   color: var(--ink-soft);
 }
 
-/* ---- Panneau nuit : la scène de 22 h 47, figée et théâtrale ---- */
-.night {
+/* ---- Scène flottante : la conversation de 22 h 47, posée sur la page ---- */
+.scene-stack {
   position: relative;
-  background:
-    radial-gradient(120% 70% at 85% -10%, rgba(196, 85, 45, 0.22), transparent 55%),
-    #201C17;
-  border-radius: 24px;
-  padding: clamp(22px, 3.5vw, 34px);
-  box-shadow: 0 30px 70px -30px rgba(32, 28, 23, 0.55);
   display: grid;
-  gap: 16px;
+  gap: 20px;
+  padding-block: 14px;
+  justify-items: start;
 }
-.night-head { margin-bottom: 2px; }
-.night-head .label {
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: #B9AE9D;
+/* Halo chaud qui ancre les cartes sans conteneur */
+.scene-stack::before {
+  content: "";
+  position: absolute;
+  inset: -18% -14%;
+  background:
+    radial-gradient(closest-side at 58% 38%, rgba(196, 85, 45, 0.16), transparent 68%),
+    radial-gradient(closest-side at 30% 75%, rgba(196, 85, 45, 0.07), transparent 60%);
+  pointer-events: none;
 }
+.scene-stack > * { position: relative; }
+.scene-title {
+  font-family: var(--serif);
+  font-size: clamp(21px, 3vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+.scene-title .pasvous { color: var(--accent-deep); }
 .mail-card {
   background: var(--bg-raised);
+  border: 1px solid var(--line);
   border-radius: var(--r-card);
-  padding: 17px 19px;
-  box-shadow: 0 12px 32px -14px rgba(0, 0, 0, 0.45);
+  padding: 20px 22px;
+  box-shadow:
+    0 1px 2px rgba(84, 62, 44, 0.08),
+    0 14px 34px -12px rgba(84, 62, 44, 0.28),
+    0 32px 64px -28px rgba(84, 62, 44, 0.22);
+  max-width: 500px;
 }
+.tilt-l { transform: rotate(-2deg); }
+.tilt-r { transform: rotate(1.4deg); }
 .mail-card.reply {
-  margin-left: clamp(14px, 4%, 36px);
+  margin-left: clamp(22px, 7%, 64px);
+  margin-top: -14px;
   border-left: 3px solid var(--accent);
 }
 .mail-meta {
@@ -293,41 +308,31 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   border-radius: var(--r-pill);
   padding: 5px 13px;
 }
-/* Ligne de bénéfice : le gérant, lui, a décroché */
-.night-benefit {
-  font-size: 14px;
-  color: #CFC5B4;
+.scene-benefit {
+  font-size: 14.5px;
+  color: var(--ink-soft);
   padding-inline: 4px;
 }
-.night-benefit strong { color: #FBF6EE; font-weight: 650; }
-/* Bandeau de preuve intégré au panneau */
-.night-stats {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: space-between;
+.scene-benefit strong { color: var(--ink); font-weight: 700; }
+.scene-stats {
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  border-top: 1px solid rgba(250, 247, 242, 0.14);
-  padding-top: 16px;
-  margin-top: 2px;
+  margin-top: 4px;
 }
-.night-stats .ns .v {
-  font-family: var(--serif);
-  font-size: clamp(17px, 2.4vw, 21px);
+.scene-stats .pill {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  box-shadow: 0 10px 24px -12px rgba(84, 62, 44, 0.4);
+  font-size: 13.5px;
+  padding: 10px 17px;
+  color: var(--ink-soft);
+}
+.scene-stats .pill strong {
+  color: var(--ink);
   font-weight: 700;
-  color: #FBF6EE;
   font-variant-numeric: tabular-nums;
-  line-height: 1.2;
-}
-.night-stats .ns .v mark { font-size: 0.85em; }
-.night-stats .ns .k {
-  font-size: 12px;
-  color: #B9AE9D;
-  margin-top: 2px;
-}
-@media (max-width: 520px) {
-  .night-stats { grid-template-columns: 1fr; gap: 10px; }
-  .night-stats .ns { display: flex; align-items: baseline; gap: 8px; }
-  .night-stats .ns .k { margin-top: 0; }
 }
 
 /* ============================================================
@@ -756,10 +761,34 @@ section { padding-block: clamp(56px, 9vw, 104px); }
     to { background-size: 100% 36%; }
   }
 
-  /* -- Parallaxe souris sur le panneau nuit (desktop, JS) -- */
-  .night {
-    transition: transform 0.25s ease-out;
-    will-change: transform;
+  /* -- Effet scroll : les cartes dérivent à des vitesses différentes
+        quand le hero quitte l'écran (profondeur). CSS scroll-driven natif,
+        zéro JS — les navigateurs sans support restent simplement statiques. -- */
+  @supports (animation-timeline: view()) {
+    .tilt-l {
+      animation: drift-slow linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+    .tilt-r {
+      animation: drift-fast linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+    .scene-stats {
+      animation: drift-mid linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+    @keyframes drift-slow {
+      to { transform: rotate(-2.8deg) translateY(-26px); }
+    }
+    @keyframes drift-fast {
+      to { transform: rotate(2.2deg) translateY(-64px); }
+    }
+    @keyframes drift-mid {
+      to { transform: translateY(-40px); }
+    }
   }
 
   /* -- Reveals au scroll (sections) -- */

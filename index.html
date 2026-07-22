@@ -14,7 +14,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
 
@@ -46,38 +46,33 @@
           </div>
         </div>
 
-        <div class="night" aria-label="Ce soir dans votre boutique : un email client reçu à 22 h 31, traité et vérifié à 22 h 47, sans vous">
-          <div class="night-head">
-            <span class="label fx" style="--d:.35s">Ce soir, dans votre boutique</span>
+        <div class="scene-stack" aria-label="Un email client reçu à 22 h 31, traité et vérifié à 22 h 47, sans vous">
+          <p class="scene-title fx" style="--d:.35s">Votre SAV répond. <span class="pasvous">Pas vous.</span></p>
+          <div class="fx-left" style="--d:.55s">
+            <article class="mail-card tilt-l">
+              <div class="mail-meta">
+                <span class="mail-from">Client — Marie L.</span>
+                <span class="mail-time late">22 h 31</span>
+              </div>
+              <p class="mail-body">Bonjour, où est ma commande n°<mark>[1847]</mark>&nbsp;? Je n'ai reçu aucune nouvelle depuis 5 jours…</p>
+            </article>
           </div>
-          <article class="mail-card fx-left" style="--d:.55s">
-            <div class="mail-meta">
-              <span class="mail-from">Client — Marie L.</span>
-              <span class="mail-time late">22 h 31</span>
-            </div>
-            <p class="mail-body">Bonjour, où est ma commande n°<mark>[1847]</mark>&nbsp;? Je n'ai reçu aucune nouvelle depuis 5 jours…</p>
-          </article>
-          <article class="mail-card reply fx" style="--d:1s">
-            <div class="mail-meta">
-              <span class="mail-from">Votre boutique</span>
-              <span class="mail-time late">22 h 47</span>
-            </div>
-            <p class="mail-body">Bonjour Marie, votre commande n°<mark>[1847]</mark> a été expédiée <strong>hier soir</strong> par Colissimo. Elle arrive <strong>jeudi au plus tard</strong> — voici votre lien de suivi. Merci pour votre patience&nbsp;!</p>
-            <span class="badge-check fx-pop" style="--d:1.55s">✓ Vérifié — Hugo</span>
-          </article>
-          <p class="night-benefit fx" style="--d:1.85s">Parti en 16 minutes, relu par un humain. <strong>Vous, vous aviez déjà décroché.</strong></p>
-          <div class="night-stats fx" style="--d:2.05s">
-            <div class="ns">
-              <div class="v"><mark>[412]</mark></div>
-              <div class="k">tickets ce mois</div>
-            </div>
-            <div class="ns">
-              <div class="v"><mark>[92 %]</mark></div>
-              <div class="k">sans le gérant</div>
-            </div>
-            <div class="ns">
-              <div class="v">&lt; <mark>[2 h]</mark></div>
-              <div class="k">1re réponse</div>
+          <div class="fx" style="--d:1s">
+            <article class="mail-card reply tilt-r">
+              <div class="mail-meta">
+                <span class="mail-from">Votre boutique</span>
+                <span class="mail-time late">22 h 47</span>
+              </div>
+              <p class="mail-body">Bonjour Marie, votre commande n°<mark>[1847]</mark> a été expédiée <strong>hier soir</strong> par Colissimo. Elle arrive <strong>jeudi au plus tard</strong> — voici votre lien de suivi. Merci pour votre patience&nbsp;!</p>
+              <span class="badge-check fx-pop" style="--d:1.55s">✓ Vérifié — Hugo</span>
+            </article>
+          </div>
+          <p class="scene-benefit fx" style="--d:1.85s">Parti en 16 minutes, relu par un humain. <strong>Vous, vous aviez déjà décroché.</strong></p>
+          <div class="fx" style="--d:2.05s">
+            <div class="scene-stats">
+              <div class="pill"><strong><mark>[412]</mark></strong> tickets ce mois</div>
+              <div class="pill"><strong><mark>[92 %]</mark></strong> sans le gérant</div>
+              <div class="pill">1re réponse &lt; <strong><mark>[2 h]</mark></strong></div>
             </div>
           </div>
         </div>
@@ -379,6 +374,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=3" defer></script>
+  <script src="script.js?v=5" defer></script>
 </body>
 </html>
