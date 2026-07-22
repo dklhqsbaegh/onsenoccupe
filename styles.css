@@ -728,68 +728,12 @@ section { padding-block: clamp(56px, 9vw, 104px); }
    ============================================================ */
 @media (prefers-reduced-motion: no-preference) {
 
-  /* -- Chorégraphie d'entrée : chaque élément avec .fx + --d (délai) -- */
-  .fx, .fx-left, .fx-pop { opacity: 0; }
-  .fx {
-    animation: rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s) forwards;
-  }
-  .fx-left {
-    animation: slide-left 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s) forwards;
-  }
-  .fx-pop {
-    animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0s) forwards;
-  }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: none; }
-  }
-  @keyframes slide-left {
-    from { opacity: 0; transform: translateX(-22px); }
-    to   { opacity: 1; transform: none; }
-  }
-  @keyframes pop {
-    0%   { opacity: 0; transform: scale(0.4); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-
-  /* -- Surligneur du titre : se dessine après l'arrivée du H1 -- */
-  .hero h1 .accent {
-    background-size: 0% 36%;
-    animation: sweep 0.55s ease-out 0.85s forwards;
-  }
-  @keyframes sweep {
-    to { background-size: 100% 36%; }
-  }
-
   /* -- Effet scroll : les cartes dérivent à des vitesses différentes
         quand le hero quitte l'écran (profondeur). CSS scroll-driven natif,
         zéro JS — les navigateurs sans support restent simplement statiques. -- */
-  @supports (animation-timeline: view()) {
-    .tilt-l {
-      animation: drift-slow linear both;
-      animation-timeline: view();
-      animation-range: exit 0% exit 100%;
-    }
-    .tilt-r {
-      animation: drift-fast linear both;
-      animation-timeline: view();
-      animation-range: exit 0% exit 100%;
-    }
-    .scene-stats {
-      animation: drift-mid linear both;
-      animation-timeline: view();
-      animation-range: exit 0% exit 100%;
-    }
-    @keyframes drift-slow {
-      to { transform: rotate(-2.8deg) translateY(-26px); }
-    }
-    @keyframes drift-fast {
-      to { transform: rotate(2.2deg) translateY(-64px); }
-    }
-    @keyframes drift-mid {
-      to { transform: translateY(-40px); }
-    }
-  }
+  /* -- Dérive au scroll (JS, script.js) : les éléments de la scène
+        bougent à des vitesses différentes — profondeur. -- */
+  .tilt-l, .tilt-r, .scene-stats, .scene-title { will-change: transform; }
 
   /* -- Reveals au scroll (sections) -- */
   .reveal {

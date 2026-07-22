@@ -39,6 +39,38 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   revealEls.forEach((el) => el.classList.add("in"));
 }
 
+/* ---------- Dérive au scroll de la scène hero (profondeur) ----------
+   Listener passif + rAF, écriture directe des transforms (GPU only).
+   La dérive se joue sur les 650 premiers pixels de défilement. */
+(() => {
+  if (prefersReduced) return;
+  const RANGE = 650;
+  const layers = [
+    { el: document.querySelector(".scene-title"), y: -16, rot0: 0,    rotD: 0   },
+    { el: document.querySelector(".tilt-l"),      y: -34, rot0: -2,   rotD: -0.9 },
+    { el: document.querySelector(".tilt-r"),      y: -86, rot0: 1.4,  rotD: 1   },
+    { el: document.querySelector(".scene-stats"), y: -56, rot0: 0,    rotD: 0   },
+  ].filter(l => l.el);
+  if (!layers.length) return;
+
+  let ticking = false;
+  const apply = () => {
+    const p = Math.min(Math.max(window.scrollY / RANGE, 0), 1);
+    for (const { el, y, rot0, rotD } of layers) {
+      const rot = rot0 + rotD * p;
+      el.style.transform = `translate3d(0, ${(y * p).toFixed(1)}px, 0)` + (rot ? ` rotate(${rot.toFixed(2)}deg)` : "");
+    }
+    ticking = false;
+  };
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(apply);
+    }
+  }, { passive: true });
+  apply();
+})();
+
 /* ---------- Lien Cal.com (chargé au clic uniquement — perf, brief §6) ---------- */
 const calLink = document.querySelector("[data-calcom]");
 if (calLink) {
