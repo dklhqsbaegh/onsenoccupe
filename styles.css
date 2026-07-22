@@ -405,6 +405,9 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 /* ============================================================
    S4 — Le problème (3 cartes)
    ============================================================ */
+/* Titre S4 en pleine largeur */
+.problem .section-intro { max-width: none; }
+
 .problem-grid {
   display: grid;
   gap: 16px;
