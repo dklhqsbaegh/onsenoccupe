@@ -14,7 +14,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=13" />
 </head>
 <body>
 
@@ -68,28 +68,31 @@
       </div>
     </section>
 
-    <!-- S3 — Barre de preuve -->
+    <!-- S3 — Barre de preuve : 3 chiffres + carte garde-fou -->
     <section class="proof" aria-label="Chiffres clés">
       <div class="wrap">
-        <div class="band">
+        <div class="proof-grid">
           <div class="stat">
             <div class="num"><mark>[412]</mark></div>
             <p>tickets traités le mois dernier</p>
           </div>
           <div class="stat">
-            <div class="num"><mark>[92 %]</mark></div>
+            <div class="num"><mark>[92&nbsp;%]</mark></div>
             <p>sans votre intervention</p>
           </div>
           <div class="stat">
-            <div class="num">&lt; <mark>[2 h]</mark></div>
+            <div class="num">&lt;&nbsp;<mark>[2&nbsp;h]</mark></div>
             <p>1re réponse, soirs et week-ends compris</p>
           </div>
-          <div class="stat">
-            <div class="num">0&nbsp;€</div>
+          <aside class="stat guard">
+            <div class="num">
+              <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              0&nbsp;€
+            </div>
             <p>remboursé ou promis sans votre accord — l'IA n'a techniquement pas accès à l'argent</p>
-          </div>
+          </aside>
         </div>
-        <p class="src"><a href="#cas">d'où viennent ces chiffres&nbsp;?</a></p>
+        <p class="src">Chiffres mesurés sur les boutiques qu'on équipe · <a href="#cas">d'où viennent-ils&nbsp;?</a></p>
       </div>
     </section>
 
@@ -363,6 +366,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=11" defer></script>
+  <script src="script.js?v=12" defer></script>
 </body>
 </html>

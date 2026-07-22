@@ -320,28 +320,64 @@ section { padding-block: clamp(56px, 9vw, 104px); }
    S3 — Barre de preuve
    ============================================================ */
 .proof { padding-block: 0; }
-.proof .band {
+.proof .proof-grid {
   border-block: 1px solid var(--line);
-  padding-block: clamp(26px, 4vw, 40px);
+  padding-block: clamp(30px, 4.5vw, 48px);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 26px 18px;
+  gap: 26px 0;
+  grid-template-columns: 1fr;
 }
-@media (min-width: 900px) { .proof .band { grid-template-columns: repeat(4, 1fr); } }
 .proof .stat .num {
   font-family: var(--serif);
-  font-size: clamp(26px, 4vw, 34px);
-  font-weight: 600;
+  font-size: clamp(34px, 4.6vw, 46px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
 .proof .stat .num mark { font-family: inherit; }
-.proof .stat p { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
-.proof .src {
-  margin-top: 14px;
-  font-size: 13px;
+.proof .stat p {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin-top: 7px;
+  max-width: 24ch;
+  line-height: 1.45;
 }
-.proof .src a { color: var(--ink-soft); }
+/* Carte garde-fou : le différenciateur, mis en scène */
+.proof .stat.guard {
+  background: var(--accent-tint);
+  border: 1px solid #EBD2C3;
+  border-radius: var(--r-card);
+  padding: 22px 24px;
+}
+.proof .stat.guard .num {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(28px, 3.4vw, 36px);
+  color: var(--accent-deep);
+}
+.proof .stat.guard .lock { width: 25px; height: 25px; flex: none; }
+.proof .stat.guard p { max-width: none; }
+@media (min-width: 900px) {
+  .proof .proof-grid {
+    grid-template-columns: 1fr 1fr 1.05fr 1.5fr;
+    gap: 0 36px;
+    align-items: center;
+  }
+  .proof .stat:not(.guard) {
+    border-right: 1px solid var(--line);
+    padding-right: 34px;
+  }
+  .proof .stat:nth-child(3) { border-right: none; }
+}
+.proof .src {
+  margin-top: 20px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+.proof .src a { color: var(--accent-deep); font-weight: 600; }
 
 /* ============================================================
    S4 — Le problème (3 cartes)
