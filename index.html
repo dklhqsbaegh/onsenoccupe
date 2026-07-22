@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On S'en Occupe — SAV e-commerce rédigé par une IA, vérifié par un humain</title>
+  <meta name="description" content="Le SAV email de votre boutique — rédigé par une IA, vérifié par un humain. Audit SAV offert : vos 100 derniers tickets analysés, rendu en 48 h." />
+  <meta property="og:title" content="On S'en Occupe — SAV e-commerce rédigé par une IA, vérifié par un humain" />
+  <meta property="og:description" content="Le SAV email de votre boutique — rédigé par une IA, vérifié par un humain. Audit SAV offert, rendu en 48 h." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsenoccupe.fr/" />
+  <meta property="og:image" content="https://onsenoccupe.fr/og-image.png" />
+  <meta property="og:locale" content="fr_FR" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preload" href="fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- S1 — Header sticky discret -->
+  <header class="site-header" id="top">
+    <div class="wrap bar">
+      <a class="brand" href="#top">On S'en Occupe<span class="dot">.</span></a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a class="nav-link" href="#comment">Comment ça marche</a>
+        <a class="nav-link" href="#tarif">Tarif</a>
+        <a class="btn btn-primary" href="#audit">Audit SAV offert</a>
+      </nav>
+    </div>
+  </header>
+  <div id="header-sentinel" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- S2 — Hero : la scène de 22 h 47 -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">SAV email pour boutiques e-commerce</span>
+          <h1>Vous répondez encore aux «&nbsp;où est ma commande&nbsp;?&nbsp;» <span class="accent">à 22&nbsp;h&nbsp;?</span></h1>
+          <p class="lede">On s'en occupe. Une IA rédige les réponses, un humain de notre équipe vérifie chaque envoi — et rien qui touche à l'argent ne part sans vous. À partir de 390&nbsp;€/mois, sans engagement.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#audit">Obtenir mon audit SAV offert</a>
+            <p class="micro">Vos <mark>[100]</mark> derniers tickets analysés · rendu en 48&nbsp;h · sans accès à votre boîte</p>
+          </div>
+        </div>
+
+        <div class="scene" aria-label="Exemple : un email client reçu à 22 h 31, traité et vérifié à 22 h 47">
+          <div class="chip float-1"><strong><mark>[412]</mark></strong> tickets ce mois</div>
+          <article class="mail-card">
+            <div class="mail-meta">
+              <span class="mail-from">Client — Marie L.</span>
+              <span class="mail-time late">22 h 31</span>
+            </div>
+            <p class="mail-body">Bonjour, où est ma commande n°<mark>[1847]</mark>&nbsp;? Je n'ai reçu aucune nouvelle depuis 5 jours…</p>
+          </article>
+          <article class="mail-card reply">
+            <div class="mail-meta">
+              <span class="mail-from">Votre boutique</span>
+              <span class="mail-time late">22 h 47</span>
+            </div>
+            <p class="mail-body">Bonjour Marie, votre commande n°<mark>[1847]</mark> a été expédiée <strong>hier soir</strong> par Colissimo. Elle arrive <strong>jeudi au plus tard</strong> — voici votre lien de suivi. Merci pour votre patience&nbsp;!</p>
+            <span class="badge-check">✓ Vérifié — Hugo</span>
+          </article>
+          <div class="chip float-2"><strong><mark>[92 %]</mark></strong> sans intervention du gérant</div>
+          <div class="chips">
+            <div class="chip">1re réponse &lt; <strong><mark>[2 h]</mark></strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S3 — Barre de preuve -->
+    <section class="proof" aria-label="Chiffres clés">
+      <div class="wrap">
+        <div class="band">
+          <div class="stat">
+            <div class="num"><mark>[412]</mark></div>
+            <p>tickets traités le mois dernier</p>
+          </div>
+          <div class="stat">
+            <div class="num"><mark>[92 %]</mark></div>
+            <p>sans intervention du gérant</p>
+          </div>
+          <div class="stat">
+            <div class="num">&lt; <mark>[2 h]</mark></div>
+            <p>1re réponse, soirs et week-ends compris</p>
+          </div>
+          <div class="stat">
+            <div class="num">0</div>
+            <p>remboursement automatique — impossible par construction</p>
+          </div>
+        </div>
+        <p class="src"><a href="#cas">d'où viennent ces chiffres&nbsp;?</a></p>
+      </div>
+    </section>
+
+    <!-- S4 — Le problème -->
+    <section class="problem" id="probleme">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2>Le SAV, c'est vous. Et ça ne s'arrête jamais.</h2>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card reveal">
+            <h3>Les soirées y passent</h3>
+            <p>Entre 21&nbsp;h et minuit, après la prépa des commandes. Le dimanche aussi.</p>
+          </article>
+          <article class="problem-card reveal">
+            <h3>80&nbsp;% des mêmes questions</h3>
+            <p>Où est ma commande, quand serai-je livré, comment renvoyer un article. En boucle.</p>
+          </article>
+          <article class="problem-card reveal">
+            <h3>Et impossible de lâcher</h3>
+            <p>Personne ne connaît vos produits comme vous. Un chatbot qui répond n'importe quoi à VOS clients&nbsp;? Hors de question.</p>
+          </article>
+        </div>
+        <p class="transition-line">C'est exactement pour ça qu'on a construit On S'en Occupe — pas un chatbot de plus.</p>
+      </div>
+    </section>
+
+    <!-- S5 — Comment ça marche -->
+    <section class="how" id="comment">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2>Une IA rédige. Un humain vérifie. Vous gardez la main.</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="n">1</div>
+            <div>
+              <h3>On branche. Vous ne configurez rien.</h3>
+              <p>Connexion à votre boîte SAV et à votre WooCommerce en lecture seule. Setup fait par notre équipe en <mark>[X]</mark> jours, à partir de vos vraies réponses passées.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="n">2</div>
+            <div>
+              <h3>L'IA rédige, notre équipe vérifie.</h3>
+              <p>Les <mark>[premières semaines]</mark>, 100&nbsp;% des réponses sont validées par un humain avant envoi. Ensuite, seules les réponses sans risque partent seules — le reste continue d'être vérifié.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="n">3</div>
+            <div>
+              <h3>Tout ce qui est sensible vous revient.</h3>
+              <p>Remboursement, litige, client en colère&nbsp;: escaladé immédiatement. Chaque mois, un rapport chiffré&nbsp;: tickets traités, temps économisé, motifs récurrents.</p>
+            </div>
+          </div>
+        </div>
+        <aside class="guardrail reveal">
+          <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <p><strong>Ce que notre agent ne peut PAS faire&nbsp;:</strong> rembourser, modifier une commande, promettre un geste commercial. L'accès à vos commandes est en lecture seule. Ce n'est pas une promesse, c'est une impossibilité technique.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- S6 — Cas d'étude -->
+    <section class="case" id="cas">
+      <div class="wrap">
+        <div class="panel">
+          <div>
+            <h2><mark>[Boutique mode]</mark>, <mark>[60 000]</mark>&nbsp;€/mois de CA, gérée à deux</h2>
+            <div class="avant-apres">
+              <div class="aa-block">
+                <div class="label">Avant</div>
+                <p><mark>[3 h/jour]</mark> de SAV, réponses à J+2 en période de soldes, <mark>[avis négatifs sur les délais]</mark>.</p>
+              </div>
+              <div class="aa-block">
+                <div class="label">Après <mark>[n]</mark> mois</div>
+                <p><mark>[412]</mark> tickets/mois traités, <mark>[20 min/jour]</mark> de supervision, 1re réponse &lt; <mark>[2 h]</mark>, <mark>[note d'avis remontée de X à Y]</mark>.</p>
+              </div>
+            </div>
+          </div>
+          <figure>
+            <blockquote>«&nbsp;<mark>[VRAIE citation — ex&nbsp;: «&nbsp;Je rouvre ma boîte perso le matin sans appréhension. Je ne pensais pas dire ça un jour.&nbsp;»]</mark>&nbsp;»</blockquote>
+            <figcaption><mark>[Prénom]</mark>, <mark>[Boutique]</mark></figcaption>
+            <p class="case-cta">Votre boutique ressemble à ça&nbsp;? <a href="#audit">→ Audit offert</a></p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- S7 — Témoignages -->
+    <section class="quotes" id="temoignages">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2>Ils nous confient leurs clients.</h2>
+        </div>
+        <div class="quotes-grid">
+          <figure class="quote-card reveal">
+            <blockquote>«&nbsp;<mark>[VRAI témoignage n°1 — fourni par Hugo]</mark>&nbsp;»</blockquote>
+            <figcaption>
+              <span class="pic"><mark>[photo]</mark></span>
+              <span><mark>[Prénom]</mark>, <mark>[Boutique]</mark>, <mark>[Ville]</mark></span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card reveal">
+            <blockquote>«&nbsp;<mark>[VRAI témoignage n°2 — fourni par Hugo]</mark>&nbsp;»</blockquote>
+            <figcaption>
+              <span class="pic"><mark>[photo]</mark></span>
+              <span><mark>[Prénom]</mark>, <mark>[Boutique]</mark>, <mark>[Ville]</mark></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- S8 — Tarif -->
+    <section class="pricing" id="tarif">
+      <div class="wrap">
+        <div class="card reveal">
+          <h2>Un prix fixe. Pas de facturation à la résolution.</h2>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="what">Setup — une fois. On s'occupe de tout.</span>
+              <span class="amount">990&nbsp;€</span>
+            </div>
+            <div class="price-row">
+              <span class="what">Jusqu'à 500 tickets/mois</span>
+              <span class="amount">390&nbsp;€<small>/mois</small></span>
+            </div>
+            <div class="price-row">
+              <span class="what">Au-delà de 500 tickets/mois</span>
+              <span class="amount">590&nbsp;€<small>/mois</small></span>
+            </div>
+          </div>
+          <ul class="included">
+            <li>Réponses 7j/7</li>
+            <li>Supervision humaine</li>
+            <li>Escalade</li>
+            <li>Rapport mensuel chiffré</li>
+            <li>Sans engagement, résiliable par simple email</li>
+          </ul>
+          <p class="context">À titre de comparaison&nbsp;: un mi-temps SAV salarié coûte ~2&nbsp;000–2&nbsp;500&nbsp;€/mois chargés, un freelance 500–1&nbsp;500&nbsp;€/mois — que vous devez recruter, former et manager.</p>
+          <div class="cta-center">
+            <a class="btn btn-primary" href="#audit">Commencer par l'audit offert</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S9 — Qui vérifie ? -->
+    <section class="founder" id="fondateur">
+      <div class="wrap">
+        <div class="inner">
+          <div class="photo reveal"><mark>[Photo réelle d'Hugo — jamais de stock]</mark></div>
+          <div>
+            <h2>Derrière l'IA, il y a Hugo.</h2>
+            <p class="first"><mark>[Bio courte&nbsp;: parcours e-commerce, pourquoi ce produit, «&nbsp;je supervise personnellement les réponses des boutiques qu'on équipe&nbsp;»]</mark>.</p>
+            <p>On ne prend que <mark>[3]</mark> nouvelles boutiques ce trimestre — la supervision humaine ne se scale pas à l'infini, c'est le principe.</p>
+            <p class="mail-line">Une question&nbsp;? Écrivez-moi&nbsp;: <a href="mailto:hugo@onsenoccupe.fr">hugo@onsenoccupe.fr</a> — c'est moi qui réponds.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S10 — FAQ -->
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2>Les questions qu'on nous pose vraiment.</h2>
+        </div>
+        <div class="list">
+          <details>
+            <summary>L'IA ne va pas raconter n'importe quoi à mes clients&nbsp;? <span class="plus">+</span></summary>
+            <p class="answer">Non&nbsp;: chaque réponse est vérifiée par un humain au démarrage, l'agent ne répond que sur la base de VOS informations, et il ne peut ni rembourser ni promettre quoi que ce soit (lecture seule). Ce qui sort du cadre vous est transmis.</p>
+          </details>
+          <details>
+            <summary>Mes clients veulent parler à un humain. <span class="plus">+</span></summary>
+            <p class="answer">Ils écrivent à votre boutique et reçoivent une réponse au nom de votre boutique, relue par un humain. Les cas sensibles sont traités par un humain, tout court.</p>
+          </details>
+          <details>
+            <summary>Ma niche est trop spécifique. <span class="plus">+</span></summary>
+            <p class="answer">C'est ce que l'audit vérifie précisément, sur vos <mark>[100]</mark> derniers tickets, avant tout engagement.</p>
+          </details>
+          <details>
+            <summary>Je n'ai pas le temps de mettre ça en place. <span class="plus">+</span></summary>
+            <p class="answer">Le setup est fait par notre équipe en <mark>[X]</mark> jours. De votre côté&nbsp;: <mark>[30 min]</mark> d'appel, c'est tout.</p>
+          </details>
+          <details>
+            <summary>J'utilise déjà ChatGPT pour m'aider. <span class="plus">+</span></summary>
+            <p class="answer">Très bien pour rédiger plus vite — mais c'est toujours vous qui lisez chaque email, cherchez la commande, copiez-collez, à 23&nbsp;h. Ici, ça part sans vous, sous supervision.</p>
+          </details>
+          <details>
+            <summary>Et mes données clients&nbsp;? (RGPD) <span class="plus">+</span></summary>
+            <p class="answer">Données hébergées en <mark>[UE]</mark>, accès lecture seule, <mark>[DPA fourni]</mark>, aucune donnée utilisée pour entraîner des modèles tiers. <mark>[Détails fournis]</mark></p>
+          </details>
+          <details>
+            <summary>Il y a un engagement&nbsp;? <span class="plus">+</span></summary>
+            <p class="answer">Non. Résiliable par simple email, vous gardez tout (historique, modèles de réponses).</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- S11 — CTA final + formulaire -->
+    <section class="final" id="audit">
+      <div class="wrap">
+        <div class="inner">
+          <h2>Commencez par savoir ce que votre SAV vous coûte.</h2>
+          <p class="pitch">Audit offert&nbsp;: envoyez-nous un export de vos <mark>[100]</mark> derniers tickets, on vous rend sous 48&nbsp;h le temps que ça vous prend, ce qui est automatisable, et ce que ça changerait. Sans accès à votre boîte. Sans engagement. Puis 15 minutes pour en parler — et si ce n'est pas pertinent pour votre boutique, on vous le dit.</p>
+
+          <form class="audit-form" id="audit-form" novalidate>
+            <div class="field">
+              <label for="f-prenom">Prénom</label>
+              <input type="text" id="f-prenom" name="prenom" autocomplete="given-name" required placeholder="Camille" />
+              <span class="error">Indiquez votre prénom.</span>
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input type="email" id="f-email" name="email" autocomplete="email" required placeholder="vous@votreboutique.fr" />
+              <span class="error">Indiquez un email valide.</span>
+            </div>
+            <div class="field">
+              <label for="f-url">URL de la boutique</label>
+              <input type="url" id="f-url" name="boutique" inputmode="url" required placeholder="https://votreboutique.fr" />
+              <span class="error">Indiquez l'adresse de votre boutique.</span>
+            </div>
+            <div class="field">
+              <label for="f-volume">Commandes/mois</label>
+              <select id="f-volume" name="volume" required>
+                <option value="" selected disabled>Choisir…</option>
+                <option value="<200">&lt; 200</option>
+                <option value="200-800">200 – 800</option>
+                <option value="800-2000">800 – 2 000</option>
+                <option value="2000+">2 000 +</option>
+              </select>
+              <span class="error">Choisissez une tranche.</span>
+            </div>
+            <!-- Honeypot anti-spam (invisible) -->
+            <div class="hp" aria-hidden="true">
+              <label for="f-site">Site web</label>
+              <input type="text" id="f-site" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="actions span-2">
+              <button type="submit" class="btn btn-primary">Recevoir mon audit offert</button>
+              <p class="form-note">ou réservez directement 15 min → <a href="#" data-calcom><mark>[lien Cal.com]</mark></a></p>
+              <p class="form-status" role="status" aria-live="polite"></p>
+              <p class="rgpd">Vos coordonnées servent uniquement à vous recontacter pour l'audit. Pas de newsletter.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- S12 — Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <p class="tagline">On S'en Occupe — le SAV email de votre boutique, rédigé par une IA, vérifié par un humain.</p>
+          <p class="transparency">Nos réponses clients sont générées avec assistance d'une IA et supervisées par notre équipe — conformément au règlement européen sur l'IA (art. 50).</p>
+          <p class="transparency"><mark>[SIREN, adresse]</mark> · <a href="mailto:hugo@onsenoccupe.fr">hugo@onsenoccupe.fr</a></p>
+        </div>
+        <div>
+          <div class="legal-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
