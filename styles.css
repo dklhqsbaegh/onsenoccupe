@@ -713,6 +713,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   height: clamp(170px, 20vw, 210px);
   overflow: visible;
 }
+.fc-chart .chart-wrap { margin-top: 54px; }
 .fc-chart .grid { stroke: var(--line); stroke-width: 1; }
 .fc-chart .axis { stroke: #D8CFC0; stroke-width: 1; }
 .fc-chart .marker { stroke: #CFC4B2; stroke-width: 1.5; stroke-dasharray: 4 5; }
@@ -734,7 +735,8 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   white-space: nowrap;
 }
 .fc-chart .ann strong { display: block; color: var(--ink); font-weight: 700; font-size: 13.5px; }
-.fc-chart .ann.start { left: 3%; top: 2%; }
+.fc-chart .ann.start strong { display: inline; }
+.fc-chart .ann.start { left: 3%; top: -16%; }
 .fc-chart .ann.finish { right: 1%; top: 44%; text-align: right; }
 /* Dates : collées sous l'axe des abscisses */
 .fc-chart .ann.x-start,
@@ -748,7 +750,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 /* Repère « Branchement » : juste au-dessus du trait vertical */
 .fc-chart .ann.branch {
   left: 37.5%;
-  top: -6%;
+  top: -3%;
   transform: translateX(-50%);
   font-size: 11.5px;
   color: #8C8477;
