@@ -734,18 +734,25 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   white-space: nowrap;
 }
 .fc-chart .ann strong { display: block; color: var(--ink); font-weight: 700; font-size: 13.5px; }
-.fc-chart .ann.start { left: 3%; top: -4%; }
+.fc-chart .ann.start { left: 3%; top: 2%; }
 .fc-chart .ann.finish { right: 1%; top: 44%; text-align: right; }
+/* Dates : collées sous l'axe des abscisses */
 .fc-chart .ann.x-start,
-.fc-chart .ann.x-end,
-.fc-chart .ann.branch {
-  bottom: -13%;
+.fc-chart .ann.x-end {
+  bottom: 9%;
   font-size: 11.5px;
   color: #8C8477;
 }
 .fc-chart .ann.x-start { left: 2%; }
 .fc-chart .ann.x-end { right: 0; }
-.fc-chart .ann.branch { left: 37.5%; transform: translateX(-50%); }
+/* Repère « Branchement » : juste au-dessus du trait vertical */
+.fc-chart .ann.branch {
+  left: 37.5%;
+  top: -6%;
+  transform: translateX(-50%);
+  font-size: 11.5px;
+  color: #8C8477;
+}
 @media (max-width: 420px) {
   .fc-chart .ann.branch { display: none; }
 }
