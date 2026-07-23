@@ -1181,8 +1181,8 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .included .row-break { display: none; }
 @media (max-width: 600px) {
   .pricing .card { padding-inline: 14px; }
-  .pricing .included { justify-content: center; gap: 8px; }
-  .pricing .included li { font-size: 12.5px; padding: 7px 13px; }
+  .pricing .included { justify-content: center; gap: 6px; }
+  .pricing .included li { font-size: 10.5px; padding: 5px 9px; }
   .pricing .included .row-break {
     display: block;
     flex-basis: 100%;
