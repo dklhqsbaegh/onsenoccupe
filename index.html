@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" href="img/icon-180.png" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=52" />
+  <link rel="stylesheet" href="styles.css?v=54" />
 </head>
 <body>
 
@@ -436,13 +436,19 @@
     <section class="pricing" id="tarif">
       <div class="wrap">
         <div class="card reveal">
-          <p class="scarcity">Plus que <strong>3 places disponibles</strong> restantes en <span class="js-mois">ce mois-ci</span></p>
+          <p class="scarcity">Plus que <strong>3 places disponibles</strong> en <span class="js-mois">ce mois-ci</span></p>
           <h2>Un prix fixe. Pas de facturation à la résolution.</h2>
-          <div class="price-rows">
-            <div class="price-row">
-              <span class="what">Setup — une fois. On s'occupe de tout.</span>
+
+          <div class="setup-block">
+            <div class="setup-line">
+              <span class="what"><strong>Installation</strong><small>une seule fois — on s'occupe de tout</small></span>
               <span class="amount">990&nbsp;€</span>
             </div>
+            <p class="first-month"><span class="gift">1er mois offert</span> Pour démarrer, vous ne réglez que l'installation. Le premier mois d'abonnement est offert.</p>
+          </div>
+
+          <p class="monthly-label">Puis, chaque mois — selon votre volume&nbsp;:</p>
+          <div class="price-rows">
             <div class="price-row">
               <span class="what">Jusqu'à 500 tickets/mois</span>
               <span class="amount">390&nbsp;€<small>/mois</small></span>
@@ -456,11 +462,13 @@
               <span class="amount"><a class="amount-link" href="mailto:hugo@onsenoccupe.fr?subject=Volume%20%3E%201500%20tickets%2Fmois">Nous contacter</a></span>
             </div>
           </div>
+
           <ul class="included">
-            <li>7j/7, 24h/24</li>
+            <li>Réponses 7j/7, 24h/24</li>
+            <li class="row-break" aria-hidden="true"></li>
+            <li>Supervision humaine</li>
             <li>Escalade</li>
             <li>Rapport mensuel</li>
-            <li>Supervision humaine</li>
             <li>Sans engagement</li>
           </ul>
           <p class="context">À titre de comparaison&nbsp;: un mi-temps SAV salarié coûte ~2&nbsp;000–2&nbsp;500&nbsp;€/mois chargés, un freelance 500–1&nbsp;500&nbsp;€/mois — que vous devez recruter, former et manager.</p>
