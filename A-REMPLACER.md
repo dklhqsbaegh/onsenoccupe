@@ -13,10 +13,10 @@ Elles doivent être remplacées par des données réelles avant publication.
 
 | Affiché | Nature | À faire |
 |---|---|---|
-| 5 840 tickets traités le mois dernier | inventé | total réel sur les 15 boutiques |
+| 11 620 tickets traités le mois dernier | inventé | total réel sur les boutiques équipées |
 | 89 % sans votre intervention | inventé | taux réel |
 | < 2 h de première réponse | inventé | délai médian réel |
-| « les 15 boutiques qu'on équipe » | à confirmer | nombre exact au moment de la mise en ligne |
+| « +30 boutiques » (titre S7 et note S3) | à confirmer | nombre exact au moment de la mise en ligne |
 
 ## 2. Mécanisme (S5)
 

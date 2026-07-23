@@ -848,7 +848,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   gap: 24px;
   margin-bottom: clamp(26px, 4vw, 40px);
 }
-.proofs-head h2 { max-width: 16ch; }
+.proofs-head h2 { max-width: none; }
 .proofs-head p {
   margin-top: 12px;
   font-size: 17px;
