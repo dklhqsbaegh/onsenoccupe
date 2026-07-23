@@ -154,13 +154,18 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   height: 68px;
 }
 .brand {
-  font-family: var(--serif);
-  font-weight: 620;
-  font-size: 19px;
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  letter-spacing: -0.01em;
+  flex: none;
 }
-.brand .dot { color: var(--accent); }
+.brand img {
+  height: 32px;
+  width: auto;
+}
+@media (max-width: 480px) {
+  .brand img { height: 26px; }
+}
 .site-nav {
   display: flex;
   align-items: center;
@@ -839,6 +844,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 @media (min-width: 820px) {
   .site-footer .cols { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
 }
+.site-footer .footer-logo { height: 28px; width: auto; margin-bottom: 12px; }
 .site-footer .tagline { font-size: 14.5px; color: var(--ink); font-weight: 550; }
 .site-footer .legal-links { display: flex; flex-wrap: wrap; gap: 14px; }
 .site-footer a { color: var(--ink-soft); }

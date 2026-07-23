@@ -11,17 +11,20 @@
   <meta property="og:url" content="https://onsenoccupe.fr/" />
   <meta property="og:image" content="https://onsenoccupe.fr/og-image.png" />
   <meta property="og:locale" content="fr_FR" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icon-32.png" />
+  <link rel="apple-touch-icon" href="img/icon-180.png" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=22" />
+  <link rel="stylesheet" href="styles.css?v=23" />
 </head>
 <body>
 
   <!-- S1 — Header sticky discret -->
   <header class="site-header" id="top">
     <div class="wrap bar">
-      <a class="brand" href="#top">On S'en Occupe<span class="dot">.</span></a>
+      <a class="brand" href="#top" aria-label="On S'en Occupe — accueil">
+        <img src="img/logo-noir.webp" srcset="img/logo-noir.webp 1x, img/logo-noir@2x.webp 2x" width="214" height="36" alt="On S'en Occupe" />
+      </a>
       <nav class="site-nav" aria-label="Navigation principale">
         <a class="nav-link" href="#comment">Comment ça marche</a>
         <a class="nav-link" href="#tarif">Tarif</a>
@@ -360,7 +363,8 @@
     <div class="wrap">
       <div class="cols">
         <div>
-          <p class="tagline">On S'en Occupe — le SAV email de votre boutique, rédigé par une IA, vérifié par un humain.</p>
+          <img class="footer-logo" src="img/logo-noir.webp" srcset="img/logo-noir.webp 1x, img/logo-noir@2x.webp 2x" width="178" height="30" alt="On S'en Occupe" />
+          <p class="tagline">Le SAV email de votre boutique, rédigé par une IA, vérifié par un humain.</p>
           <p class="transparency">Nos réponses clients sont générées avec assistance d'une IA et supervisées par notre équipe — conformément au règlement européen sur l'IA (art. 50).</p>
           <p class="transparency"><mark>[SIREN, adresse]</mark> · <a href="mailto:hugo@onsenoccupe.fr">hugo@onsenoccupe.fr</a></p>
         </div>
