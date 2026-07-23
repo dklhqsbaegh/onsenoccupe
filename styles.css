@@ -603,34 +603,133 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   background: var(--ink);
   color: #F5F1E9;
   border-radius: 24px;
-  padding: clamp(30px, 5.5vw, 60px);
+  padding: clamp(26px, 5vw, 56px);
   display: grid;
-  gap: 34px;
+  gap: clamp(26px, 4vw, 38px);
 }
-@media (min-width: 900px) { .case .panel { grid-template-columns: 1.1fr 0.9fr; align-items: center; } }
 .case h2 { color: #FBF8F2; }
-.case .avant-apres { margin-top: 24px; display: grid; gap: 18px; }
-.case .aa-block .label {
-  font-size: 12.5px;
+.case mark { background: #E8C766; color: var(--ink); }
+
+.case .case-label {
+  display: block;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #C9BFAF;
-  margin-bottom: 6px;
+  color: #F0A379;
+  margin-bottom: 12px;
 }
-.case .aa-block p { font-size: 15.5px; color: #DAD2C4; }
-.case .aa-block mark { background: #E8C766; color: var(--ink); }
+
+/* ---- Graphique : la chute du temps SAV ---- */
+.case .chart { margin: 0; }
+.case .chart-wrap { position: relative; }
+.case .chart svg {
+  display: block;
+  width: 100%;
+  height: clamp(180px, 26vw, 250px);
+  overflow: visible;
+}
+.case .chart .grid { stroke: rgba(250, 247, 242, 0.09); stroke-width: 1; }
+.case .chart .marker {
+  stroke: rgba(250, 247, 242, 0.3);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 5;
+}
+.case .chart .curve {
+  fill: none;
+  stroke: #F0A379;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.case .chart .pt { fill: #F0A379; stroke: var(--ink); stroke-width: 3; }
+.case .chart .pt.end { fill: #FBF8F2; }
+/* Annotations posées sur le graphique */
+.case .chart .ann {
+  position: absolute;
+  font-size: clamp(12px, 1.5vw, 14px);
+  line-height: 1.35;
+  color: #C9BFAF;
+  white-space: nowrap;
+}
+.case .chart .ann strong { display: block; color: #FBF8F2; font-weight: 700; }
+.case .chart .ann.start { left: 6%; top: 0; }
+.case .chart .ann.setup {
+  left: 38.5%;
+  top: 2%;
+  font-size: 12px;
+  color: #9C9384;
+}
+.case .chart .ann.finish { right: 2%; top: 52%; text-align: right; }
+.case .chart figcaption {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #9C9384;
+}
+@media (max-width: 560px) {
+  .case .chart .ann.setup { display: none; }
+  .case .chart .ann.finish { top: 40%; }
+}
+
+/* ---- Les trois métriques ---- */
+.case .case-metrics {
+  display: grid;
+  gap: 22px;
+  border-top: 1px solid rgba(250, 247, 242, 0.14);
+  border-bottom: 1px solid rgba(250, 247, 242, 0.14);
+  padding-block: clamp(22px, 3vw, 30px);
+}
+@media (min-width: 720px) {
+  .case .case-metrics {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .case .case-metrics .cm + .cm {
+    border-left: 1px solid rgba(250, 247, 242, 0.14);
+    padding-left: clamp(20px, 3vw, 34px);
+  }
+  .case .case-metrics .cm { padding-right: clamp(16px, 2.5vw, 28px); }
+}
+.case .cm .v {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4.2vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: #FBF8F2;
+  font-variant-numeric: tabular-nums;
+}
+.case .cm .k {
+  margin-top: 7px;
+  font-size: 14px;
+  color: #C9BFAF;
+  max-width: 22ch;
+}
+
+/* ---- Citation ---- */
+.case .case-quote { margin: 0; }
 .case blockquote {
   font-family: var(--serif);
-  font-size: clamp(19px, 2.8vw, 24px);
+  font-size: clamp(19px, 2.6vw, 26px);
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.35;
   color: #FBF8F2;
+  max-width: 30ch;
 }
-.case blockquote mark { font-family: var(--sans); font-size: 0.75em; font-style: normal; }
-.case figcaption { margin-top: 16px; font-size: 14.5px; color: #C9BFAF; }
-.case .case-cta { margin-top: 26px; font-size: 15.5px; }
-.case .case-cta a { color: #F0A379; font-weight: 600; }
+.case blockquote mark { font-family: var(--sans); font-size: 0.7em; font-weight: 500; }
+.case .case-quote figcaption { margin-top: 14px; font-size: 14.5px; color: #C9BFAF; }
+.case .case-cta { font-size: 15.5px; color: #C9BFAF; }
+.case .case-cta a { color: #F0A379; font-weight: 700; }
+
+@media (min-width: 900px) {
+  .case .panel { grid-template-columns: 1.15fr 0.85fr; align-items: start; }
+  .case .case-head,
+  .case .case-metrics { grid-column: 1 / -1; }
+  .case .chart { grid-column: 1 / -1; }
+  .case .case-quote { align-self: center; }
+  .case .case-cta { align-self: center; text-align: right; }
+}
 
 /* ============================================================
    S7 — Témoignages
