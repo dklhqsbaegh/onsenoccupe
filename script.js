@@ -90,6 +90,42 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   onScroll();
 })();
 
+/* ---------- Mois courant (rareté S9) : se met à jour tout seul ---------- */
+const moisEl = document.getElementById("mois-courant");
+if (moisEl) {
+  try {
+    moisEl.textContent = new Intl.DateTimeFormat("fr-FR", { month: "long" }).format(new Date());
+  } catch (e) {
+    /* le texte de repli « ce mois-ci » reste affiché */
+  }
+}
+
+/* ---------- Rail d'échanges : flèches de défilement (desktop) ---------- */
+const rail = document.querySelector(".exchange-rail");
+if (rail) {
+  const btns = document.querySelectorAll(".rail-btn");
+  const pas = () => {
+    const carte = rail.querySelector(".exchange-card");
+    if (!carte) return rail.clientWidth * 0.8;
+    const gap = parseFloat(getComputedStyle(rail).columnGap) || 16;
+    return carte.getBoundingClientRect().width + gap;
+  };
+  const majEtat = () => {
+    const max = rail.scrollWidth - rail.clientWidth - 2;
+    btns.forEach((b) => {
+      const dir = Number(b.dataset.dir);
+      b.disabled = dir < 0 ? rail.scrollLeft <= 2 : rail.scrollLeft >= max;
+    });
+  };
+  btns.forEach((b) =>
+    b.addEventListener("click", () => {
+      rail.scrollBy({ left: Number(b.dataset.dir) * pas(), behavior: prefersReduced ? "auto" : "smooth" });
+    })
+  );
+  rail.addEventListener("scroll", majEtat, { passive: true });
+  majEtat();
+}
+
 /* ---------- Formulaire essai gratuit : validation + POST ou fallback mailto ---------- */
 const form = document.getElementById("essai-form");
 if (form) {

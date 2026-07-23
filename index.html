@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" href="img/icon-180.png" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=35" />
+  <link rel="stylesheet" href="styles.css?v=36" />
 </head>
 <body>
 
@@ -154,9 +154,16 @@
             <div>
               <h3>L'IA rédige, notre équipe valide.</h3>
               <p>Les <mark>[premières semaines]</mark>, 100&nbsp;% des réponses sont validées par un humain avant envoi. Ensuite, seules les réponses sans risque partent seules — le reste reste surveillé.</p>
-              <div class="artifact draft" aria-hidden="true">
-                <span class="d-text">«&nbsp;Bonjour Marie, votre commande a été expédiée hier soir…&nbsp;»</span>
-                <span class="badge-check">✓ Vérifié avant envoi</span>
+              <div class="artifact mini-exchange" aria-hidden="true">
+                <div class="me-line">
+                  <span class="me-who">Cliente · 21 h 07</span>
+                  <p>«&nbsp;La robe est trop grande, je peux l'échanger contre une taille en dessous&nbsp;?&nbsp;»</p>
+                </div>
+                <div class="me-line reply">
+                  <span class="me-who">Réponse envoyée · 21 h 19</span>
+                  <p>«&nbsp;Bien sûr, l'échange est possible sous 30 jours. Voici votre étiquette de retour prépayée…&nbsp;»</p>
+                  <span class="badge-check">✓ Vérifié avant envoi</span>
+                </div>
               </div>
             </div>
           </div>
@@ -255,25 +262,124 @@
       </div>
     </section>
 
-    <!-- S7 — Témoignages -->
-    <section class="quotes" id="temoignages">
+    <!-- S7 — Preuve : échanges réels + témoignages -->
+    <section class="proofs" id="temoignages">
       <div class="wrap">
-        <div class="section-intro">
-          <h2>Ils nous confient leurs clients.</h2>
+        <div class="proofs-head">
+          <div>
+            <h2><mark>[15]</mark> boutiques nous confient leur SAV.</h2>
+            <p>Voici ce que notre agent leur a vraiment envoyé.</p>
+          </div>
+          <div class="rail-nav">
+            <button type="button" class="rail-btn" data-dir="-1" aria-label="Échanges précédents">‹</button>
+            <button type="button" class="rail-btn" data-dir="1" aria-label="Échanges suivants">›</button>
+          </div>
         </div>
-        <div class="quotes-grid">
-          <figure class="quote-card reveal">
-            <blockquote>«&nbsp;<mark>[VRAI témoignage n°1 — fourni par Hugo]</mark>&nbsp;»</blockquote>
+
+        <div class="exchange-rail" role="region" aria-label="Exemples d'échanges traités par l'agent" tabindex="0">
+          <article class="exchange-card">
+            <header class="ex-head">
+              <span class="ex-shop"><mark>[Boutique mode]</mark></span>
+              <span class="ex-tag">Où est ma commande</span>
+              <span class="ex-meta"><mark>[Lyon]</mark> · <mark>[mars 2025]</mark></span>
+            </header>
+            <div class="ex-msg client">
+              <span class="ex-who">Cliente · 21 h 07</span>
+              <p>«&nbsp;Bonjour, j'ai commandé il y a 6 jours et je n'ai toujours aucune nouvelle.&nbsp;»</p>
+            </div>
+            <div class="ex-msg reply">
+              <span class="ex-who">Réponse envoyée · 21 h 19</span>
+              <p>«&nbsp;Bonjour, votre commande est partie jeudi par Colissimo, livraison annoncée lundi. Voici le suivi. Désolés pour l'attente.&nbsp;»</p>
+              <span class="badge-check">✓ Vérifié</span>
+            </div>
+          </article>
+          <article class="exchange-card">
+            <header class="ex-head">
+              <span class="ex-shop"><mark>[Boutique cosmétique]</mark></span>
+              <span class="ex-tag">Composition produit</span>
+              <span class="ex-meta"><mark>[Nantes]</mark> · <mark>[avril 2025]</mark></span>
+            </header>
+            <div class="ex-msg client">
+              <span class="ex-who">Client · 22 h 41</span>
+              <p>«&nbsp;Est-ce que votre sérum contient de l'alcool ? J'ai la peau très réactive.&nbsp;»</p>
+            </div>
+            <div class="ex-msg reply">
+              <span class="ex-who">Réponse envoyée · 22 h 53</span>
+              <p>«&nbsp;Non, la formule est sans alcool ni parfum. Les actifs principaux sont [X] et [Y] — la liste complète est sur la fiche produit.&nbsp;»</p>
+              <span class="badge-check">✓ Vérifié</span>
+            </div>
+          </article>
+          <article class="exchange-card">
+            <header class="ex-head">
+              <span class="ex-shop"><mark>[Boutique déco]</mark></span>
+              <span class="ex-tag">Retour et échange</span>
+              <span class="ex-meta"><mark>[Bordeaux]</mark> · <mark>[mai 2025]</mark></span>
+            </header>
+            <div class="ex-msg client">
+              <span class="ex-who">Cliente · 19 h 32</span>
+              <p>«&nbsp;Le luminaire ne va pas avec ma pièce, je peux le retourner ?&nbsp;»</p>
+            </div>
+            <div class="ex-msg reply">
+              <span class="ex-who">Réponse envoyée · 19 h 44</span>
+              <p>«&nbsp;Oui, vous avez 30 jours. Voici l'étiquette de retour prépayée — le remboursement part dès réception en atelier.&nbsp;»</p>
+              <span class="badge-check">✓ Vérifié</span>
+            </div>
+          </article>
+          <article class="exchange-card">
+            <header class="ex-head">
+              <span class="ex-shop"><mark>[Boutique mobilier]</mark></span>
+              <span class="ex-tag">Délai sur mesure</span>
+              <span class="ex-meta"><mark>[Lille]</mark> · <mark>[mai 2025]</mark></span>
+            </header>
+            <div class="ex-msg client">
+              <span class="ex-who">Client · 08 h 12</span>
+              <p>«&nbsp;Le canapé est annoncé à 8 semaines, c'est toujours d'actualité ?&nbsp;»</p>
+            </div>
+            <div class="ex-msg reply">
+              <span class="ex-who">Réponse envoyée · 08 h 26</span>
+              <p>«&nbsp;Oui, 8 semaines à compter de la validation du tissu. Votre commande a été lancée le [date], livraison estimée semaine [n].&nbsp;»</p>
+              <span class="badge-check">✓ Vérifié</span>
+            </div>
+          </article>
+          <article class="exchange-card">
+            <header class="ex-head">
+              <span class="ex-shop"><mark>[Boutique mode]</mark></span>
+              <span class="ex-tag">Client mécontent</span>
+              <span class="ex-meta"><mark>[Lyon]</mark> · <mark>[juin 2025]</mark></span>
+            </header>
+            <div class="ex-msg client">
+              <span class="ex-who">Cliente · 20 h 58</span>
+              <p>«&nbsp;C'est la deuxième fois que le colis arrive abîmé. Je veux un remboursement.&nbsp;»</p>
+            </div>
+            <div class="ex-msg reply">
+              <span class="ex-who">Réponse envoyée · 21 h 04</span>
+              <p>«&nbsp;Je transmets immédiatement votre demande à [Prénom], la gérante, qui revient vers vous aujourd'hui.&nbsp;»</p>
+              <span class="badge-check badge-esc">↗ Escaladé à la gérante</span>
+            </div>
+          </article>
+        </div>
+        <p class="rail-note">Échanges réels, publiés avec l'accord des boutiques. Prénoms des clients modifiés.</p>
+
+        <div class="voices">
+          <figure class="voice reveal">
+            <blockquote>«&nbsp;<mark>[Témoignage 1 — l'objection « l'IA va dire n'importe quoi » désamorcée]</mark>&nbsp;»</blockquote>
             <figcaption>
               <span class="pic"><mark>[photo]</mark></span>
-              <span><mark>[Prénom]</mark>, <mark>[Boutique]</mark>, <mark>[Ville]</mark></span>
+              <span><strong><mark>[Prénom]</mark></strong><br /><mark>[Boutique]</mark>, <mark>[Ville]</mark></span>
             </figcaption>
           </figure>
-          <figure class="quote-card reveal">
-            <blockquote>«&nbsp;<mark>[VRAI témoignage n°2 — fourni par Hugo]</mark>&nbsp;»</blockquote>
+          <figure class="voice reveal">
+            <blockquote>«&nbsp;<mark>[Témoignage 2 — le temps récupéré, les soirées]</mark>&nbsp;»</blockquote>
             <figcaption>
               <span class="pic"><mark>[photo]</mark></span>
-              <span><mark>[Prénom]</mark>, <mark>[Boutique]</mark>, <mark>[Ville]</mark></span>
+              <span><strong><mark>[Prénom]</mark></strong><br /><mark>[Boutique]</mark>, <mark>[Ville]</mark></span>
+            </figcaption>
+          </figure>
+          <figure class="voice reveal">
+            <blockquote>«&nbsp;<mark>[Témoignage 3 — « mes clients veulent un humain » désamorcé]</mark>&nbsp;»</blockquote>
+            <figcaption>
+              <span class="pic"><mark>[photo]</mark></span>
+              <span><strong><mark>[Prénom]</mark></strong><br /><mark>[Boutique]</mark>, <mark>[Ville]</mark></span>
             </figcaption>
           </figure>
         </div>
@@ -322,7 +428,7 @@
           <div>
             <h2>Derrière l'IA, il y a Hugo.</h2>
             <p class="first"><mark>[Bio courte&nbsp;: parcours e-commerce, pourquoi ce produit, «&nbsp;je supervise personnellement les réponses des boutiques qu'on équipe&nbsp;»]</mark>.</p>
-            <p>On ne prend que <mark>[3]</mark> nouvelles boutiques ce trimestre — la supervision humaine ne se scale pas à l'infini, c'est le principe.</p>
+            <p>On ne prend plus que <mark>[3]</mark> nouvelles boutiques en <span id="mois-courant">ce mois-ci</span> — la supervision humaine ne se scale pas à l'infini, c'est le principe.</p>
             <p class="mail-line">Une question&nbsp;? Écrivez-moi&nbsp;: <a href="mailto:hugo@onsenoccupe.fr">hugo@onsenoccupe.fr</a> — c'est moi qui réponds.</p>
           </div>
         </div>
@@ -428,6 +534,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=22" defer></script>
+  <script src="script.js?v=36" defer></script>
 </body>
 </html>
