@@ -1095,6 +1095,29 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   box-shadow: var(--shadow-card);
 }
 .pricing h2 { text-align: center; }
+.scarcity {
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent-deep);
+  background: var(--accent-tint);
+  border: 1px solid #EBD2C3;
+  border-radius: var(--r-pill);
+  padding: 8px 16px;
+  width: fit-content;
+  margin: 0 auto 20px;
+}
+.scarcity strong { font-weight: 700; }
+.price-row .amount-link {
+  color: var(--accent-deep);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 1px;
+}
+.price-row .amount-link:hover { color: var(--accent); }
 .price-rows { margin-top: 26px; display: grid; gap: 0; }
 .price-row {
   display: flex;
@@ -1114,6 +1137,11 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 }
 .price-row .amount small { font-size: 0.55em; font-family: var(--sans); font-weight: 600; color: var(--ink-soft); }
 .included { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 600px) {
+  .pricing .card { padding-inline: 12px; }
+  .pricing .included { justify-content: center; gap: 5px; }
+  .pricing .included li { font-size: 10px; padding: 4px 6px; }
+}
 .included li {
   list-style: none;
   font-size: 13.5px;

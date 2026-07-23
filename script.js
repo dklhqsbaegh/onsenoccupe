@@ -90,11 +90,12 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   onScroll();
 })();
 
-/* ---------- Mois courant (rareté S9) : se met à jour tout seul ---------- */
-const moisEl = document.getElementById("mois-courant");
-if (moisEl) {
+/* ---------- Mois courant (rareté tarif + fondateur) : se met à jour tout seul ---------- */
+const moisEls = document.querySelectorAll(".js-mois");
+if (moisEls.length) {
   try {
-    moisEl.textContent = new Intl.DateTimeFormat("fr-FR", { month: "long" }).format(new Date());
+    const mois = new Intl.DateTimeFormat("fr-FR", { month: "long" }).format(new Date());
+    moisEls.forEach((el) => (el.textContent = mois));
   } catch (e) {
     /* le texte de repli « ce mois-ci » reste affiché */
   }
