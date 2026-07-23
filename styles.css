@@ -875,7 +875,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .exchange-rail {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(276px, 356px);
+  grid-auto-columns: calc(100vw - 88px);
   gap: 16px;
   overflow-x: auto;
   overscroll-behavior-x: contain;
@@ -887,6 +887,9 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   scrollbar-color: var(--line) transparent;
 }
 @media (prefers-reduced-motion: reduce) { .exchange-rail { scroll-behavior: auto; } }
+@media (min-width: 760px) {
+  .exchange-rail { grid-auto-columns: 340px; }
+}
 .exchange-rail::-webkit-scrollbar { height: 6px; }
 .exchange-rail::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
 .exchange-rail::-webkit-scrollbar-track { background: transparent; }
@@ -930,9 +933,12 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   padding: 12px 14px;
 }
 .ex-mail.reply {
+  background: #FDF6F1;
+  border: 1px solid #F1E3D7;
   border-left: 3px solid var(--accent);
-  padding: 2px 0 0 14px;
-  margin-top: auto;
+  border-radius: 12px;
+  padding: 12px 14px;
+  flex: 1;
 }
 .ex-mail .m-head {
   display: flex;
@@ -956,7 +962,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   margin-bottom: 9px;
   border-bottom: 1px solid var(--line);
 }
-.ex-mail.reply .m-subject { border-bottom-color: #EBDFD0; }
+.ex-mail.reply .m-subject { border-bottom-color: #EBDACB; }
 .ex-mail .m-body { font-size: 13px; }
 .ex-mail .badge-check { margin-top: 11px; }
 
@@ -966,7 +972,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   border: 1px solid #EBD2C3;
   border-radius: 12px;
   padding: 12px 14px;
-  margin-top: auto;
+  flex: 1;
 }
 .ex-mail.internal .m-from { color: var(--accent-deep); }
 .ex-mail.internal .m-subject { border-bottom-color: #E3CBBA; }
