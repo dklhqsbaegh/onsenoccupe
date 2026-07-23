@@ -33,14 +33,14 @@ Elles doivent être remplacées par des données réelles avant publication.
 | Affiché | À faire |
 |---|---|
 | **Maison Lyra**, 60 000 €/mois, gérée à deux | vraie boutique + accord écrit |
-| ÷ 9 · − 22 h · + 24 % | mesures réelles |
+| + 80 h · − 22 h · + 24 % | mesures réelles |
 | 3 h/jour → 20 min/jour | mesures réelles |
 | sept. 2025 → mars 2026 | période réelle |
-| Citation « Je rouvre ma boîte le matin… » — Camille D. | vraie citation, vraie personne |
+| Citation « Dix ans à construire la confiance… » — Camille D. | vraie citation, vraie personne. Garder l'angle : la peur pour l'image, levée par l'impossibilité technique |
 | Initiales **CD** dans la pastille | remplacer par une photo réelle |
 
-**⚠️ Cohérence** : la courbe et les trois métriques doivent concorder. 3 h/jour → 20 min/jour
-donne bien un ÷ 9. Si les vrais chiffres diffèrent, recalculer.
+**⚠️ Cohérence** : la courbe et les métriques doivent concorder. 3 h/jour → 20 min/jour, soit
+2 h 40 gagnées par jour × 30 jours ≈ 80 h/mois. Si les vrais chiffres diffèrent, recalculer.
 
 ## 4. Échanges et témoignages (S7)
 
