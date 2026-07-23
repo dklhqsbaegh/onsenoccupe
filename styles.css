@@ -484,6 +484,16 @@ section { padding-block: clamp(56px, 9vw, 104px); }
    S5 — Comment ça marche (étapes numérotées)
    ============================================================ */
 .how { background: linear-gradient(180deg, rgba(196,85,45,0.045), rgba(196,85,45,0)) ; }
+/* Desktop : section centrée dans la page */
+@media (min-width: 820px) {
+  .how .section-intro {
+    margin-inline: auto;
+    text-align: center;
+    max-width: 720px;
+  }
+  .how .steps,
+  .how .guardrail { margin-inline: auto; }
+}
 .steps {
   display: grid;
   gap: 0;
