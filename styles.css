@@ -299,6 +299,14 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   white-space: nowrap;
 }
 .mail-time.late { color: var(--accent-deep); font-weight: 700; }
+.mail-subject {
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--ink-soft);
+  padding-bottom: 8px;
+  margin-bottom: 9px;
+  border-bottom: 1px solid var(--line);
+}
 .mail-body { font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
 .mail-body strong { color: var(--ink); font-weight: 650; }
 .badge-check {
@@ -554,6 +562,14 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   color: var(--ink);
   margin-bottom: 3px;
 }
+.me-subject {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink);
+  padding-bottom: 7px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
 .me-line .badge-check { margin-top: 9px; }
 .artifact.report {
   background: var(--bg-raised);
@@ -798,8 +814,10 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   border: 1px solid #EBD2C3;
   display: grid;
   place-items: center;
-  font-size: 9px;
-  text-align: center;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   color: var(--accent-deep);
   flex: none;
 }
@@ -857,7 +875,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .exchange-rail {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(268px, 340px);
+  grid-auto-columns: minmax(276px, 356px);
   gap: 16px;
   overflow-x: auto;
   overscroll-behavior-x: contain;
@@ -904,26 +922,43 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   padding: 3px 10px;
 }
 .ex-meta { flex-basis: 100%; font-size: 12px; color: var(--ink-soft); }
-.ex-msg { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
-.ex-msg.client {
+.ex-mail { font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+.ex-mail.client {
   background: var(--bg);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 11px 13px;
+  padding: 12px 14px;
 }
-.ex-msg.reply {
+.ex-mail.reply {
   border-left: 3px solid var(--accent);
-  padding: 2px 0 0 13px;
+  padding: 2px 0 0 14px;
   margin-top: auto;
 }
-.ex-who {
-  display: block;
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 4px;
+.ex-mail .m-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
 }
-.ex-msg .badge-check { margin-top: 10px; }
+.ex-mail .m-from { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+.ex-mail .m-time {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ex-mail .m-subject {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink);
+  margin-top: 3px;
+  padding-bottom: 8px;
+  margin-bottom: 9px;
+  border-bottom: 1px solid var(--line);
+}
+.ex-mail.reply .m-subject { border-bottom-color: #EBDFD0; }
+.ex-mail .m-body { font-size: 13px; }
+.ex-mail .badge-check { margin-top: 11px; }
 .badge-check.badge-esc { background: var(--accent-tint); color: var(--accent-deep); }
 
 .rail-note {
@@ -968,8 +1003,10 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   border: 1px solid #EBD2C3;
   display: grid;
   place-items: center;
-  font-size: 9px;
-  text-align: center;
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   color: var(--accent-deep);
   flex: none;
 }
