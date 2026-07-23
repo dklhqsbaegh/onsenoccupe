@@ -959,6 +959,35 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .ex-mail.reply .m-subject { border-bottom-color: #EBDFD0; }
 .ex-mail .m-body { font-size: 13px; }
 .ex-mail .badge-check { margin-top: 11px; }
+
+/* Cas sensible : alerte interne au gérant, aucune réponse envoyée au client */
+.ex-mail.internal {
+  background: var(--accent-tint);
+  border: 1px solid #EBD2C3;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-top: auto;
+}
+.ex-mail.internal .m-from { color: var(--accent-deep); }
+.ex-mail.internal .m-subject { border-bottom-color: #E3CBBA; }
+.ex-mail.internal .m-body strong { color: var(--accent-deep); font-weight: 700; }
+.m-suggestion {
+  margin-top: 11px;
+  background: var(--bg-raised);
+  border: 1px dashed #DDC5B4;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.sug-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin-bottom: 5px;
+}
+.m-suggestion p { font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
 .badge-check.badge-esc { background: var(--accent-tint); color: var(--accent-deep); }
 
 .rail-note {

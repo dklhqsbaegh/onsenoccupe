@@ -48,8 +48,11 @@ Les 5 boutiques sont **inventées** : Maison Lyra (Lyon), Baume & Sève (Nantes)
 Atelier Ombre (Bordeaux), Bois & Lin (Lille). Vérifier qu'aucune entreprise réelle
 ne porte ces noms avant toute publication, ou les remplacer directement par tes clients.
 
-Les 5 échanges (clients Marie L., Karim T., Sarah M., Antoine R., Nadia B.) sont
-inventés — y compris la carte « Client mécontent → Escaladé à la gérante ».
+Les 5 échanges (clients Marie L., Karim T., Sarah M., Antoine R., Nadia B.) sont inventés.
+
+La 5e carte est un cas sensible : **aucune réponse n'est envoyée au client**. L'agent envoie
+une alerte interne au gérant avec le contexte et une suggestion de réponse. Garder ce
+fonctionnement avec le vrai exemple — c'est la démonstration du garde-fou.
 
 Les 3 témoignages (Sophie M., Thomas D., Inès F.) sont inventés. Ils ciblent chacun
 une objection différente : la peur de l'IA, le temps récupéré, « mes clients veulent
