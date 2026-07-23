@@ -5,9 +5,13 @@
    ============================================================ */
 // URL Tally / Formspark / webhook. Laisser vide ("") pour le fallback mailto.
 const FORM_ENDPOINT = "";
-// Lien Cal.com (ex : "https://cal.com/hugo-onsenoccupe/15min"). Vide = lien inactif.
-const CALCOM_URL = "";
 const CONTACT_EMAIL = "hugo@onsenoccupe.fr";
+// Adresse où le prospect transfère ses 10 derniers emails clients
+const ESSAI_EMAIL = "essai@onsenoccupe.fr";
+// Message de confirmation après envoi du formulaire
+const CONFIRMATION =
+  "Dernière étape (2 minutes) : transférez vos 10 derniers emails clients à " +
+  ESSAI_EMAIL + ". Vous recevez vos réponses sous 48 h.";
 
 /* ---------- Header : bordure au scroll (sentinelle, pas d'écouteur scroll) ---------- */
 const header = document.querySelector(".site-header");
@@ -86,21 +90,8 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   onScroll();
 })();
 
-/* ---------- Lien Cal.com (chargé au clic uniquement — perf, brief §6) ---------- */
-const calLink = document.querySelector("[data-calcom]");
-if (calLink) {
-  calLink.addEventListener("click", (ev) => {
-    ev.preventDefault();
-    if (CALCOM_URL) {
-      window.open(CALCOM_URL, "_blank", "noopener");
-    } else {
-      alert("Le lien de réservation sera bientôt disponible. Écrivez-nous : " + CONTACT_EMAIL);
-    }
-  });
-}
-
-/* ---------- Formulaire audit : validation + POST ou fallback mailto ---------- */
-const form = document.getElementById("audit-form");
+/* ---------- Formulaire essai gratuit : validation + POST ou fallback mailto ---------- */
+const form = document.getElementById("essai-form");
 if (form) {
   const statusEl = form.querySelector(".form-status");
 
@@ -150,30 +141,31 @@ if (form) {
         });
         if (!res.ok) throw new Error("HTTP " + res.status);
         form.reset();
-        setStatus("C'est noté ! Vous recevrez votre audit sous 48 h — surveillez votre boîte mail.", "ok");
+        setStatus(CONFIRMATION, "ok");
       } catch (err) {
         setStatus("L'envoi a échoué. Réessayez, ou écrivez-nous : " + CONTACT_EMAIL, "err");
       } finally {
         btn.disabled = false;
-        btn.textContent = "Recevoir mon audit offert";
+        btn.textContent = "Essayer sur mes emails";
       }
     } else {
       // Fallback mailto : ouvre l'email pré-rempli du visiteur
       const body = [
-        "Bonjour Hugo,",
+        "Bonjour,",
         "",
-        "Je souhaite recevoir l'audit SAV offert.",
+        "Je souhaite tester l'agent sur mes 10 derniers emails clients.",
         "",
         "Prénom : " + data.prenom,
         "Email : " + data.email,
         "Boutique : " + data.boutique,
-        "Commandes/mois : " + data.volume,
+        "",
+        "(Je transfère mes 10 derniers emails clients à la suite de ce message.)",
       ].join("\n");
       window.location.href =
-        "mailto:" + CONTACT_EMAIL +
-        "?subject=" + encodeURIComponent("Demande d'audit SAV offert") +
+        "mailto:" + ESSAI_EMAIL +
+        "?subject=" + encodeURIComponent("Essai gratuit — 10 derniers emails clients") +
         "&body=" + encodeURIComponent(body);
-      setStatus("Votre logiciel d'email s'ouvre avec la demande pré-remplie — il ne reste qu'à envoyer.", "ok");
+      setStatus(CONFIRMATION, "ok");
     }
   });
 }
