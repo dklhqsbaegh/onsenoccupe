@@ -597,148 +597,207 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .guardrail strong { font-weight: 700; }
 
 /* ============================================================
-   S6 — Cas d'étude
+   S6 — Cas client : trio de cartes en éventail
    ============================================================ */
-.case .panel {
-  background: var(--ink);
-  color: #F5F1E9;
-  border-radius: 24px;
-  padding: clamp(26px, 5vw, 56px);
-  display: grid;
-  gap: clamp(26px, 4vw, 38px);
+.case-intro {
+  max-width: 760px;
+  margin-bottom: clamp(30px, 5vw, 52px);
 }
-.case h2 { color: #FBF8F2; }
-.case mark { background: #E8C766; color: var(--ink); }
-
-.case .case-label {
+@media (min-width: 900px) {
+  .case-intro { margin-inline: auto; text-align: center; }
+}
+.case-label {
   display: block;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #F0A379;
+  color: var(--accent);
   margin-bottom: 12px;
 }
 
-/* ---- Graphique : la chute du temps SAV ---- */
-.case .chart { margin: 0; }
-.case .chart-wrap { position: relative; }
-.case .chart svg {
+/* --- L'éventail --- */
+.case-fan {
+  position: relative;
+  display: grid;
+  gap: 16px;
+}
+.case-fan::before {
+  content: "";
+  position: absolute;
+  inset: -14% -8%;
+  background: radial-gradient(closest-side at 50% 45%, rgba(196, 85, 45, 0.13), transparent 70%);
+  pointer-events: none;
+}
+.fan-card {
+  position: relative;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 26px 24px;
+  box-shadow:
+    0 1px 2px rgba(84, 62, 44, 0.07),
+    0 14px 32px -14px rgba(84, 62, 44, 0.24);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.fc-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+
+@media (min-width: 900px) {
+  .case-fan {
+    grid-template-columns: 1fr 1.22fr 1fr;
+    align-items: center;
+    gap: 0;
+  }
+  .fc-metrics {
+    transform: rotate(-2.4deg) translateY(16px);
+    margin-right: -22px;
+    padding-right: 46px;
+    z-index: 1;
+  }
+  .fc-chart {
+    z-index: 3;
+    padding: 30px 28px;
+    box-shadow:
+      0 2px 4px rgba(84, 62, 44, 0.08),
+      0 22px 48px -18px rgba(84, 62, 44, 0.3),
+      0 44px 80px -40px rgba(84, 62, 44, 0.24);
+  }
+  .fc-quote {
+    transform: rotate(2.2deg) translateY(16px);
+    margin-left: -22px;
+    padding-left: 48px;
+    z-index: 2;
+  }
+  /* Au survol, la carte se redresse et passe devant */
+  .fan-card:hover { z-index: 4; }
+  .fc-metrics:hover { transform: rotate(0deg) translateY(8px); }
+  .fc-quote:hover { transform: rotate(0deg) translateY(8px); }
+  .fc-chart:hover { transform: translateY(-6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fan-card { transition: none; }
+}
+
+/* --- Carte gauche : les métriques --- */
+.metric-list { list-style: none; display: grid; gap: 20px; }
+.metric-list li + li { border-top: 1px solid var(--line); padding-top: 20px; }
+.metric-list .v {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.4vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.metric-list .v i { font-style: normal; color: var(--accent); }
+.metric-list .k {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* --- Carte centrale : le graphique --- */
+.chart-wrap { position: relative; }
+.fc-chart svg {
   display: block;
   width: 100%;
-  height: clamp(180px, 26vw, 250px);
+  height: clamp(170px, 20vw, 210px);
   overflow: visible;
 }
-.case .chart .grid { stroke: rgba(250, 247, 242, 0.09); stroke-width: 1; }
-.case .chart .axis { stroke: rgba(250, 247, 242, 0.2); stroke-width: 1; }
-.case .chart .marker {
-  stroke: rgba(250, 247, 242, 0.3);
-  stroke-width: 1.5;
-  stroke-dasharray: 4 5;
-}
-.case .chart .curve {
+.fc-chart .grid { stroke: var(--line); stroke-width: 1; }
+.fc-chart .axis { stroke: #D8CFC0; stroke-width: 1; }
+.fc-chart .marker { stroke: #CFC4B2; stroke-width: 1.5; stroke-dasharray: 4 5; }
+.fc-chart .curve {
   fill: none;
-  stroke: #F0A379;
-  stroke-width: 3.5;
+  stroke: var(--accent);
+  stroke-width: 3;
   stroke-linejoin: round;
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
 }
-.case .chart .pt { fill: #F0A379; stroke: var(--ink); stroke-width: 3; }
-.case .chart .pt.end { fill: #FBF8F2; }
-/* Annotations posées sur le graphique */
-.case .chart .ann {
+.fc-chart .pt { fill: var(--accent); stroke: var(--bg-raised); stroke-width: 3; }
+.fc-chart .pt.end { fill: var(--accent-deep); }
+.fc-chart .ann {
   position: absolute;
-  font-size: clamp(12px, 1.5vw, 14px);
+  font-size: 12.5px;
   line-height: 1.35;
-  color: #C9BFAF;
+  color: var(--ink-soft);
   white-space: nowrap;
 }
-.case .chart .ann strong { display: block; color: #FBF8F2; font-weight: 700; }
-.case .chart .ann.start { left: 6%; top: 0; }
-.case .chart .ann.setup {
-  left: 38.5%;
-  top: 2%;
-  font-size: 12px;
-  color: #9C9384;
+.fc-chart .ann strong { display: block; color: var(--ink); font-weight: 700; font-size: 13.5px; }
+.fc-chart .ann.start { left: 3%; top: -4%; }
+.fc-chart .ann.finish { right: 1%; top: 44%; text-align: right; }
+.fc-chart .ann.x-start,
+.fc-chart .ann.x-end,
+.fc-chart .ann.branch {
+  bottom: -13%;
+  font-size: 11.5px;
+  color: #8C8477;
 }
-.case .chart .ann.finish { right: 2%; top: 52%; text-align: right; }
-/* Repères de temps en abscisse */
-.case .chart .ann.x-start,
-.case .chart .ann.x-end {
-  bottom: -6%;
-  font-size: 12.5px;
-  color: #9C9384;
-}
-.case .chart .ann.x-start { left: 4%; }
-.case .chart .ann.x-end { right: 1%; }
-.case .chart figcaption {
-  margin-top: 34px;
-  font-size: 13px;
-  color: #9C9384;
-}
-@media (max-width: 560px) {
-  .case .chart .ann.setup { display: none; }
-  .case .chart .ann.finish { top: 40%; }
+.fc-chart .ann.x-start { left: 2%; }
+.fc-chart .ann.x-end { right: 0; }
+.fc-chart .ann.branch { left: 37.5%; transform: translateX(-50%); }
+@media (max-width: 420px) {
+  .fc-chart .ann.branch { display: none; }
 }
 
-/* ---- Les trois métriques ---- */
-.case .case-metrics {
-  display: grid;
-  gap: 22px;
-  border-top: 1px solid rgba(250, 247, 242, 0.14);
-  border-bottom: 1px solid rgba(250, 247, 242, 0.14);
-  padding-block: clamp(22px, 3vw, 30px);
-}
-@media (min-width: 720px) {
-  .case .case-metrics {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-  }
-  .case .case-metrics .cm + .cm {
-    border-left: 1px solid rgba(250, 247, 242, 0.14);
-    padding-left: clamp(20px, 3vw, 34px);
-  }
-  .case .case-metrics .cm { padding-right: clamp(16px, 2.5vw, 28px); }
-}
-.case .cm .v {
+/* --- Carte droite : la citation --- */
+.fc-quote { display: flex; flex-direction: column; justify-content: center; }
+.fc-quote blockquote {
   font-family: var(--serif);
-  font-size: clamp(30px, 4.2vw, 44px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
-  color: #FBF8F2;
-  font-variant-numeric: tabular-nums;
-}
-.case .cm .k {
-  margin-top: 7px;
-  font-size: 14px;
-  color: #C9BFAF;
-  max-width: 22ch;
-}
-
-/* ---- Citation ---- */
-.case .case-quote { margin: 0; }
-.case blockquote {
-  font-family: var(--serif);
-  font-size: clamp(19px, 2.6vw, 26px);
+  font-size: clamp(17px, 2vw, 20px);
   font-weight: 600;
-  line-height: 1.35;
-  color: #FBF8F2;
-  max-width: 30ch;
+  line-height: 1.4;
+  color: var(--ink);
 }
-.case blockquote mark { font-family: var(--sans); font-size: 0.7em; font-weight: 500; }
-.case .case-quote figcaption { margin-top: 14px; font-size: 14.5px; color: #C9BFAF; }
-.case .case-cta { font-size: 15.5px; color: #C9BFAF; }
-.case .case-cta a { color: #F0A379; font-weight: 700; }
+.fc-quote blockquote mark { font-family: var(--sans); font-size: 0.78em; font-weight: 500; }
+.fc-quote figcaption {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+.fc-quote figcaption strong { color: var(--ink); font-weight: 700; }
+.fc-quote .pic {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  border: 1px solid #EBD2C3;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  text-align: center;
+  color: var(--accent-deep);
+  flex: none;
+}
 
+/* --- CTA sous l'éventail --- */
+.case-cta {
+  margin-top: clamp(34px, 5vw, 54px);
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+.case-cta a { color: var(--accent-deep); font-weight: 700; white-space: nowrap; }
 @media (min-width: 900px) {
-  .case .panel { grid-template-columns: 1.15fr 0.85fr; align-items: start; }
-  .case .case-head,
-  .case .case-metrics { grid-column: 1 / -1; }
-  .case .chart { grid-column: 1 / -1; }
-  .case .case-quote { align-self: center; }
-  .case .case-cta { align-self: center; text-align: right; }
+  .case-cta { text-align: center; margin-top: 60px; }
+}
+
+/* Mobile : pile verticale, le graphique en premier */
+@media (max-width: 899px) {
+  .fc-chart { order: -1; }
 }
 
 /* ============================================================

@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" href="img/icon-180.png" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=28" />
+  <link rel="stylesheet" href="styles.css?v=30" />
 </head>
 <body>
 
@@ -185,22 +185,42 @@
       </div>
     </section>
 
-    <!-- S6 — Cas d'étude -->
+    <!-- S6 — Cas client : trio de cartes -->
     <section class="case" id="cas">
       <div class="wrap">
-        <div class="panel">
-          <div class="case-head">
-            <span class="case-label">Cas client</span>
-            <h2><mark>[Boutique mode]</mark>, <mark>[60 000]</mark>&nbsp;€/mois de CA, gérée à deux</h2>
-          </div>
+        <div class="case-intro">
+          <span class="case-label">Cas client</span>
+          <h2><mark>[Boutique mode]</mark>, <mark>[60 000]</mark>&nbsp;€/mois de CA, gérée à deux</h2>
+        </div>
 
-          <figure class="chart">
+        <div class="case-fan">
+
+          <article class="fan-card fc-metrics reveal">
+            <h3 class="fc-title">Ce qui a changé</h3>
+            <ul class="metric-list">
+              <li>
+                <span class="v"><i>÷</i>&nbsp;<mark>[9]</mark></span>
+                <span class="k">temps de gestion du SAV</span>
+              </li>
+              <li>
+                <span class="v"><i>−</i>&nbsp;<mark>[22&nbsp;h]</mark></span>
+                <span class="k">de délai de première réponse</span>
+              </li>
+              <li>
+                <span class="v"><i>+</i>&nbsp;<mark>[24&nbsp;%]</mark></span>
+                <span class="k">de satisfaction client</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="fan-card fc-chart reveal">
+            <h3 class="fc-title">Temps passé au SAV</h3>
             <div class="chart-wrap">
-              <svg viewBox="0 0 640 230" preserveAspectRatio="none" role="img" aria-label="Le temps passé au SAV chute après le branchement, puis se stabilise très bas.">
+              <svg viewBox="0 0 640 230" preserveAspectRatio="none" role="img" aria-label="Le temps passé au SAV reste stable, puis chute dès le branchement et se stabilise très bas.">
                 <defs>
                   <linearGradient id="fadeArea" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#F0A379" stop-opacity="0.42" />
-                    <stop offset="100%" stop-color="#F0A379" stop-opacity="0" />
+                    <stop offset="0%" stop-color="#C4552D" stop-opacity="0.20" />
+                    <stop offset="100%" stop-color="#C4552D" stop-opacity="0" />
                   </linearGradient>
                 </defs>
                 <line x1="40" y1="46" x2="600" y2="46" class="grid" />
@@ -214,36 +234,24 @@
                 <circle class="pt end" cx="600" cy="168" r="5.5" />
               </svg>
               <span class="ann start"><strong><mark>[3 h/jour]</mark></strong> de SAV</span>
-              <span class="ann setup">Branchement</span>
               <span class="ann finish"><strong><mark>[20 min/jour]</mark></strong> de supervision</span>
               <span class="ann x-start"><mark>[mars 2025]</mark></span>
+              <span class="ann branch">Branchement</span>
               <span class="ann x-end"><mark>[sept. 2025]</mark></span>
             </div>
-            <figcaption>Temps passé au SAV, semaine après semaine, sur <mark>[6]</mark> mois.</figcaption>
-          </figure>
+          </article>
 
-          <div class="case-metrics">
-            <div class="cm">
-              <div class="v">÷&nbsp;<mark>[9]</mark></div>
-              <div class="k">temps de gestion du SAV</div>
-            </div>
-            <div class="cm">
-              <div class="v">−&nbsp;<mark>[22&nbsp;h]</mark></div>
-              <div class="k">de délai de première réponse</div>
-            </div>
-            <div class="cm">
-              <div class="v">+&nbsp;<mark>[24&nbsp;%]</mark></div>
-              <div class="k">de satisfaction client</div>
-            </div>
-          </div>
-
-          <figure class="case-quote">
+          <article class="fan-card fc-quote reveal">
             <blockquote>«&nbsp;<mark>[VRAIE citation — ex&nbsp;: «&nbsp;Je rouvre ma boîte perso le matin sans appréhension. Je ne pensais pas dire ça un jour.&nbsp;»]</mark>&nbsp;»</blockquote>
-            <figcaption><mark>[Prénom]</mark>, <mark>[Boutique]</mark></figcaption>
-          </figure>
+            <figcaption>
+              <span class="pic"><mark>[photo]</mark></span>
+              <span><strong><mark>[Prénom]</mark></strong><br /><mark>[Boutique]</mark></span>
+            </figcaption>
+          </article>
 
-          <p class="case-cta">Votre boutique ressemble à ça&nbsp;? <a href="#essai">→ Essayer sur mes emails</a></p>
         </div>
+
+        <p class="case-cta">Votre boutique ressemble à ça&nbsp;? <a href="#essai">Essayer sur mes emails →</a></p>
       </div>
     </section>
 
