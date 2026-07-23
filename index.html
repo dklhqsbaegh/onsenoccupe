@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" href="img/icon-180.png" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=44" />
+  <link rel="stylesheet" href="styles.css?v=45" />
 </head>
 <body>
 
@@ -196,78 +196,8 @@
       </div>
     </section>
 
-    <!-- S6 — Cas client : trio de cartes -->
-    <section class="case" id="cas">
-      <div class="wrap">
-        <div class="case-intro">
-          <span class="case-label">Cas client</span>
-          <h2>Maison Lyra, 60 000&nbsp;€/mois de CA, gérée à deux</h2>
-        </div>
-
-        <div class="case-fan">
-
-          <article class="fan-card fc-metrics reveal">
-            <h3 class="fc-title">Ce qui a changé</h3>
-            <ul class="metric-list">
-              <li>
-                <span class="v"><i>+</i>&nbsp;80&nbsp;h</span>
-                <span class="k">de gestion SAV gagnées chaque mois</span>
-              </li>
-              <li>
-                <span class="v"><i>−</i>&nbsp;22&nbsp;h</span>
-                <span class="k">de délai de première réponse</span>
-              </li>
-              <li>
-                <span class="v"><i>+</i>&nbsp;24&nbsp;%</span>
-                <span class="k">de satisfaction client</span>
-              </li>
-            </ul>
-          </article>
-
-          <article class="fan-card fc-chart reveal">
-            <h3 class="fc-title">Temps passé au SAV</h3>
-            <div class="chart-wrap">
-              <svg viewBox="0 0 640 230" preserveAspectRatio="none" role="img" aria-label="Le temps passé au SAV reste stable, puis chute dès le branchement et se stabilise très bas.">
-                <defs>
-                  <linearGradient id="fadeArea" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#C4552D" stop-opacity="0.20" />
-                    <stop offset="100%" stop-color="#C4552D" stop-opacity="0" />
-                  </linearGradient>
-                </defs>
-                <line x1="40" y1="46" x2="600" y2="46" class="grid" />
-                <line x1="40" y1="107" x2="600" y2="107" class="grid" />
-                <line x1="40" y1="168" x2="600" y2="168" class="grid" />
-                <line x1="40" y1="182" x2="600" y2="182" class="axis" />
-                <path class="area" d="M40,40 L140,36 L240,41 L330,105 L420,142 L510,160 L600,168 L600,182 L40,182 Z" fill="url(#fadeArea)" />
-                <line x1="240" y1="24" x2="240" y2="182" class="marker" />
-                <polyline class="curve" points="40,40 140,36 240,41 330,105 420,142 510,160 600,168" />
-                <circle class="pt" cx="40" cy="40" r="5.5" />
-                <circle class="pt end" cx="600" cy="168" r="5.5" />
-              </svg>
-              <span class="ann start"><strong>3 h/jour</strong> de SAV</span>
-              <span class="ann finish"><strong>20 min/jour</strong> de supervision</span>
-              <span class="ann x-start">sept. 2025</span>
-              <span class="ann branch">Branchement</span>
-              <span class="ann x-end">mars 2026</span>
-            </div>
-          </article>
-
-          <article class="fan-card fc-quote reveal">
-            <blockquote>«&nbsp;Dix ans à construire la confiance de mes clientes. Ce qui m'a décidée, c'est que l'agent ne peut ni rembourser ni rien promettre&nbsp;: le pire scénario que j'imaginais est techniquement impossible.&nbsp;»</blockquote>
-            <figcaption>
-              <span class="pic">CD</span>
-              <span><strong>Camille D.</strong><br />Maison Lyra, Lyon</span>
-            </figcaption>
-          </article>
-
-        </div>
-
-        <p class="case-cta">Votre boutique ressemble à ça&nbsp;? <a href="#essai">Essayer sur mes emails →</a></p>
-      </div>
-    </section>
-
-    <!-- S7 — Preuve : échanges réels + témoignages -->
-    <section class="proofs" id="temoignages">
+    <!-- Preuve : échanges réels (déplacée avant le cas client) -->
+    <section class="proofs" id="preuves">
       <div class="wrap">
         <div class="proofs-head">
           <div>
@@ -377,29 +307,128 @@
           </article>
         </div>
         <p class="rail-note">Échanges réels, publiés avec l'accord des boutiques. Prénoms des clients modifiés.</p>
+      </div>
+    </section>
 
-        <div class="voices">
-          <figure class="voice reveal">
-            <blockquote>«&nbsp;J'ai relu chaque réponse pendant trois semaines en cherchant la faute. Je ne l'ai pas trouvée. Maintenant j'ouvre le rapport le lundi, c'est tout.&nbsp;»</blockquote>
+    <!-- S6 — Cas client : trio de cartes -->
+    <section class="case" id="cas">
+      <div class="wrap">
+        <div class="case-intro">
+          <span class="case-label">Cas client</span>
+          <h2>Maison Lyra, 60 000&nbsp;€/mois de CA, gérée à deux</h2>
+        </div>
+
+        <div class="case-fan">
+
+          <article class="fan-card fc-metrics reveal">
+            <h3 class="fc-title">Ce qui a changé</h3>
+            <ul class="metric-list">
+              <li>
+                <span class="v"><i>+</i>&nbsp;80&nbsp;h</span>
+                <span class="k">de gestion SAV gagnées chaque mois</span>
+              </li>
+              <li>
+                <span class="v"><i>−</i>&nbsp;22&nbsp;h</span>
+                <span class="k">de délai de première réponse</span>
+              </li>
+              <li>
+                <span class="v"><i>+</i>&nbsp;24&nbsp;%</span>
+                <span class="k">de satisfaction client</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="fan-card fc-chart reveal">
+            <h3 class="fc-title">Temps passé au SAV</h3>
+            <div class="chart-wrap">
+              <svg viewBox="0 0 640 230" preserveAspectRatio="none" role="img" aria-label="Le temps passé au SAV reste stable, puis chute dès le branchement et se stabilise très bas.">
+                <defs>
+                  <linearGradient id="fadeArea" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#C4552D" stop-opacity="0.20" />
+                    <stop offset="100%" stop-color="#C4552D" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <line x1="40" y1="46" x2="600" y2="46" class="grid" />
+                <line x1="40" y1="107" x2="600" y2="107" class="grid" />
+                <line x1="40" y1="168" x2="600" y2="168" class="grid" />
+                <line x1="40" y1="182" x2="600" y2="182" class="axis" />
+                <path class="area" d="M40,40 L140,36 L240,41 L330,105 L420,142 L510,160 L600,168 L600,182 L40,182 Z" fill="url(#fadeArea)" />
+                <line x1="240" y1="24" x2="240" y2="182" class="marker" />
+                <polyline class="curve" points="40,40 140,36 240,41 330,105 420,142 510,160 600,168" />
+                <circle class="pt" cx="40" cy="40" r="5.5" />
+                <circle class="pt end" cx="600" cy="168" r="5.5" />
+              </svg>
+              <span class="ann start"><strong>3 h/jour</strong> de SAV</span>
+              <span class="ann finish"><strong>20 min/jour</strong> de supervision</span>
+              <span class="ann x-start">sept. 2025</span>
+              <span class="ann branch">Branchement</span>
+              <span class="ann x-end">mars 2026</span>
+            </div>
+          </article>
+
+          <article class="fan-card fc-quote reveal">
+            <blockquote>«&nbsp;Dix ans à construire la confiance de mes clientes. Ce qui m'a décidée, c'est que l'agent ne peut ni rembourser ni rien promettre&nbsp;: le pire scénario que j'imaginais est techniquement impossible.&nbsp;»</blockquote>
+            <figcaption>
+              <span class="pic">CD</span>
+              <span><strong>Camille D.</strong><br />Maison Lyra, Lyon</span>
+            </figcaption>
+          </article>
+
+        </div>
+
+        <p class="case-cta">Votre boutique ressemble à ça&nbsp;? <a href="#essai">Essayer sur mes emails →</a></p>
+      </div>
+    </section>
+
+    <!-- Avis : des gérants comme l'avatar, chaque témoignage lève une objection -->
+    <section class="avis" id="temoignages">
+      <div class="wrap">
+        <div class="section-intro avis-intro">
+          <h2>Des gérants comme vous, qui avaient les mêmes doutes.</h2>
+          <p>Même taille de boutique, mêmes soirées, mêmes craintes. Voici ce qu'ils en disent aujourd'hui.</p>
+        </div>
+        <div class="avis-grid">
+
+          <figure class="avis-card featured reveal">
+            <span class="avis-fear">Sa crainte, avant&nbsp;: «&nbsp;et si l'IA raconte n'importe quoi à mes clientes&nbsp;?&nbsp;»</span>
+            <blockquote>«&nbsp;J'ai relu chaque réponse pendant trois semaines en cherchant la faute. Je ne l'ai jamais trouvée. Aujourd'hui j'ouvre le rapport le lundi matin, c'est tout — et mes clientes n'ont jamais été aussi bien suivies.&nbsp;»</blockquote>
             <figcaption>
               <span class="pic">SM</span>
-              <span><strong>Sophie M.</strong><br />Atelier Ombre, Bordeaux</span>
+              <span class="who">
+                <strong>Sophie M.</strong>
+                <span class="role">Atelier Ombre — Bordeaux</span>
+                <span class="profil">Déco · 2 personnes · ~45&nbsp;k€/mois</span>
+              </span>
             </figcaption>
           </figure>
-          <figure class="voice reveal">
-            <blockquote>«&nbsp;Mes dimanches soir ne servent plus à vider la boîte SAV. C'est bête à dire, mais c'est ce qui a changé.&nbsp;»</blockquote>
+
+          <figure class="avis-card reveal">
+            <span class="avis-fear">Sa crainte&nbsp;: «&nbsp;je n'ai pas le temps de gérer ça.&nbsp;»</span>
+            <blockquote>«&nbsp;Mes dimanches soir ne servent plus à vider la boîte SAV. C'est bête à dire, mais c'est ce qui a tout changé.&nbsp;»</blockquote>
             <figcaption>
               <span class="pic">TD</span>
-              <span><strong>Thomas D.</strong><br />Bois &amp; Lin, Lille</span>
+              <span class="who">
+                <strong>Thomas D.</strong>
+                <span class="role">Bois &amp; Lin — Lille</span>
+                <span class="profil">Mobilier · 3 personnes · ~90&nbsp;k€/mois</span>
+              </span>
             </figcaption>
           </figure>
-          <figure class="voice reveal">
+
+          <figure class="avis-card reveal">
+            <span class="avis-fear">Sa crainte&nbsp;: «&nbsp;mes clients veulent parler à un humain.&nbsp;»</span>
             <blockquote>«&nbsp;Aucun client ne m'a jamais demandé si c'était une IA. Ils me disent juste qu'on répond vite.&nbsp;»</blockquote>
             <figcaption>
               <span class="pic">IF</span>
-              <span><strong>Inès F.</strong><br />Baume &amp; Sève, Nantes</span>
+              <span class="who">
+                <strong>Inès F.</strong>
+                <span class="role">Baume &amp; Sève — Nantes</span>
+                <span class="profil">Cosmétique · solo · ~30&nbsp;k€/mois</span>
+              </span>
             </figcaption>
           </figure>
+
+        </div>
       </div>
     </section>
 

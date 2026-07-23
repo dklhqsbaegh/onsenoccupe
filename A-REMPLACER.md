@@ -54,11 +54,14 @@ La 5e carte est un cas sensible : **aucune réponse n'est envoyée au client**. 
 une alerte interne au gérant avec le contexte et une suggestion de réponse. Garder ce
 fonctionnement avec le vrai exemple — c'est la démonstration du garde-fou.
 
-Les 3 témoignages (Sophie M., Thomas D., Inès F.) sont inventés. Ils ciblent chacun
-une objection différente : la peur de l'IA, le temps récupéré, « mes clients veulent
-un humain ». Garder cette répartition avec les vrais témoignages.
-
-Initiales dans les pastilles (SM, TD, IF) → à remplacer par des photos réelles.
+Les 3 témoignages (Sophie M., Thomas D., Inès F.) sont inventés — désormais dans une section
+« Avis » dédiée, placée juste avant le tarif. Chacun affiche une **crainte nommée** et un
+**profil boutique** (secteur · taille équipe · CA), tous deux inventés :
+- Sophie M. — Déco · 2 personnes · ~45 k€/mois — crainte « l'IA va dire n'importe quoi »
+- Thomas D. — Mobilier · 3 personnes · ~90 k€/mois — crainte « pas le temps »
+- Inès F. — Cosmétique · solo · ~30 k€/mois — crainte « mes clients veulent un humain »
+Le profil boutique est le levier d'identification : garder des profils proches de l'avatar
+(1-3 personnes, 30-100 k€/mois). Initiales (SM, TD, IF) → photos réelles.
 
 ## 5. Fondateur (S9)
 
