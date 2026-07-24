@@ -6,12 +6,14 @@
 // URL Tally / Formspark / webhook. Laisser vide ("") pour le fallback mailto.
 const FORM_ENDPOINT = "";
 const CONTACT_EMAIL = "hugo@onsenoccupe.fr";
-// Adresse où le prospect transfère ses 10 derniers emails clients
+// Adresse où le prospect transfère ses emails clients
 const ESSAI_EMAIL = "essai@onsenoccupe.fr";
-// Message de confirmation après envoi du formulaire
-const CONFIRMATION =
-  "Dernière étape (2 minutes) : transférez vos 10 derniers emails clients à " +
-  ESSAI_EMAIL + ". Vous recevez vos réponses instantanément.";
+
+// ── Places restantes (section Tarif) — ÉDITÉ À LA MAIN par Hugo ──
+// Mettre 10 au début de chaque mois, puis baisser au fil des
+// inscriptions réelles, jusqu'à 1 environ 5 jours avant la fin du mois.
+// Le chiffre affiché doit toujours refléter la réalité.
+const PLACES_RESTANTES = 10;
 
 /* ---------- Header : bordure au scroll (sentinelle, pas d'écouteur scroll) ---------- */
 const header = document.querySelector(".site-header");
@@ -44,12 +46,13 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
 }
 
 /* ---------- Effet scroll du hero : « la réponse prend le dessus » ----------
-   Uniquement le titre de scène et les 2 cartes (tout ce qui est au-dessus
-   de la ligne bénéfice). En scrollant : la question recule et s'estompe,
-   la réponse vérifiée se redresse et vient au premier plan.
-   Lissage à inertie (lerp) pour un mouvement fluide, transforms GPU only. */
+   Desktop uniquement (≥ 900px) : sur mobile les cartes sont empilées,
+   l'effet gêne la lecture au lieu de la servir.
+   En scrollant : la question recule et s'estompe, la réponse vérifiée
+   se redresse et vient au premier plan. Lissage à inertie (lerp). */
 (() => {
   if (prefersReduced) return;
+  if (!window.matchMedia("(min-width: 900px)").matches) return;
   const title = document.querySelector(".scene-title");
   const cardL = document.querySelector(".tilt-l");
   const cardR = document.querySelector(".tilt-r");
@@ -90,7 +93,7 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   onScroll();
 })();
 
-/* ---------- Mois courant (rareté tarif + fondateur) : se met à jour tout seul ---------- */
+/* ---------- Mois courant (rareté tarif) : se met à jour tout seul ---------- */
 const moisEls = document.querySelectorAll(".js-mois");
 if (moisEls.length) {
   try {
@@ -101,22 +104,45 @@ if (moisEls.length) {
   }
 }
 
-/* ---------- Rail d'échanges : flèches de défilement (desktop) ---------- */
+/* ---------- Places restantes : rendu du chiffre édité à la main ---------- */
+const placesEls = document.querySelectorAll(".js-places");
+if (placesEls.length) {
+  const n = Math.max(1, Math.round(PLACES_RESTANTES));
+  const texte = n === 1 ? "1 place restante" : n + " places restantes";
+  placesEls.forEach((el) => (el.textContent = texte));
+}
+
+/* ---------- Rail d'échanges : flèches + points de position ---------- */
 const rail = document.querySelector(".exchange-rail");
 if (rail) {
   const btns = document.querySelectorAll(".rail-btn");
+  const cartes = rail.querySelectorAll(".exchange-card");
+  const dotsWrap = document.querySelector(".rail-dots");
   const pas = () => {
     const carte = rail.querySelector(".exchange-card");
     if (!carte) return rail.clientWidth * 0.8;
     const gap = parseFloat(getComputedStyle(rail).columnGap) || 16;
     return carte.getBoundingClientRect().width + gap;
   };
+  let dots = [];
+  if (dotsWrap && cartes.length) {
+    cartes.forEach(() => {
+      const d = document.createElement("span");
+      d.className = "dot";
+      dotsWrap.appendChild(d);
+    });
+    dots = Array.from(dotsWrap.children);
+  }
   const majEtat = () => {
     const max = rail.scrollWidth - rail.clientWidth - 2;
     btns.forEach((b) => {
       const dir = Number(b.dataset.dir);
       b.disabled = dir < 0 ? rail.scrollLeft <= 2 : rail.scrollLeft >= max;
     });
+    if (dots.length) {
+      const idx = Math.min(dots.length - 1, Math.round(rail.scrollLeft / pas()));
+      dots.forEach((d, i) => d.classList.toggle("on", i === idx));
+    }
   };
   btns.forEach((b) =>
     b.addEventListener("click", () => {
@@ -127,6 +153,21 @@ if (rail) {
   majEtat();
 }
 
+/* ---------- CTA collant mobile : après le hero, caché sur la section essai ---------- */
+(() => {
+  const bar = document.getElementById("sticky-cta");
+  const hero = document.querySelector(".hero");
+  const essai = document.getElementById("essai");
+  if (!bar || !hero || !("IntersectionObserver" in window)) return;
+  let heroVisible = true;
+  let essaiVisible = false;
+  const maj = () => {
+    bar.hidden = heroVisible || essaiVisible;
+  };
+  new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; maj(); }).observe(hero);
+  if (essai) new IntersectionObserver(([e]) => { essaiVisible = e.isIntersecting; maj(); }).observe(essai);
+})();
+
 /* ---------- Formulaire essai gratuit : validation + POST ou fallback mailto ---------- */
 const form = document.getElementById("essai-form");
 if (form) {
@@ -135,6 +176,51 @@ if (form) {
   const setStatus = (msg, kind) => {
     statusEl.textContent = msg;
     statusEl.className = "form-status " + kind;
+  };
+
+  /* Confirmation riche : consigne + boutons copier / ouvrir mail */
+  const showConfirmation = (prenom) => {
+    statusEl.textContent = "";
+    statusEl.className = "form-status ok";
+
+    const titre = document.createElement("p");
+    titre.className = "confirm-title";
+    titre.textContent = "C'est noté" + (prenom ? ", " + prenom : "") + " !";
+
+    const consigne = document.createElement("p");
+    consigne.textContent =
+      "Dernière étape (2 minutes) : transférez 3 à 10 emails clients récents à " +
+      ESSAI_EMAIL + ". Vos réponses partent instantanément.";
+
+    const actions = document.createElement("div");
+    actions.className = "confirm-actions";
+
+    const btnCopy = document.createElement("button");
+    btnCopy.type = "button";
+    btnCopy.className = "btn btn-ghost";
+    btnCopy.textContent = "Copier l'adresse";
+    btnCopy.addEventListener("click", () => {
+      const done = () => {
+        btnCopy.textContent = "Adresse copiée ✓";
+        setTimeout(() => (btnCopy.textContent = "Copier l'adresse"), 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ESSAI_EMAIL).then(done, done);
+      } else {
+        done();
+      }
+    });
+
+    const btnMail = document.createElement("a");
+    btnMail.className = "btn btn-primary";
+    btnMail.href =
+      "mailto:" + ESSAI_EMAIL +
+      "?subject=" + encodeURIComponent("Essai gratuit — mes emails clients");
+    btnMail.textContent = "Ouvrir mon mail";
+
+    actions.append(btnCopy, btnMail);
+    statusEl.append(titre, consigne, actions);
+    statusEl.focus?.();
   };
 
   const validate = () => {
@@ -147,6 +233,7 @@ if (form) {
           ? /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(input.value.trim())
           : input.value.trim().length > 0;
       field.classList.toggle("invalid", !valid);
+      input.setAttribute("aria-invalid", valid ? "false" : "true");
       if (!valid) ok = false;
     });
     return ok;
@@ -178,7 +265,7 @@ if (form) {
         });
         if (!res.ok) throw new Error("HTTP " + res.status);
         form.reset();
-        setStatus(CONFIRMATION, "ok");
+        showConfirmation(data.prenom);
       } catch (err) {
         setStatus("L'envoi a échoué. Réessayez, ou écrivez-nous : " + CONTACT_EMAIL, "err");
       } finally {
@@ -190,19 +277,20 @@ if (form) {
       const body = [
         "Bonjour,",
         "",
-        "Je souhaite tester l'agent sur mes 10 derniers emails clients.",
+        "Je souhaite tester l'agent sur mes emails clients.",
         "",
         "Prénom : " + data.prenom,
         "Email : " + data.email,
         "Boutique : " + data.boutique,
+        data.emails ? "\nEmails clients :\n" + data.emails : "",
         "",
-        "(Je transfère mes 10 derniers emails clients à la suite de ce message.)",
+        "(Je transfère 3 à 10 emails clients récents à la suite de ce message.)",
       ].join("\n");
       window.location.href =
         "mailto:" + ESSAI_EMAIL +
-        "?subject=" + encodeURIComponent("Essai gratuit — 10 derniers emails clients") +
+        "?subject=" + encodeURIComponent("Essai gratuit — mes emails clients") +
         "&body=" + encodeURIComponent(body);
-      setStatus(CONFIRMATION, "ok");
+      showConfirmation(data.prenom);
     }
   });
 }

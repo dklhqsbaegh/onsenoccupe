@@ -433,8 +433,9 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   gap: 16px;
 }
 @media (min-width: 820px) {
-  .problem-grid { grid-template-columns: 1.1fr 0.9fr; }
-  .problem-card.big { grid-row: 1 / 3; }
+  .problem .problem-card.big { flex-direction: row; align-items: center; gap: clamp(28px, 5vw, 56px); }
+  .problem .problem-card.big .echo-wrap { flex: 1.1; margin-top: 40px; }
+  .problem .problem-card.big .big-text { flex: 0.9; }
 }
 .problem-card {
   background: var(--bg-raised);
@@ -445,7 +446,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .problem-card h3 { margin-bottom: 8px; }
 .problem-card p { font-size: 15px; color: var(--ink-soft); }
 .problem-card.big { padding: 28px 26px; display: flex; flex-direction: column; }
-.problem-card.big h3 { margin-top: auto; }
+.problem-card.big .big-text h3 { margin-bottom: 10px; }
 
 /* L'écho : la même question qui revient toute la journée */
 .echo-wrap { position: relative; margin: 50px 6px 34px 0; }
@@ -777,7 +778,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .fc-chart .ann.x-end {
   bottom: 9%;
   font-size: 11.5px;
-  color: #8C8477;
+  color: #6F6A5E;
 }
 .fc-chart .ann.x-start { left: 2%; }
 .fc-chart .ann.x-end { right: 0; }
@@ -787,7 +788,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   top: -3%;
   transform: translateX(-50%);
   font-size: 11.5px;
-  color: #8C8477;
+  color: #6F6A5E;
 }
 @media (max-width: 420px) {
   .fc-chart .ann.branch { display: none; }
@@ -1149,24 +1150,6 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   font-weight: 620;
   white-space: nowrap;
 }
-.first-month {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px dashed #E0CFC0;
-  font-size: 13.5px;
-  color: var(--ink-soft);
-  line-height: 1.5;
-}
-.first-month .gift {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  color: #1E5038;
-  background: #DDEEDD;
-  border-radius: var(--r-pill);
-  padding: 3px 11px;
-  margin-right: 7px;
-}
 .monthly-label {
   margin: 24px 0 12px;
   font-size: 14px;
@@ -1196,7 +1179,8 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 @media (max-width: 600px) {
   .pricing .card { padding-inline: 14px; }
   .pricing .included { justify-content: center; gap: 6px; }
-  .pricing .included li { font-size: 10.5px; padding: 5px 9px; }
+  .pricing .included li,
+  .pricing .included [role="listitem"] { font-size: 10.5px; padding: 5px 9px; }
   .pricing .included .row-break {
     display: block;
     flex-basis: 100%;
@@ -1208,7 +1192,8 @@ section { padding-block: clamp(56px, 9vw, 104px); }
     background: none;
   }
 }
-.included li {
+.included li,
+.included [role="listitem"] {
   list-style: none;
   font-size: 13.5px;
   background: var(--bg);
@@ -1240,7 +1225,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   gap: clamp(24px, 4vw, 44px);
 }
 @media (min-width: 860px) {
-  .founder .letter { grid-template-columns: 260px 1fr; align-items: start; }
+  .founder .letter:has(.letter-photo) { grid-template-columns: 260px 1fr; align-items: start; }
 }
 
 /* Photo candid */
@@ -1375,7 +1360,8 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .field { display: grid; gap: 7px; }
 .field label { font-size: 14px; font-weight: 600; }
 .field input,
-.field select {
+.field select,
+.field textarea {
   font-family: var(--sans);
   font-size: 16px;
   color: var(--ink);
@@ -1386,9 +1372,11 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   width: 100%;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.field input::placeholder { color: #97907F; }
+.field input::placeholder,
+.field textarea::placeholder { color: #7A7468; }
 .field input:focus,
-.field select:focus {
+.field select:focus,
+.field textarea:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(196, 85, 45, 0.18);
@@ -1462,10 +1450,168 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   .mail-card.reply { z-index: 2; }
 
   /* -- Reveals au scroll (sections) -- */
-  .reveal {
+  html.js .reveal {
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .reveal.in { opacity: 1; transform: none; }
+  html.js .reveal.in { opacity: 1; transform: none; }
 }
+
+
+/* ============================================================
+   Audit concurrentiel — nouveaux éléments (v63)
+   ============================================================ */
+
+/* Hero : ligne de réassurance 🇫🇷 / UE / +30 boutiques */
+.hero .badges {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+
+/* S3 : note sous le 89 % */
+.stat-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #6F6A5E;
+}
+
+/* S4 : légende sous le ×80 % */
+.times-cap {
+  position: absolute;
+  right: 0;
+  bottom: -34px;
+  z-index: 4;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-shadow: 0 2px 12px rgba(250, 247, 242, 0.9);
+}
+@media (max-width: 819px) {
+  .problem-card.big .echo-wrap { margin-bottom: 52px; }
+}
+
+/* S5 : frise Jour 1 → Jour 5 */
+.frise {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.frise strong { color: var(--ink); }
+
+/* S6 : méthodologie des chiffres */
+.case .methode {
+  max-width: 68ch;
+  margin: 0 auto 18px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-align: center;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+.chart-concrete {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: center;
+}
+
+/* Rail : points de position (mobile surtout) */
+.rail-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 14px;
+}
+.rail-dots .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.rail-dots .dot.on { background: var(--accent); transform: scale(1.25); }
+@media (min-width: 900px) { .rail-dots { display: none; } }
+
+/* Tarif : badge 1er mois offert */
+.offer-badge {
+  width: fit-content;
+  margin: 12px auto 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #22563E;
+  background: #E4EFE5;
+  border: 1px solid #C9DFCB;
+  border-radius: var(--r-pill);
+  padding: 7px 15px;
+}
+
+/* Tarif : note sous le compteur de places — chiffre réel, mis à jour à la main */
+.scarcity-note {
+  max-width: 52ch;
+  margin: -8px auto 22px;
+  text-align: center;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Tarif : renversement de risque sous le CTA */
+.cta-risk {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* Formulaire : label facultatif + textarea */
+.field label small { font-weight: 500; color: var(--ink-soft); }
+.field textarea { resize: vertical; min-height: 92px; font-family: var(--sans); }
+
+/* Confirmation riche après envoi */
+.form-status.ok { text-align: center; }
+.confirm-title {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.confirm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.form-status.ok .btn { font-size: 14px; padding: 10px 18px; }
+.form-status.ok .btn-ghost { background: transparent; }
+
+/* CTA collant mobile */
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line);
+}
+.sticky-cta .btn { display: block; width: 100%; text-align: center; }
+.sticky-cta[hidden] { display: none; }
+@media (min-width: 900px) { .sticky-cta { display: none; } }
