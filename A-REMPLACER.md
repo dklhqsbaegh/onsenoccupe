@@ -67,7 +67,7 @@ Le profil boutique est le levier d'identification : garder des profils proches d
 
 - Section réécrite en **lettre de fondateur** (recherche multi-agents : format épistolaire + founder-market fit).
 - L'histoire (6 ans, 30+ boutiques, équipes SAV coûteuses + turnover, système IA perso) est **vraie** : à valider/ajuster par Hugo.
-- Le chiffre « plus de 30 lancées en 6 ans » doit correspondre à la réalité.
+- Faits : plus de 30 boutiques **créées** en 6 ans (beaucoup n'existent plus) ; **6 boutiques actives** aujourd'hui, gérées par le système SAV d'Hugo. À vérifier avant mise en ligne.
 - `[Photo d'Hugo — candid à son bureau]` : prévoir une vraie photo en situation (pas de studio, pas de stock), coins arrondis. Toujours en jaune sur la page.
 - Signature manuscrite en police Caveat : décorative, remplace juste le rendu du prénom.
 - La rareté « 3 places » vit désormais dans la section Tarif (retirée d'ici pour ne pas doublonner).
