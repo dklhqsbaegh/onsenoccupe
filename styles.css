@@ -19,6 +19,13 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Caveat";
+  src: url("fonts/caveat-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --bg: #FAF7F2;
@@ -1219,32 +1226,84 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .pricing .cta-center { margin-top: 26px; text-align: center; }
 
 /* ============================================================
-   S9 — Fondateur
+   S9 — La lettre du fondateur
    ============================================================ */
-.founder .inner {
+.founder .letter {
+  max-width: 900px;
+  margin-inline: auto;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 2px 6px rgba(84, 62, 44, 0.06), 0 26px 60px -30px rgba(84, 62, 44, 0.3);
+  padding: clamp(26px, 4.5vw, 48px);
   display: grid;
-  gap: 34px;
-  align-items: center;
-  max-width: 880px;
+  gap: clamp(24px, 4vw, 44px);
 }
-@media (min-width: 820px) { .founder .inner { grid-template-columns: 280px 1fr; } }
-.founder .photo {
+@media (min-width: 860px) {
+  .founder .letter { grid-template-columns: 260px 1fr; align-items: start; }
+}
+
+/* Photo candid */
+.letter-photo { position: relative; }
+@media (min-width: 860px) { .letter-photo { position: sticky; top: 90px; } }
+.photo-ph {
   aspect-ratio: 4 / 5;
-  border-radius: var(--r-card);
-  background: var(--accent-tint);
+  border-radius: 16px;
+  background:
+    radial-gradient(120% 80% at 30% 20%, rgba(196, 85, 45, 0.1), transparent 60%),
+    var(--accent-tint);
   border: 1px solid #EBD2C3;
   display: grid;
   place-items: center;
-  padding: 20px;
   text-align: center;
-  font-size: 14px;
+  padding: 20px;
+  font-size: 13px;
   color: var(--accent-deep);
-  max-width: 280px;
 }
-.founder p { font-size: 16px; color: var(--ink-soft); margin-top: 14px; max-width: 58ch; }
-.founder p.first { margin-top: 18px; }
-.founder .mail-line { font-weight: 600; color: var(--ink); }
-.founder .mail-line a { color: var(--accent-deep); }
+.photo-ph mark { background: var(--mark); }
+
+/* Corps de lettre : colonne de lecture étroite, aérée */
+.letter-body { max-width: 60ch; }
+.letter-eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.letter-title {
+  font-size: clamp(28px, 4.4vw, 40px);
+  margin-bottom: 22px;
+}
+.letter-body p {
+  font-size: clamp(16px, 1.9vw, 18.5px);
+  line-height: 1.72;
+  color: var(--ink-soft);
+}
+.letter-body p + p { margin-top: 18px; }
+.letter-body p strong { color: var(--ink); font-weight: 650; }
+
+/* Signature manuscrite */
+.letter-sign {
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sign-name {
+  font-family: "Caveat", cursive;
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 0.9;
+  color: var(--accent);
+}
+.sign-role { font-size: 14px; color: var(--ink-soft); margin-top: 6px; }
+.sign-mail { font-size: 14.5px; font-weight: 600; color: var(--accent-deep); text-decoration: none; }
+.sign-mail:hover { text-decoration: underline; }
 
 /* ============================================================
    S10 — FAQ

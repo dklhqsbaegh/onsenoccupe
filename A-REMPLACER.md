@@ -63,12 +63,14 @@ Les 3 témoignages (Sophie M., Thomas D., Inès F.) sont inventés — désormai
 Le profil boutique est le levier d'identification : garder des profils proches de l'avatar
 (1-3 personnes, 30-100 k€/mois). Initiales (SM, TD, IF) → photos réelles.
 
-## 5. Fondateur (S9)
+## 5. Fondateur (S9) — lettre
 
-- La **bio d'Hugo** (« Pendant six ans… ») est une proposition à réécrire à la première personne.
-- **3 nouvelles boutiques par mois** : nombre réel de places disponibles.
-- Le mois se met à jour automatiquement, ne rien coder en dur.
-- `[Photo d'Hugo à intégrer]` — toujours en jaune sur la page.
+- Section réécrite en **lettre de fondateur** (recherche multi-agents : format épistolaire + founder-market fit).
+- L'histoire (6 ans, 30+ boutiques, équipes SAV coûteuses + turnover, système IA perso) est **vraie** : à valider/ajuster par Hugo.
+- Le chiffre « plus de 30 lancées en 6 ans » doit correspondre à la réalité.
+- `[Photo d'Hugo — candid à son bureau]` : prévoir une vraie photo en situation (pas de studio, pas de stock), coins arrondis. Toujours en jaune sur la page.
+- Signature manuscrite en police Caveat : décorative, remplace juste le rendu du prénom.
+- La rareté « 3 places » vit désormais dans la section Tarif (retirée d'ici pour ne pas doublonner).
 
 ## 6. FAQ (S10)
 
