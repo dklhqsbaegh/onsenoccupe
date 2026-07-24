@@ -9,11 +9,18 @@ const CONTACT_EMAIL = "hugo@onsenoccupe.fr";
 // Adresse où le prospect transfère ses emails clients
 const ESSAI_EMAIL = "essai@onsenoccupe.fr";
 
-// ── Places restantes (section Tarif) — ÉDITÉ À LA MAIN par Hugo ──
-// Mettre 10 au début de chaque mois, puis baisser au fil des
-// inscriptions réelles, jusqu'à 1 environ 5 jours avant la fin du mois.
-// Le chiffre affiché doit toujours refléter la réalité.
-const PLACES_RESTANTES = 10;
+// ── Places restantes (section Tarif) — calculées selon le jour du mois ──
+// Jour 1 : 10 places. Puis descente régulière jusqu'à 1 place restante
+// une semaine avant la fin du mois (et 1 jusqu'au dernier jour).
+function placesRestantes() {
+  const now = new Date();
+  const jour = now.getDate();
+  const joursDansLeMois = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  const jourPlancher = joursDansLeMois - 7; // à partir d'ici : 1 place
+  if (jour >= jourPlancher) return 1;
+  const progression = (jour - 1) / (jourPlancher - 1); // 0 → 1
+  return Math.max(1, Math.round(10 - 9 * progression));
+}
 
 /* ---------- Header : bordure au scroll (sentinelle, pas d'écouteur scroll) ---------- */
 const header = document.querySelector(".site-header");
@@ -46,13 +53,10 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
 }
 
 /* ---------- Effet scroll du hero : « la réponse prend le dessus » ----------
-   Desktop uniquement (≥ 900px) : sur mobile les cartes sont empilées,
-   l'effet gêne la lecture au lieu de la servir.
    En scrollant : la question recule et s'estompe, la réponse vérifiée
    se redresse et vient au premier plan. Lissage à inertie (lerp). */
 (() => {
   if (prefersReduced) return;
-  if (!window.matchMedia("(min-width: 900px)").matches) return;
   const title = document.querySelector(".scene-title");
   const cardL = document.querySelector(".tilt-l");
   const cardR = document.querySelector(".tilt-r");
@@ -107,7 +111,7 @@ if (moisEls.length) {
 /* ---------- Places restantes : rendu du chiffre édité à la main ---------- */
 const placesEls = document.querySelectorAll(".js-places");
 if (placesEls.length) {
-  const n = Math.max(1, Math.round(PLACES_RESTANTES));
+  const n = placesRestantes();
   const texte = n === 1 ? "1 place restante" : n + " places restantes";
   placesEls.forEach((el) => (el.textContent = texte));
 }

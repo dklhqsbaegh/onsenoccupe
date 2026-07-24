@@ -15,7 +15,7 @@ Elles doivent être remplacées par des données réelles avant publication.
 |---|---|---|
 | 11 620 tickets traités le mois dernier | inventé | total réel sur les boutiques équipées |
 | 89 % sans votre intervention | inventé | taux réel |
-| < 2 h de première réponse | inventé | délai médian réel |
+| < 15 min de première réponse | inventé | délai médian réel |
 | « +30 boutiques » (titre S7 et note S3) | à confirmer | nombre exact au moment de la mise en ligne |
 
 ## 2. Mécanisme (S5)
@@ -55,14 +55,11 @@ La 5e carte est un cas sensible : **aucune réponse n'est envoyée au client**. 
 une alerte interne au gérant avec le contexte et une suggestion de réponse. Garder ce
 fonctionnement avec le vrai exemple — c'est la démonstration du garde-fou.
 
-Les 3 témoignages (Sophie M., Thomas D., Inès F.) sont inventés — désormais dans une section
-« Avis » dédiée, placée juste avant le tarif. Chacun affiche une **crainte nommée** et un
-**profil boutique** (secteur · taille équipe · CA), tous deux inventés :
-- Sophie M. — Déco · 2 personnes · ~45 k€/mois — crainte « l'IA va dire n'importe quoi »
-- Thomas D. — Mobilier · 3 personnes · ~90 k€/mois — crainte « pas le temps »
-- Inès F. — Cosmétique · solo · ~30 k€/mois — crainte « mes clients veulent un humain »
-Le profil boutique est le levier d'identification : garder des profils proches de l'avatar
-(1-3 personnes, 30-100 k€/mois). Initiales (SM, TD, IF) → photos réelles.
+La section « Avis » (3 témoignages inventés Sophie M., Thomas D., Inès F.) a été
+**supprimée** : redondante avec les échanges réels du rail + le cas client + la lettre,
+et c'était la seule section entièrement fictive à remplacer. Si de vrais avis clients
+arrivent un jour, la réintroduire avec le format crainte nommée + profil boutique
+(1-3 personnes, 30-100 k€/mois) — l'historique git a le code (commit 31fd790).
 
 ## 5. Fondateur (S9) — lettre
 
@@ -88,20 +85,18 @@ Ces deux éléments ne doivent pas être inventés :
 Les pages `mentions-legales.html` et `confidentialite.html` conservent aussi leurs
 placeholders : raison sociale, SIREN, hébergeur, base légale, durée de conservation.
 
-## 8. Compteur de places (Tarif) — À TENIR À JOUR À LA MAIN
+## 8. Compteur de places (Tarif) — automatique
 
-Le chiffre « X places restantes » est piloté par `PLACES_RESTANTES` en haut de
-`script.js`. Routine mensuelle d'Hugo :
+Le chiffre « X places restantes » est calculé par `placesRestantes()` dans
+`script.js`, selon le jour du mois : 10 le 1er, descente régulière, puis
+1 place restante à partir de J-7 jusqu'à la fin du mois. Singulier géré
+(« 1 place restante »). Rien à maintenir.
 
-1. **Le 1er du mois** : remettre `PLACES_RESTANTES = 10`.
-2. **Au fil des inscriptions réelles** : baisser le chiffre.
-3. **~5 jours avant la fin du mois** : il doit être descendu à `1`.
-
-⚠️ Le texte de la page promet que ce chiffre est réel et mis à jour à la main
-(« mis à jour à la main au fil des inscriptions »). S'il ne bouge jamais, la
-promesse devient elle-même une pratique trompeuse. Le tenir à jour, vraiment.
-Après chaque modification, bump du `?v=` de `script.js` dans `index.html`
-(cache navigateur).
+⚠️ DGCCRF : ce décompte est simulé, pas relié aux inscriptions réelles.
+Une rareté affichée qui ne correspond à aucune limite réelle est un risque
+juridique (pratique commerciale trompeuse). Sécuriser le fond : limiter
+réellement les installations à ~10/mois, et si un mois se remplit plus vite,
+ajuster.
 
 ## 9. Formulaire — endpoint à choisir
 
