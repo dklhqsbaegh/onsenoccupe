@@ -11,7 +11,7 @@ const ESSAI_EMAIL = "essai@onsenoccupe.fr";
 // Message de confirmation après envoi du formulaire
 const CONFIRMATION =
   "Dernière étape (2 minutes) : transférez vos 10 derniers emails clients à " +
-  ESSAI_EMAIL + ". Vous recevez vos réponses sous 48 h.";
+  ESSAI_EMAIL + ". Vous recevez vos réponses instantanément.";
 
 /* ---------- Header : bordure au scroll (sentinelle, pas d'écouteur scroll) ---------- */
 const header = document.querySelector(".site-header");
