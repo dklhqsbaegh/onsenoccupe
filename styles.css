@@ -1664,3 +1664,24 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .site-footer.slim { padding: 22px 0; }
 .site-footer.slim .transparency { text-align: center; }
 .site-footer.slim a { color: var(--ink-soft); }
+
+
+/* CTA flottant « Réserver un appel » (resultats.html) — visible aussi desktop */
+@media (min-width: 900px) {
+  .sticky-cta.sticky-call {
+    display: block;
+    left: auto;
+    right: 22px;
+    bottom: 22px;
+    padding: 0;
+    background: none;
+    border-top: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .sticky-cta.sticky-call .btn {
+    width: auto;
+    box-shadow: 0 16px 36px -12px rgba(196, 85, 45, 0.55);
+  }
+}
+.sticky-cta.sticky-call[hidden] { display: none; }

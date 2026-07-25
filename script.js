@@ -267,13 +267,29 @@ const showResults = (data) => {
 
   resultsEl.hidden = false;
   resultsEl.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
+  setupStickyCall();
   return true;
+};
+
+/* CTA flottant « Réserver un appel » : apparaît une fois les résultats
+   rendus, s'efface quand le bloc Calendly est à l'écran */
+const setupStickyCall = () => {
+  const bar = document.getElementById("sticky-call");
+  const target = document.getElementById("reserver");
+  if (!bar || !target) return;
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => {
+      bar.hidden = e.isIntersecting;
+    }, { threshold: 0.25 }).observe(target);
+  }
+  bar.hidden = false;
 };
 
 /* Bloc de réservation : phrase d'accroche + Calendly intégré sur la page */
 const buildCallCta = () => {
   const cta = document.createElement("div");
   cta.className = "results-cta";
+  cta.id = "reserver";
   const hook = document.createElement("p");
   hook.className = "results-hook";
   hook.textContent = "Envie de voir ça tourner sur vos vrais emails, avec vos vraies commandes ?";
@@ -316,6 +332,7 @@ const renderFallback = (lead) => {
     ESSAI_EMAIL + " — réponses rédigées par l'agent et vérifiées par un humain.";
   resultsEl.append(title, sub, buildCallCta());
   resultsEl.hidden = false;
+  setupStickyCall();
 };
 
 /* ---------- Page resultats.html : chargement → génération → affichage ---------- */
