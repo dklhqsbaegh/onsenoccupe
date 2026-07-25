@@ -3,8 +3,13 @@
 /* ============================================================
    CONFIG — à remplir par Hugo avant mise en ligne
    ============================================================ */
-// URL Tally / Formspark / webhook. Laisser vide ("") pour le fallback mailto.
+// URL du webhook Make (voir ESSAI-BACKEND.md). Laisser vide ("") pour le
+// fallback mailto. Quand il est rempli, le formulaire affiche les 3 échanges
+// générés directement sur la page (écran de chargement puis résultats).
 const FORM_ENDPOINT = "";
+// Lien de réservation d'appel (Cal.com / Calendly), affiché sous les
+// résultats. Laisser vide ("") pour masquer le bouton.
+const CALL_URL = "";
 const CONTACT_EMAIL = "hugo@onsenoccupe.fr";
 // Adresse où le prospect transfère ses emails clients
 const ESSAI_EMAIL = "essai@onsenoccupe.fr";
@@ -172,6 +177,116 @@ if (rail) {
   if (essai) new IntersectionObserver(([e]) => { essaiVisible = e.isIntersecting; maj(); }).observe(essai);
 })();
 
+/* ---------- Essai gratuit : écran de chargement puis résultats sur la page ----------
+   Actif seulement quand FORM_ENDPOINT est rempli. Le webhook répond en JSON :
+   { "exchanges": [ { "from", "subject", "body", "reply_body" } ] }
+   (contrat complet : ESSAI-BACKEND.md) */
+const loadingEl = document.getElementById("essai-loading");
+const resultsEl = document.getElementById("essai-results");
+
+const showLoading = () => {
+  if (!loadingEl) return () => {};
+  loadingEl.textContent = "";
+  const spin = document.createElement("div");
+  spin.className = "load-spin";
+  const steps = [
+    "On lit votre boutique…",
+    "On repère vos produits, vos délais, vos conditions de retour…",
+    "Notre agent rédige les 3 échanges de votre boutique…",
+  ].map((txt) => {
+    const li = document.createElement("p");
+    li.className = "load-step";
+    li.textContent = txt;
+    return li;
+  });
+  loadingEl.append(spin, ...steps);
+  loadingEl.hidden = false;
+  let i = 0;
+  steps[0].classList.add("on");
+  const timer = setInterval(() => {
+    i = Math.min(i + 1, steps.length - 1);
+    steps.forEach((s, k) => s.classList.toggle("on", k <= i));
+  }, 8000);
+  return () => {
+    clearInterval(timer);
+    loadingEl.hidden = true;
+  };
+};
+
+const showResults = (data) => {
+  if (!resultsEl || !data || !Array.isArray(data.exchanges) || !data.exchanges.length) return false;
+  resultsEl.textContent = "";
+
+  const title = document.createElement("h3");
+  title.className = "results-title";
+  title.textContent = "Voici ce que vos clients recevraient" + (data.prenom ? ", " + data.prenom : "") + ".";
+  const sub = document.createElement("p");
+  sub.className = "results-sub";
+  sub.textContent =
+    "Trois emails clients typiques de votre boutique — et la réponse que notre agent enverrait, " +
+    "rédigée à partir des seules infos publiques de votre site. En production, il aurait en plus " +
+    "le statut exact de chaque commande sous les yeux.";
+  resultsEl.append(title, sub);
+
+  data.exchanges.slice(0, 3).forEach((x) => {
+    const ex = document.createElement("article");
+    ex.className = "result-exchange";
+
+    const mail = document.createElement("div");
+    mail.className = "r-mail";
+    const meta = document.createElement("p");
+    meta.className = "r-meta";
+    meta.textContent = (x.from || "Client") + (x.subject ? " — " + x.subject : "");
+    const body = document.createElement("p");
+    body.className = "r-body";
+    body.textContent = x.body || "";
+    mail.append(meta, body);
+
+    const rep = document.createElement("div");
+    rep.className = "r-reply";
+    const badge = document.createElement("p");
+    badge.className = "r-badge";
+    badge.textContent = "Réponse de votre agent";
+    const rbody = document.createElement("p");
+    rbody.className = "r-body";
+    rbody.textContent = x.reply_body || "";
+    rep.append(badge, rbody);
+
+    ex.append(mail, rep);
+    resultsEl.append(ex);
+  });
+
+  const cta = document.createElement("div");
+  cta.className = "results-cta";
+  const hook = document.createElement("p");
+  hook.className = "results-hook";
+  hook.textContent = "Envie de voir ça tourner sur vos vrais emails, avec vos vraies commandes ?";
+  cta.append(hook);
+  if (CALL_URL) {
+    const a = document.createElement("a");
+    a.className = "btn btn-primary";
+    a.href = CALL_URL;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "Réserver un appel de 15 minutes";
+    cta.append(a);
+  }
+  const alt = document.createElement("p");
+  alt.className = "results-alt";
+  alt.textContent =
+    "Ou transférez 3 à 10 vrais emails clients à " + ESSAI_EMAIL +
+    " — réponses rédigées par l'agent et vérifiées par un humain.";
+  cta.append(alt);
+  resultsEl.append(cta);
+
+  resultsEl.hidden = false;
+  resultsEl.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
+  return true;
+};
+
+// Aperçu / débogage : window.__essaiDemo({prenom, exchanges:[…]}) dans la console
+window.__essaiDemo = showResults;
+
 /* ---------- Formulaire essai gratuit : validation + POST ou fallback mailto ---------- */
 const form = document.getElementById("essai-form");
 if (form) {
@@ -258,23 +373,36 @@ if (form) {
     delete data.website;
 
     if (FORM_ENDPOINT) {
-      const btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
-      btn.textContent = "Envoi en cours…";
+      // Le formulaire s'efface, l'écran de chargement prend sa place, puis
+      // les 3 échanges générés s'affichent directement sur la page.
+      form.hidden = true;
+      const stopLoading = showLoading();
+      const ctrl = "AbortController" in window ? new AbortController() : null;
+      const timeout = ctrl ? setTimeout(() => ctrl.abort(), 150000) : null;
       try {
         const res = await fetch(FORM_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify(data),
+          signal: ctrl ? ctrl.signal : undefined,
         });
         if (!res.ok) throw new Error("HTTP " + res.status);
-        form.reset();
-        showConfirmation(data.prenom);
+        const json = await res.json().catch(() => null);
+        stopLoading();
+        if (json && showResults({ ...json, prenom: data.prenom })) {
+          form.reset();
+        } else {
+          // Lead bien reçu mais pas d'échanges renvoyés : confirmation classique
+          form.hidden = false;
+          form.reset();
+          showConfirmation(data.prenom);
+        }
       } catch (err) {
+        stopLoading();
+        form.hidden = false;
         setStatus("L'envoi a échoué. Réessayez, ou écrivez-nous : " + CONTACT_EMAIL, "err");
       } finally {
-        btn.disabled = false;
-        btn.textContent = "Essayer sur mes emails";
+        if (timeout) clearTimeout(timeout);
       }
     } else {
       // Fallback mailto : ouvre l'email pré-rempli du visiteur

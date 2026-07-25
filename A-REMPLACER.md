@@ -98,12 +98,13 @@ juridique (pratique commerciale trompeuse). Sécuriser le fond : limiter
 réellement les installations à ~10/mois, et si un mois se remplit plus vite,
 ajuster.
 
-## 9. Formulaire — endpoint à choisir
+## 9. Formulaire — backend à brancher
 
-`FORM_ENDPOINT` (haut de `script.js`) est vide : le formulaire retombe sur un
-mailto. Avant mise en ligne : créer un endpoint (Formspark, Basin ou Tally) et
-coller son URL. Créer aussi la boîte **essai@onsenoccupe.fr** (elle reçoit les
-emails transférés des prospects).
+`FORM_ENDPOINT` et `CALL_URL` (haut de `script.js`) sont vides : le formulaire
+retombe sur un mailto. Le flux cible (webhook Make → CRM Brevo → génération des
+3 échanges affichés sur la page + CTA d'appel) est entièrement documenté dans
+**ESSAI-BACKEND.md** — contrat JSON, scénario Make, prompt, copie à ajuster.
+Créer aussi la boîte **essai@onsenoccupe.fr**.
 
 ## 10. Ailleurs que sur le site
 
