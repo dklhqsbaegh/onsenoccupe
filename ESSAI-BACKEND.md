@@ -1,23 +1,28 @@
 # Essai gratuit — backend à brancher (Make + Brevo + API Claude)
 
 Le front est prêt : quand `FORM_ENDPOINT` (haut de `script.js`) est rempli,
-le clic sur « Essayer sur mes emails » masque le formulaire, affiche un écran
-de chargement (« On lit votre boutique… ») puis rend les 3 échanges
-directement sur la page, avec le CTA d'appel en bas. Tant qu'il est vide,
-le formulaire garde son comportement mailto actuel — rien n'est cassé.
+le clic sur « Essayer sur mes emails » dépose le lead en sessionStorage et
+redirige vers **resultats.html** (page dédiée) : écran de chargement
+(« On lit votre boutique… »), puis les 3 échanges s'affichent, suivis de la
+phrase sur l'entraînement en production et du **Calendly intégré**
+(`CALL_URL`). C'est resultats.html qui fait le POST vers le webhook.
+En cas d'échec ou d'arrivée directe sans formulaire : repli propre
+(confirmation + Calendly, ou retour à l'accueil). Tant que `FORM_ENDPOINT`
+est vide, le formulaire garde son comportement mailto actuel — rien n'est
+cassé.
 
 ## 1. À remplir dans `script.js`
 
 | Constante | Valeur |
 |---|---|
 | `FORM_ENDPOINT` | URL du webhook Make (scénario ci-dessous) |
-| `CALL_URL` | Lien Cal.com / Calendly (bouton « Réserver un appel de 15 minutes » sous les résultats ; masqué si vide) |
+| `CALL_URL` | Lien Calendly (ex. `https://calendly.com/onsenoccupe/15min`), intégré en iframe sous les résultats ; placeholder jaune si vide |
 
 Après modification : bump du `?v=` de `script.js` dans `index.html`.
 
 ## 2. Contrat du webhook
 
-**Requête** (envoyée par la page) :
+**Requête** (envoyée par resultats.html) :
 
 ```json
 POST FORM_ENDPOINT
@@ -30,8 +35,8 @@ Content-Type: application/json
 }
 ```
 
-**Réponse attendue** (HTTP 200, JSON, sous ~150 s — au-delà la page abandonne
-et affiche la confirmation classique) :
+**Réponse attendue** (HTTP 200, JSON, sous ~150 s — au-delà resultats.html
+abandonne et affiche le repli : consigne de transfert + Calendly) :
 
 ```json
 {
@@ -112,7 +117,7 @@ booster) :
 
 ## 6. Test sans backend
 
-Dans la console du navigateur :
+Sur resultats.html, dans la console du navigateur :
 
 ```js
 __essaiDemo({prenom:"Camille", exchanges:[

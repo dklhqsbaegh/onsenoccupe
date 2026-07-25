@@ -7,8 +7,9 @@
 // fallback mailto. Quand il est rempli, le formulaire affiche les 3 échanges
 // générés directement sur la page (écran de chargement puis résultats).
 const FORM_ENDPOINT = "";
-// Lien de réservation d'appel (Cal.com / Calendly), affiché sous les
-// résultats. Laisser vide ("") pour masquer le bouton.
+// Lien Calendly (ex. "https://calendly.com/onsenoccupe/15min"), intégré
+// directement sous les résultats. Laisser vide ("") pour afficher le
+// placeholder jaune en attendant.
 const CALL_URL = "";
 const CONTACT_EMAIL = "hugo@onsenoccupe.fr";
 // Adresse où le prospect transfère ses emails clients
@@ -224,9 +225,15 @@ const showResults = (data) => {
   sub.className = "results-sub";
   sub.textContent =
     "Trois emails clients typiques de votre boutique — et la réponse que notre agent enverrait, " +
-    "rédigée à partir des seules infos publiques de votre site. En production, il aurait en plus " +
-    "le statut exact de chaque commande sous les yeux.";
-  resultsEl.append(title, sub);
+    "rédigée à partir des seules infos publiques de votre site.";
+  const note = document.createElement("p");
+  note.className = "results-sub";
+  note.textContent =
+    "En production, votre système SAV aura été entraîné sur la manière dont vous répondez et " +
+    "interagissez avec vos clients — pour des réponses 100 % pertinentes et cohérentes avec votre " +
+    "entreprise et la question de chaque client — avec, en plus, le statut exact de chaque commande " +
+    "sous les yeux.";
+  resultsEl.append(title, sub, note);
 
   data.exchanges.slice(0, 3).forEach((x) => {
     const ex = document.createElement("article");
@@ -256,6 +263,15 @@ const showResults = (data) => {
     resultsEl.append(ex);
   });
 
+  resultsEl.append(buildCallCta());
+
+  resultsEl.hidden = false;
+  resultsEl.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
+  return true;
+};
+
+/* Bloc de réservation : phrase d'accroche + Calendly intégré sur la page */
+const buildCallCta = () => {
   const cta = document.createElement("div");
   cta.className = "results-cta";
   const hook = document.createElement("p");
@@ -263,29 +279,83 @@ const showResults = (data) => {
   hook.textContent = "Envie de voir ça tourner sur vos vrais emails, avec vos vraies commandes ?";
   cta.append(hook);
   if (CALL_URL) {
-    const a = document.createElement("a");
-    a.className = "btn btn-primary";
-    a.href = CALL_URL;
-    a.target = "_blank";
-    a.rel = "noopener";
-    a.textContent = "Réserver un appel de 15 minutes";
-    cta.append(a);
+    const frame = document.createElement("iframe");
+    frame.className = "calendly-embed";
+    frame.src = CALL_URL + (CALL_URL.includes("?") ? "&" : "?") +
+      "hide_gdpr_banner=1&background_color=fffdf9&primary_color=c4552d&text_color=1a1a18";
+    frame.title = "Réserver un appel";
+    frame.loading = "lazy";
+    cta.append(frame);
+  } else {
+    const ph = document.createElement("p");
+    ph.className = "calendly-ph";
+    const mark = document.createElement("mark");
+    mark.textContent = "[Intégration Calendly — remplir CALL_URL en haut de script.js]";
+    ph.append(mark);
+    cta.append(ph);
   }
-  const alt = document.createElement("p");
-  alt.className = "results-alt";
-  alt.textContent =
-    "Ou transférez 3 à 10 vrais emails clients à " + ESSAI_EMAIL +
-    " — réponses rédigées par l'agent et vérifiées par un humain.";
-  cta.append(alt);
-  resultsEl.append(cta);
-
-  resultsEl.hidden = false;
-  resultsEl.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
-  return true;
+  return cta;
 };
 
 // Aperçu / débogage : window.__essaiDemo({prenom, exchanges:[…]}) dans la console
 window.__essaiDemo = showResults;
+
+/* Repli (webhook en échec ou trop lent) : le lead est déjà enregistré côté
+   Make, on donne la marche à suivre par email + le Calendly quand même. */
+const renderFallback = (lead) => {
+  if (!resultsEl) return;
+  resultsEl.textContent = "";
+  const title = document.createElement("h3");
+  title.className = "results-title";
+  title.textContent = "C'est noté" + (lead && lead.prenom ? ", " + lead.prenom : "") + " !";
+  const sub = document.createElement("p");
+  sub.className = "results-sub";
+  sub.textContent =
+    "Petit imprévu technique : vos échanges n'ont pas pu s'afficher ici. On vous les envoie " +
+    "par email très vite. Pour accélérer, vous pouvez transférer 3 à 10 emails clients récents à " +
+    ESSAI_EMAIL + " — réponses rédigées par l'agent et vérifiées par un humain.";
+  resultsEl.append(title, sub, buildCallCta());
+  resultsEl.hidden = false;
+};
+
+/* ---------- Page resultats.html : chargement → génération → affichage ---------- */
+if (document.body.classList.contains("page-resultats") && loadingEl && resultsEl) {
+  let lead = null;
+  try {
+    lead = JSON.parse(sessionStorage.getItem("essai-lead") || "null");
+  } catch (e) { /* stockage indisponible */ }
+
+  if (!lead) {
+    // Arrivée directe sans passer par le formulaire : retour à l'essai
+    window.location.replace("index.html#essai");
+  } else if (!FORM_ENDPOINT) {
+    renderFallback(lead);
+  } else {
+    (async () => {
+      const stopLoading = showLoading();
+      const ctrl = "AbortController" in window ? new AbortController() : null;
+      const timeout = ctrl ? setTimeout(() => ctrl.abort(), 150000) : null;
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(lead),
+          signal: ctrl ? ctrl.signal : undefined,
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const json = await res.json().catch(() => null);
+        stopLoading();
+        if (!(json && showResults({ ...json, prenom: lead.prenom }))) renderFallback(lead);
+      } catch (err) {
+        stopLoading();
+        renderFallback(lead);
+      } finally {
+        if (timeout) clearTimeout(timeout);
+        try { sessionStorage.removeItem("essai-lead"); } catch (e) {}
+      }
+    })();
+  }
+}
 
 /* ---------- Formulaire essai gratuit : validation + POST ou fallback mailto ---------- */
 const form = document.getElementById("essai-form");
@@ -373,36 +443,21 @@ if (form) {
     delete data.website;
 
     if (FORM_ENDPOINT) {
-      // Le formulaire s'efface, l'écran de chargement prend sa place, puis
-      // les 3 échanges générés s'affichent directement sur la page.
-      form.hidden = true;
-      const stopLoading = showLoading();
-      const ctrl = "AbortController" in window ? new AbortController() : null;
-      const timeout = ctrl ? setTimeout(() => ctrl.abort(), 150000) : null;
+      // Les résultats s'affichent sur une page dédiée : on dépose le lead
+      // en sessionStorage et resultats.html fait l'appel + le rendu.
       try {
-        const res = await fetch(FORM_ENDPOINT, {
+        sessionStorage.setItem("essai-lead", JSON.stringify(data));
+        window.location.href = "resultats.html";
+      } catch (e) {
+        // Stockage indisponible (navigation privée ancienne) : on enregistre
+        // le lead directement, puis confirmation classique sur place.
+        fetch(FORM_ENDPOINT, {
           method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
-          signal: ctrl ? ctrl.signal : undefined,
-        });
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        const json = await res.json().catch(() => null);
-        stopLoading();
-        if (json && showResults({ ...json, prenom: data.prenom })) {
-          form.reset();
-        } else {
-          // Lead bien reçu mais pas d'échanges renvoyés : confirmation classique
-          form.hidden = false;
-          form.reset();
-          showConfirmation(data.prenom);
-        }
-      } catch (err) {
-        stopLoading();
-        form.hidden = false;
-        setStatus("L'envoi a échoué. Réessayez, ou écrivez-nous : " + CONTACT_EMAIL, "err");
-      } finally {
-        if (timeout) clearTimeout(timeout);
+        }).catch(() => {});
+        form.reset();
+        showConfirmation(data.prenom);
       }
     } else {
       // Fallback mailto : ouvre l'email pré-rempli du visiteur

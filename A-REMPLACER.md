@@ -101,10 +101,11 @@ ajuster.
 ## 9. Formulaire — backend à brancher
 
 `FORM_ENDPOINT` et `CALL_URL` (haut de `script.js`) sont vides : le formulaire
-retombe sur un mailto. Le flux cible (webhook Make → CRM Brevo → génération des
-3 échanges affichés sur la page + CTA d'appel) est entièrement documenté dans
-**ESSAI-BACKEND.md** — contrat JSON, scénario Make, prompt, copie à ajuster.
-Créer aussi la boîte **essai@onsenoccupe.fr**.
+retombe sur un mailto, et resultats.html affiche un placeholder jaune à la
+place du Calendly intégré. Le flux cible (redirection vers resultats.html →
+webhook Make → CRM Brevo → génération des 3 échanges + Calendly) est
+entièrement documenté dans **ESSAI-BACKEND.md** — contrat JSON, scénario Make,
+prompt, copie à ajuster. Créer aussi la boîte **essai@onsenoccupe.fr**.
 
 ## 10. Ailleurs que sur le site
 

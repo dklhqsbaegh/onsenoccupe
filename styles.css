@@ -1644,9 +1644,23 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   font-weight: 650;
   margin-bottom: 14px;
 }
-.results-alt {
-  margin-top: 12px;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--ink-soft);
+.calendly-embed {
+  width: 100%;
+  height: 680px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--bg-raised);
 }
+.calendly-ph {
+  font-size: 14px;
+  padding: 26px 12px;
+  border: 1.5px dashed var(--line);
+  border-radius: 14px;
+}
+
+/* Page resultats.html */
+.page-resultats main { min-height: 62vh; }
+.results-page { padding-top: clamp(34px, 6vw, 64px); }
+.site-footer.slim { padding: 22px 0; }
+.site-footer.slim .transparency { text-align: center; }
+.site-footer.slim a { color: var(--ink-soft); }
