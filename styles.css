@@ -1477,14 +1477,19 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 /* Tarif : badge 1er mois offert */
 .offer-badge {
   width: fit-content;
+  max-width: 100%;
   margin: 12px auto 0;
   font-size: 13px;
   font-weight: 700;
+  white-space: nowrap;
   color: #22563E;
   background: #E4EFE5;
   border: 1px solid #C9DFCB;
   border-radius: var(--r-pill);
   padding: 7px 15px;
+}
+@media (max-width: 420px) {
+  .offer-badge { font-size: 12px; padding: 6px 12px; letter-spacing: -0.01em; }
 }
 
 /* Tarif : renversement de risque sous le CTA */
