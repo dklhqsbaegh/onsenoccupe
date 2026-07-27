@@ -335,7 +335,7 @@ const buildPasteBlock = () => {
       });
       const dn = document.createElement("p");
       dn.className = "draft-note";
-      dn.textContent = "Brouillons instantanés, rédigés sans accès à vos commandes. La version relue par notre équipe arrive dans votre boîte sous quelques heures.";
+      dn.textContent = "Brouillons instantanés : les éléments entre [crochets] se remplissent automatiquement en production, quand l'agent a vos commandes sous les yeux. La version relue par notre équipe arrive dans votre boîte sous quelques heures.";
       out.append(dn);
       ta.value = "";
       btn.textContent = "Voir les réponses à mes emails";
