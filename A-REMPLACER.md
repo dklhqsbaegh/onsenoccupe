@@ -115,4 +115,5 @@ prompt, copie à ajuster. Créer aussi l'alias **essai@onsenoccupe.fr** → hugo
   page). Reste à remplir les chiffres réels [X/Y/Z] avant envoi.
 - **Cold call** : créer la redirection courte `onsenoccupe.fr/essai` → `/#essai`
   chez Hostinger (à dicter au téléphone), et aligner le script téléphonique sur la
-  page : « X places ce mois-ci » (le chiffre du site), essai = 3 à 10 emails.
+  page : « X places ce mois-ci » (le chiffre du site), essai = l'URL de la
+  boutique collée sur la page pendant l'appel (30 secondes).

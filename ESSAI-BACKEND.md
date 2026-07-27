@@ -169,7 +169,7 @@ Make (clé = email du lead, expiration 24 h) et le réutiliser à l'appel 2 —
 réponse en ~10-15 s au lieu de re-scraper.
 
 **RGPD** : les emails collés contiennent des données personnelles des clients
-du lead. Ne pas les stocker au-delà du traitement (pas de copie dans Brevo,
+du lead. Ne pas les stocker au-delà du traitement (pas de copie dans Pipedrive,
 juste un drapeau « a testé ses vrais emails ») et le mentionner dans la
 politique de confidentialité.
 
