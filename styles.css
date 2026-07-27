@@ -1094,14 +1094,6 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   font-variant-numeric: tabular-nums;
 }
 .price-row .amount small { font-size: 0.55em; font-family: var(--sans); font-weight: 600; color: var(--ink-soft); }
-.price-note {
-  margin-top: 10px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--line);
-  padding-top: 12px;
-}
 .included { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
 .included .row-break { display: none; }
 @media (max-width: 600px) {
@@ -1739,4 +1731,19 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   background: var(--accent-tint);
   border-radius: 10px;
   padding: 10px 14px;
+}
+
+
+/* 4. Frontière rail → cas client resserrée sur mobile (le double padding
+      de section créait un trou entre la note du rail et le bloc méthode) */
+@media (max-width: 700px) {
+  .proofs { padding-block-end: 30px; }
+  .case { padding-block-start: 26px; }
+}
+
+/* 5. Étapes S5 sur mobile : le numéro passe au-dessus du titre — le texte
+      récupère toute la largeur au lieu d'être décalé de 70px */
+@media (max-width: 700px) {
+  .step { grid-template-columns: 1fr; gap: 6px; }
+  .step .n { font-size: 21px; line-height: 1; }
 }
