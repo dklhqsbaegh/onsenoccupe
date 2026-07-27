@@ -664,6 +664,9 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   background: radial-gradient(closest-side at 50% 45%, rgba(196, 85, 45, 0.13), transparent 70%);
   pointer-events: none;
 }
+/* Le halo dépasse volontairement du fan — on le clippe à la section pour
+   qu'il ne crée pas de défilement horizontal de la page (7px sur mobile) */
+.case { overflow-x: clip; }
 .fan-card {
   position: relative;
   background: var(--bg-raised);
