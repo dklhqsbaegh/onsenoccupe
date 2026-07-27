@@ -90,13 +90,14 @@ enregistré le contact AVANT de générer.
    /cgv si détectables) — texte brut tronqué à ~15 000 caractères.
 4. **HTTP POST api.anthropic.com/v1/messages** (modèle récent, voir prompt §4).
 5. **Webhook response** — renvoie le JSON `exchanges` (délai total < 150 s).
-6. **Email de notification à Hugo** : nouveau lead, avec drapeau « a collé
-   des vrais emails » si `emails` est présent (→ tâche : réponses vérifiées
-   à envoyer sous quelques heures).
+6. **Email de notification à Hugo** (vers hugo@) : nouveau lead, avec
+   drapeau « a collé des vrais emails » si `emails` est présent (→ tâche :
+   réponses vérifiées à envoyer sous quelques heures).
 
-Boîte `essai@onsenoccupe.fr` (à créer chez Hostinger) : surveillée par un
-second scénario Make (IMAP) qui rattache les transferts au contact Brevo
-via l'adresse d'expédition et passe l'affaire en « Emails réels reçus ».
+Adresse `essai@onsenoccupe.fr` : **simple alias vers hugo@** (à créer chez
+Hostinger, gratuit). Le copier-coller sur la page est le chemin principal —
+cette adresse ne sert que de filet de secours (webhook en panne, JS désactivé),
+traité à la main. Pas de surveillance IMAP, pas de scénario Make dédié.
 
 ## 4. Prompt de génération (étape 4 du scénario)
 

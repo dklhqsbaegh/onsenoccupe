@@ -105,7 +105,8 @@ retombe sur un mailto, et resultats.html affiche un placeholder jaune à la
 place du Calendly intégré. Le flux cible (redirection vers resultats.html →
 webhook Make → CRM Brevo → génération des 3 échanges + Calendly) est
 entièrement documenté dans **ESSAI-BACKEND.md** — contrat JSON, scénario Make,
-prompt, copie à ajuster. Créer aussi la boîte **essai@onsenoccupe.fr**.
+prompt, copie à ajuster. Créer aussi l'alias **essai@onsenoccupe.fr** → hugo@
+(filet de secours traité à la main — pas une vraie boîte).
 
 ## 10. Ailleurs que sur le site
 
