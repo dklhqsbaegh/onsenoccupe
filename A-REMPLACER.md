@@ -103,15 +103,16 @@ ajuster.
 `FORM_ENDPOINT` et `CALL_URL` (haut de `script.js`) sont vides : le formulaire
 retombe sur un mailto, et resultats.html affiche un placeholder jaune à la
 place du Calendly intégré. Le flux cible (redirection vers resultats.html →
-webhook Make → CRM Brevo → génération des 3 échanges + Calendly) est
+webhook Make → CRM **Pipedrive** → génération des 3 échanges + Calendly) est
 entièrement documenté dans **ESSAI-BACKEND.md** — contrat JSON, scénario Make,
 prompt, copie à ajuster. Créer aussi l'alias **essai@onsenoccupe.fr** → hugo@
 (filet de secours traité à la main — pas une vraie boîte).
 
 ## 10. Ailleurs que sur le site
 
-- `campagne-cold-email-employe-sav/sequence-v1.md` annonce encore « [2] boutiques »
-  dans l'email de rupture. À aligner sur « +30 », sinon incohérence avec la page.
+- `campagne-cold-email-employe-sav/sequence-v1.md` : alignée le 27/07 (breakup
+  → « +30 boutiques », rareté = compteur du site, E2 → essai instantané sur la
+  page). Reste à remplir les chiffres réels [X/Y/Z] avant envoi.
 - **Cold call** : créer la redirection courte `onsenoccupe.fr/essai` → `/#essai`
   chez Hostinger (à dicter au téléphone), et aligner le script téléphonique sur la
   page : « X places ce mois-ci » (le chiffre du site), essai = 3 à 10 emails.

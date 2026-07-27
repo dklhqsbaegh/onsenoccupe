@@ -1,4 +1,4 @@
-# Essai gratuit — backend à brancher (Make + Brevo + API Claude)
+# Essai gratuit — backend à brancher (Make + Pipedrive + API Claude)
 
 Le front est prêt : quand `FORM_ENDPOINT` (haut de `script.js`) est rempli,
 le clic sur « Essayer sur mes emails » dépose le lead en sessionStorage et
@@ -82,17 +82,25 @@ enregistré le contact AVANT de générer.
 
 1. **Webhook custom** — reçoit le JSON ci-dessus. Router selon `mode` :
    absent → appel 1 (génération boutique) ; `"vrais_emails"` → appel 2
-   (réponses aux emails collés, + tâche de relecture pour Hugo).
-2. **Brevo : créer/mettre à jour le contact** + l'affaire dans le pipeline
-   *Lead → Essai livré → Emails réels reçus → Call booké → Pilote → Client*.
+   (réponses aux emails collés, + activité de relecture dans Pipedrive).
+2. **Pipedrive : créer/mettre à jour la personne + l'affaire** à l'étape
+   **« Essai accepté »** du pipeline outbound (8 étapes, voir
+   campagne-cold-email-employe-sav/setup-outbound.md §5) — un lead inbound
+   saute Sourcé/Contacté. Champ « canal d'entrée » = site.
    (Fait en premier : si la génération échoue, le lead est déjà sauvé.)
+   Après la réponse webhook réussie (étape 5), passer l'affaire en
+   **« Essai livré »**. En mode "vrais_emails" : note + activité
+   « relire les brouillons et envoyer la version vérifiée » sur la fiche.
 3. **HTTP GET** sur l'URL de la boutique (+ pages /faq, /livraison,
    /cgv si détectables) — texte brut tronqué à ~15 000 caractères.
 4. **HTTP POST api.anthropic.com/v1/messages** (modèle récent, voir prompt §4).
 5. **Webhook response** — renvoie le JSON `exchanges` (délai total < 150 s).
-6. **Email de notification à Hugo** (vers hugo@) : nouveau lead, avec
-   drapeau « a collé des vrais emails » si `emails` est présent (→ tâche :
-   réponses vérifiées à envoyer sous quelques heures).
+6. **Email de notification à Hugo** (vers hugo@, envoyé par Make via la
+   boîte hugo@ en SMTP/Gmail) : nouveau lead, avec drapeau « a collé des
+   vrais emails » si `emails` est présent (→ l'activité Pipedrive de
+   l'étape 2 porte la relecture ; la version vérifiée part de hugo@).
+   Brevo n'est plus dans la boucle — il pourra revenir plus tard comme
+   moteur d'emails marketing si besoin, mais le CRM est Pipedrive.
 
 Adresse `essai@onsenoccupe.fr` : **simple alias vers hugo@** (à créer chez
 Hostinger, gratuit). Le copier-coller sur la page est le chemin principal —
