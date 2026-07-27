@@ -236,39 +236,119 @@ const showResults = (data) => {
   resultsEl.append(title, sub, note);
 
   data.exchanges.slice(0, 3).forEach((x) => {
-    const ex = document.createElement("article");
-    ex.className = "result-exchange";
-
-    const mail = document.createElement("div");
-    mail.className = "r-mail";
-    const meta = document.createElement("p");
-    meta.className = "r-meta";
-    meta.textContent = (x.from || "Client") + (x.subject ? " — " + x.subject : "");
-    const body = document.createElement("p");
-    body.className = "r-body";
-    body.textContent = x.body || "";
-    mail.append(meta, body);
-
-    const rep = document.createElement("div");
-    rep.className = "r-reply";
-    const badge = document.createElement("p");
-    badge.className = "r-badge";
-    badge.textContent = "Réponse de votre agent";
-    const rbody = document.createElement("p");
-    rbody.className = "r-body";
-    rbody.textContent = x.reply_body || "";
-    rep.append(badge, rbody);
-
-    ex.append(mail, rep);
-    resultsEl.append(ex);
+    resultsEl.append(buildExchange(x, "Réponse de votre agent"));
   });
 
-  resultsEl.append(buildCallCta());
+  resultsEl.append(buildPasteBlock(), buildCallCta());
 
   resultsEl.hidden = false;
   resultsEl.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
   setupStickyCall();
   return true;
+};
+
+/* Une paire email client → réponse de l'agent */
+const buildExchange = (x, badgeText) => {
+  const ex = document.createElement("article");
+  ex.className = "result-exchange";
+
+  const mail = document.createElement("div");
+  mail.className = "r-mail";
+  const meta = document.createElement("p");
+  meta.className = "r-meta";
+  meta.textContent = (x.from || "Client") + (x.subject ? " — " + x.subject : "");
+  const body = document.createElement("p");
+  body.className = "r-body";
+  body.textContent = x.body || "";
+  mail.append(meta, body);
+
+  const rep = document.createElement("div");
+  rep.className = "r-reply";
+  const badge = document.createElement("p");
+  badge.className = "r-badge";
+  badge.textContent = badgeText;
+  const rbody = document.createElement("p");
+  rbody.className = "r-body";
+  rbody.textContent = x.reply_body || "";
+  rep.append(badge, rbody);
+
+  ex.append(mail, rep);
+  return ex;
+};
+
+/* Lead courant (page resultats) : sert au second appel « vrais emails » */
+let currentLead = null;
+
+/* Upgrade optionnel, APRÈS le wow : coller 2-3 vrais emails clients.
+   Second appel au webhook avec mode "vrais_emails" — brouillons instantanés
+   à l'écran, versions relues par un humain envoyées par email ensuite. */
+const buildPasteBlock = () => {
+  const box = document.createElement("div");
+  box.className = "paste-block";
+
+  const title = document.createElement("p");
+  title.className = "paste-title";
+  title.textContent = "Encore plus fort : collez 2-3 vrais emails clients, et regardez ce que l'agent leur répondrait.";
+
+  const ta = document.createElement("textarea");
+  ta.rows = 5;
+  ta.placeholder = "Collez ici le contenu de 2 ou 3 emails clients récents — texte brut, dans n'importe quel ordre.";
+
+  const actions = document.createElement("div");
+  actions.className = "paste-actions";
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "btn btn-primary";
+  btn.textContent = "Voir les réponses à mes emails";
+  const note = document.createElement("p");
+  note.className = "paste-note";
+  actions.append(btn, note);
+
+  const out = document.createElement("div");
+  out.className = "paste-out";
+
+  btn.addEventListener("click", async () => {
+    const txt = ta.value.trim();
+    if (txt.length < 40) {
+      note.textContent = "Collez au moins un email complet (quelques phrases).";
+      return;
+    }
+    if (!FORM_ENDPOINT || !currentLead) {
+      note.textContent = "Ce service ouvre très bientôt — en attendant, transférez-les à " + ESSAI_EMAIL + " : réponses vérifiées sous quelques heures.";
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = "L'agent rédige…";
+    note.textContent = "";
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ ...currentLead, mode: "vrais_emails", emails: txt }),
+      });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const json = await res.json().catch(() => null);
+      if (!json || !Array.isArray(json.exchanges) || !json.exchanges.length) throw new Error("vide");
+      out.textContent = "";
+      json.exchanges.forEach((x) => {
+        out.append(buildExchange(x, "Brouillon de votre agent"));
+      });
+      const dn = document.createElement("p");
+      dn.className = "draft-note";
+      dn.textContent = "Brouillons instantanés, rédigés sans accès à vos commandes. La version relue par notre équipe arrive dans votre boîte sous quelques heures.";
+      out.append(dn);
+      ta.value = "";
+      btn.textContent = "Voir les réponses à mes emails";
+      btn.disabled = false;
+    } catch (e) {
+      btn.textContent = "Voir les réponses à mes emails";
+      btn.disabled = false;
+      note.textContent = "Petit souci technique — transférez-les à " + ESSAI_EMAIL + " : réponses vérifiées sous quelques heures.";
+    }
+  });
+
+  box.append(title, ta, actions, out);
+  return box;
 };
 
 /* CTA flottant « Réserver un appel » : apparaît une fois les résultats
@@ -341,6 +421,7 @@ if (document.body.classList.contains("page-resultats") && loadingEl && resultsEl
   try {
     lead = JSON.parse(sessionStorage.getItem("essai-lead") || "null");
   } catch (e) { /* stockage indisponible */ }
+  currentLead = lead;
 
   if (!lead) {
     // Arrivée directe sans passer par le formulaire : retour à l'essai

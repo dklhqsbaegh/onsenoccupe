@@ -1685,3 +1685,58 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   }
 }
 .sticky-cta.sticky-call[hidden] { display: none; }
+
+
+/* Upgrade « collez vos vrais emails » (resultats.html) */
+.paste-block {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.paste-title {
+  font-family: var(--serif);
+  font-size: clamp(17px, 2.2vw, 20px);
+  font-weight: 650;
+  text-align: center;
+  max-width: 46ch;
+  margin: 0 auto 16px;
+}
+.paste-block textarea {
+  width: 100%;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  resize: vertical;
+  min-height: 110px;
+  font-family: var(--sans);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.paste-block textarea::placeholder { color: #7A7468; }
+.paste-block textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 85, 45, 0.18);
+}
+.paste-actions {
+  margin-top: 12px;
+  text-align: center;
+}
+.paste-note {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.paste-out { margin-top: 20px; }
+.draft-note {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-align: center;
+  background: var(--accent-tint);
+  border-radius: 10px;
+  padding: 10px 14px;
+}

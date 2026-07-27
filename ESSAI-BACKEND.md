@@ -22,7 +22,21 @@ Après modification : bump du `?v=` de `script.js` dans `index.html`.
 
 ## 2. Contrat du webhook
 
-**Requête** (envoyée par resultats.html) :
+**Appel 1 — génération depuis l'URL** (envoyé par resultats.html au
+chargement) :
+
+```json
+POST FORM_ENDPOINT
+Content-Type: application/json
+{
+  "prenom": "Camille",
+  "email": "camille@boutique.fr",
+  "boutique": "https://boutique.fr"
+}
+```
+
+**Appel 2 — vrais emails collés** (envoyé quand le lead utilise le bloc
+« Encore plus fort » sous les résultats) :
 
 ```json
 POST FORM_ENDPOINT
@@ -31,9 +45,16 @@ Content-Type: application/json
   "prenom": "Camille",
   "email": "camille@boutique.fr",
   "boutique": "https://boutique.fr",
-  "emails": "…contenu du textarea, absent si vide…"
+  "mode": "vrais_emails",
+  "emails": "…contenu collé par le lead…"
 }
 ```
+
+Réponse : même contrat `exchanges` (les brouillons s'affichent avec le badge
+« Brouillon de votre agent » + la mention « version relue par notre équipe
+sous quelques heures »). Le scénario Make doit alors AUSSI notifier Hugo :
+relire ces brouillons et envoyer la version vérifiée par email au lead —
+c'est la promesse affichée.
 
 **Réponse attendue** (HTTP 200, JSON, sous ~150 s — au-delà resultats.html
 abandonne et affiche le repli : consigne de transfert + Calendly) :
@@ -59,7 +80,9 @@ enregistré le contact AVANT de générer.
 
 ## 3. Scénario Make (dans l'ordre)
 
-1. **Webhook custom** — reçoit le JSON ci-dessus.
+1. **Webhook custom** — reçoit le JSON ci-dessus. Router selon `mode` :
+   absent → appel 1 (génération boutique) ; `"vrais_emails"` → appel 2
+   (réponses aux emails collés, + tâche de relecture pour Hugo).
 2. **Brevo : créer/mettre à jour le contact** + l'affaire dans le pipeline
    *Lead → Essai livré → Emails réels reçus → Call booké → Pilote → Client*.
    (Fait en premier : si la génération échoue, le lead est déjà sauvé.)
@@ -107,9 +130,9 @@ booster) :
 
 - **Pitch S11** : « Indiquez simplement l'adresse de votre boutique : notre
   agent lit vos pages publiques et rédige sous vos yeux 3 échanges clients
-  complets — vos produits, vos délais, votre ton. Envie d'aller plus loin ?
-  Collez 2-3 vrais emails clients : réponses rédigées par l'agent et
-  vérifiées par un humain, sous quelques heures. »
+  complets — vos produits, vos délais, votre ton. » (Le « collez vos vrais
+  emails » n'est plus promis ici : il vit sur la page de résultats, après
+  la démonstration.)
 - **FAQ « ça a l'air trop beau »** : même inversion.
 - **Bouton** : « Voir les réponses de mon agent » peut remplacer
   « Essayer sur mes emails ».
