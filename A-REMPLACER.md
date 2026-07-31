@@ -115,7 +115,9 @@ prompt, copie à ajuster. Créer aussi l'alias **essai@onsenoccupe.net** → hug
 - `campagne-cold-email-employe-sav/sequence-v1.md` : alignée le 27/07 (breakup
   → « +30 boutiques », rareté = compteur du site, E2 → essai instantané sur la
   page). Reste à remplir les chiffres réels [X/Y/Z] avant envoi.
-- **Cold call** : créer la redirection courte `onsenoccupe.net/essai` → `/#essai`
-  chez Hostinger (à dicter au téléphone), et aligner le script téléphonique sur la
+- **Cold call** : au téléphone on dicte le domaine seul (« onsenoccupe point
+  net ») + guidage vers le bouton Essai gratuit. La redirection courte
+  `onsenoccupe.net/essai` → `/#essai` (à créer chez Hostinger) sert à
+  l'asynchrone : SMS de suivi, vocal, bio LinkedIn. Script aligné sur la
   page : « X places ce mois-ci » (le chiffre du site), essai = l'URL de la
-  boutique collée sur la page pendant l'appel (30 secondes).
+  boutique collée pendant l'appel (30 secondes).
