@@ -102,7 +102,7 @@ enregistré le contact AVANT de générer.
    Brevo n'est plus dans la boucle — il pourra revenir plus tard comme
    moteur d'emails marketing si besoin, mais le CRM est Pipedrive.
 
-Adresse `essai@onsenoccupe.fr` : **simple alias vers hugo@** (à créer chez
+Adresse `essai@onsenoccupe.net` : **simple alias vers hugo@** (à créer chez
 Hostinger, gratuit). Le copier-coller sur la page est le chemin principal —
 cette adresse ne sert que de filet de secours (webhook en panne, JS désactivé),
 traité à la main. Pas de surveillance IMAP, pas de scénario Make dédié.

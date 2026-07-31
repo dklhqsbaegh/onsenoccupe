@@ -75,12 +75,14 @@ arrivent un jour, la réintroduire avec le format crainte nommée + profil bouti
 - Hébergement « dans l'Union européenne », « DPA fourni sur demande » : à confirmer
   avec la réalité technique et contractuelle.
 
-## 7. Restent en surbrillance jaune (volontairement)
+## 7. Mentions légales et photo
 
-Ces deux éléments ne doivent pas être inventés :
-
-- **`[SIREN, adresse]`** dans le pied de page — mention légale obligatoire (LCEN)
-- **`[Photo d'Hugo à intégrer]`** en S9
+- **SIREN + adresse** : retirés du pied de page le 27/07 (demande d'Hugo, le
+  temps du lancement). ⚠️ LCEN : l'identification de l'éditeur reste
+  **obligatoire** sur un site professionnel — à réintégrer (footer et/ou
+  mentions légales complétées) AVANT d'envoyer du trafic payant ou des
+  campagnes. Ne jamais inventer.
+- **`[Photo d'Hugo à intégrer]`** en S9 — ne pas inventer non plus.
 
 Les pages `mentions-legales.html` et `confidentialite.html` conservent aussi leurs
 placeholders : raison sociale, SIREN, hébergeur, base légale, durée de conservation.
@@ -105,7 +107,7 @@ retombe sur un mailto, et resultats.html affiche un placeholder jaune à la
 place du Calendly intégré. Le flux cible (redirection vers resultats.html →
 webhook Make → CRM **Pipedrive** → génération des 3 échanges + Calendly) est
 entièrement documenté dans **ESSAI-BACKEND.md** — contrat JSON, scénario Make,
-prompt, copie à ajuster. Créer aussi l'alias **essai@onsenoccupe.fr** → hugo@
+prompt, copie à ajuster. Créer aussi l'alias **essai@onsenoccupe.net** → hugo@
 (filet de secours traité à la main — pas une vraie boîte).
 
 ## 10. Ailleurs que sur le site
@@ -113,7 +115,7 @@ prompt, copie à ajuster. Créer aussi l'alias **essai@onsenoccupe.fr** → hugo
 - `campagne-cold-email-employe-sav/sequence-v1.md` : alignée le 27/07 (breakup
   → « +30 boutiques », rareté = compteur du site, E2 → essai instantané sur la
   page). Reste à remplir les chiffres réels [X/Y/Z] avant envoi.
-- **Cold call** : créer la redirection courte `onsenoccupe.fr/essai` → `/#essai`
+- **Cold call** : créer la redirection courte `onsenoccupe.net/essai` → `/#essai`
   chez Hostinger (à dicter au téléphone), et aligner le script téléphonique sur la
   page : « X places ce mois-ci » (le chiffre du site), essai = l'URL de la
   boutique collée sur la page pendant l'appel (30 secondes).

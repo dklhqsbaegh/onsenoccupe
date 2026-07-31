@@ -11,9 +11,9 @@ const FORM_ENDPOINT = "";
 // directement sous les résultats. Laisser vide ("") pour afficher le
 // placeholder jaune en attendant.
 const CALL_URL = "";
-const CONTACT_EMAIL = "hugo@onsenoccupe.fr";
+const CONTACT_EMAIL = "hugo@onsenoccupe.net";
 // Adresse où le prospect transfère ses emails clients
-const ESSAI_EMAIL = "essai@onsenoccupe.fr";
+const ESSAI_EMAIL = "essai@onsenoccupe.net";
 
 // ── Places restantes (section Tarif) — calculées selon le jour du mois ──
 // Jour 1 : 10 places. Puis descente régulière jusqu'à 1 place restante
