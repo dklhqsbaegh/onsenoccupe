@@ -1,0 +1,3 @@
+# Redirection courte pour l'asynchrone (SMS, vocal, bio LinkedIn) :
+# onsenoccupe.net/essai → le formulaire d'essai de la page d'accueil
+RedirectMatch 301 ^/essai/?$ https://onsenoccupe.net/#essai
