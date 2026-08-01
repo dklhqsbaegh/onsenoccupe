@@ -1771,35 +1771,45 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   .faq .list { max-width: none; }
 }
 
-
 /* Tarif desktop : carte élargie, chiffres à gauche / réassurance à droite,
-   action en bas — la carte se lit en Z au lieu d'un empilement de 8 blocs */
+   action en bas — compacte pour tenir dans un écran */
 @media (min-width: 960px) {
   .pricing .card {
     max-width: 960px;
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
-    column-gap: clamp(40px, 4.5vw, 64px);
+    column-gap: clamp(40px, 4.5vw, 60px);
+    padding: 30px 44px 34px;
   }
   .pricing .scarcity,
   .pricing h2,
   .pricing .offer-badge,
   .pricing .cta-center { grid-column: 1 / -1; }
-  .pricing .setup-block { grid-column: 1; margin-top: 30px; }
-  .pricing .monthly-label { grid-column: 1; }
-  .pricing .price-rows { grid-column: 1; }
-  .pricing .included {
+  .pricing .scarcity { margin-bottom: 14px; }
+  .pricing h2 { margin-bottom: 2px; }
+  .pricing .offer-badge { margin-top: 10px; }
+
+  .price-col-left { grid-column: 1; margin-top: 26px; }
+  .price-col-right {
     grid-column: 2;
-    grid-row: 4 / span 3;
-    align-self: start;
-    margin-top: 30px;
+    margin-top: 26px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing .setup-block { margin-top: 0; padding: 16px 18px; }
+  .pricing .monthly-label { margin: 18px 0 6px; }
+  .pricing .price-row { padding-block: 12px; }
+
+  .pricing .included {
+    margin-top: 0;
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 8px;
   }
   .pricing .included [role="listitem"] {
     font-size: 14.5px;
-    padding: 10px 16px;
+    padding: 9px 15px;
     border-radius: 12px;
   }
   .pricing .included [role="listitem"]::before {
@@ -1808,6 +1818,6 @@ section { padding-block: clamp(56px, 8vw, 88px); }
     color: var(--accent);
     margin-right: 10px;
   }
-  .pricing .context { grid-column: 2; align-self: end; margin-top: 18px; }
-  .pricing .cta-center { margin-top: 34px; }
+  .pricing .context { margin-top: 16px; }
+  .pricing .cta-center { margin-top: 24px; }
 }
