@@ -85,7 +85,7 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
-h2 { font-size: clamp(28px, 5.4vw, 42px); }
+h2 { font-size: clamp(28px, 5.4vw, 34px); }
 h3 { font-size: clamp(19px, 3vw, 22px); }
 
 p { text-wrap: pretty; }
@@ -94,7 +94,7 @@ a { color: inherit; }
 
 img { max-width: 100%; display: block; }
 
-section { padding-block: clamp(56px, 9vw, 104px); }
+section { padding-block: clamp(56px, 8vw, 88px); }
 
 .section-intro {
   max-width: 640px;
@@ -214,7 +214,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   margin-bottom: 18px;
 }
 .hero h1 {
-  font-size: clamp(33px, 5vw, 50px);
+  font-size: clamp(33px, 5vw, 44px);
   font-weight: 700;
   letter-spacing: -0.028em;
   line-height: 1.08;
@@ -230,7 +230,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 }
 .hero .lede {
   margin-top: 20px;
-  font-size: clamp(16.5px, 2.2vw, 18.5px);
+  font-size: clamp(16.5px, 2.2vw, 17.5px);
   color: var(--ink-soft);
   max-width: 54ch;
 }
@@ -372,7 +372,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 }
 .proof .stat .num {
   font-family: var(--serif);
-  font-size: clamp(34px, 4.6vw, 46px);
+  font-size: clamp(34px, 4.6vw, 42px);
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.1;
@@ -488,7 +488,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .transition-line {
   margin-top: 34px;
   font-family: var(--serif);
-  font-size: clamp(18px, 2.6vw, 21px);
+  font-size: clamp(18px, 2.6vw, 19px);
   font-weight: 600;
   color: var(--ink);
   max-width: 56ch;
@@ -1069,7 +1069,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .setup-line .what small { font-size: 13.5px; color: var(--ink-soft); }
 .setup-line .amount {
   font-family: var(--serif);
-  font-size: clamp(24px, 3.6vw, 30px);
+  font-size: clamp(24px, 3.6vw, 26px);
   font-weight: 620;
   white-space: nowrap;
 }
@@ -1091,7 +1091,7 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .price-row .what { font-size: 15.5px; color: var(--ink-soft); }
 .price-row .amount {
   font-family: var(--serif);
-  font-size: clamp(22px, 3.4vw, 28px);
+  font-size: clamp(22px, 3.4vw, 24px);
   font-weight: 620;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
@@ -1151,6 +1151,9 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   .founder .letter:has(.letter-photo) { grid-template-columns: 260px 1fr; align-items: start; }
 }
 
+/* Sans photo : carte resserrée, plus de vide à droite */
+.founder .letter:not(:has(.letter-photo)) { max-width: 760px; }
+
 /* Photo candid */
 .letter-photo { position: relative; }
 @media (min-width: 860px) { .letter-photo { position: sticky; top: 90px; } }
@@ -1182,11 +1185,11 @@ section { padding-block: clamp(56px, 9vw, 104px); }
   margin-bottom: 12px;
 }
 .letter-title {
-  font-size: clamp(28px, 4.4vw, 40px);
+  font-size: clamp(28px, 4.4vw, 33px);
   margin-bottom: 22px;
 }
 .letter-body p {
-  font-size: clamp(16px, 1.9vw, 18.5px);
+  font-size: clamp(16px, 1.9vw, 17px);
   line-height: 1.72;
   color: var(--ink-soft);
 }
@@ -1432,9 +1435,9 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 .frise strong { color: var(--ink); }
 
 /* S6 : méthodologie des chiffres */
-.case .methode {
+.proofs .methode {
   max-width: 68ch;
-  margin: 0 auto 18px;
+  margin: 26px auto 0;
   font-size: 13px;
   line-height: 1.55;
   color: var(--ink-soft);
@@ -1749,4 +1752,21 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 @media (max-width: 700px) {
   .step { grid-template-columns: 1fr; gap: 6px; }
   .step .n { font-size: 21px; line-height: 1; }
+}
+
+
+/* FAQ desktop : intro à gauche (sticky), questions à droite */
+@media (min-width: 1000px) {
+  .faq .wrap {
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr;
+    column-gap: clamp(48px, 6vw, 96px);
+    align-items: start;
+  }
+  .faq .section-intro {
+    position: sticky;
+    top: 96px;
+    margin-bottom: 0;
+  }
+  .faq .list { max-width: none; }
 }
