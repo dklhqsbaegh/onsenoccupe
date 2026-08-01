@@ -1,4 +1,26 @@
-# Essai gratuit — backend à brancher (Make + Pipedrive + API Claude)
+# Essai gratuit — backend (Make + Pipedrive + Claude) — ✅ EN PRODUCTION (01/08)
+
+**État : branché et testé en réel.** Scénario Make « Essai onsenoccupe » actif
+(webhook → Create a Person → Create a Deal [Essai accepté] → HTTP scrape
+[timeout 60 s, User-Agent navigateur] → Claude Sonnet 5 [Simple Text Prompt,
+max 3000 tokens] → Webhook response JSON). FORM_ENDPOINT et CALL_URL remplis,
+copie de la page basculée sur « votre URL suffit ».
+
+**Reste à faire (backlog) :**
+1. **Branche « vrais emails »** (router sur mode = "vrais_emails", prompt §4 bis,
+   note+activité Pipedrive) — le bloc « Encore plus fort » de la page renvoie
+   vers essai@ en attendant.
+2. **Gestion d'erreur** : error handler sur le module Claude → email à hugo@
+   (aujourd'hui un échec = repli propre côté page, mais pas d'alerte).
+3. **Passage « Essai livré »** : module Update a Deal après la réponse webhook.
+4. **Coûts IA** : le module « Simple Text Prompt » consomme ~10-13 crédits IA
+   Make par essai. Dès que le paiement Anthropic passe (piste Revolut) :
+   remplacer par « Create a Prompt » + clé API personnelle (~10× moins cher
+   à volume). Même prompt, 5 minutes de bascule.
+5. **Data Store** (cache du scrape 24 h) pour accélérer l'appel 2.
+6. **Sites qui bloquent les robots** (ex. lamazuna.fr → 200 avec corps vide) :
+   la page affiche le repli. Si fréquent chez les prospects, prévoir un
+   service de scraping (ScrapingBee…).
 
 Le front est prêt : quand `FORM_ENDPOINT` (haut de `script.js`) est rempli,
 le clic sur « Essayer sur mes emails » dépose le lead en sessionStorage et

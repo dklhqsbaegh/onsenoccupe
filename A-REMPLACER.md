@@ -102,13 +102,9 @@ ajuster.
 
 ## 9. Formulaire — backend à brancher
 
-`FORM_ENDPOINT` et `CALL_URL` (haut de `script.js`) sont vides : le formulaire
-retombe sur un mailto, et resultats.html affiche un placeholder jaune à la
-place du Calendly intégré. Le flux cible (redirection vers resultats.html →
-webhook Make → CRM **Pipedrive** → génération des 3 échanges + Calendly) est
-entièrement documenté dans **ESSAI-BACKEND.md** — contrat JSON, scénario Make,
-prompt, copie à ajuster. Créer aussi l'alias **essai@onsenoccupe.net** → hugo@
-(filet de secours traité à la main — pas une vraie boîte).
+✅ **Branché et testé en production le 01/08** : webhook Make + Pipedrive +
+Claude + Calendly. Voir ESSAI-BACKEND.md (état + backlog). L'alias
+essai@onsenoccupe.net → hugo@ est créé (filet de secours).
 
 ## 10. Ailleurs que sur le site
 
