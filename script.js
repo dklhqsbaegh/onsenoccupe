@@ -6,7 +6,7 @@
 // URL du webhook Make (voir ESSAI-BACKEND.md). Laisser vide ("") pour le
 // fallback mailto. Quand il est rempli, le formulaire affiche les 3 échanges
 // générés directement sur la page (écran de chargement puis résultats).
-const FORM_ENDPOINT = "";
+const FORM_ENDPOINT = "https://hook.eu1.make.com/952lnbliumihchddjq7rk3fu2viwfoop";
 // Lien Calendly (ex. "https://calendly.com/onsenoccupe/15min"), intégré
 // directement sous les résultats. Laisser vide ("") pour afficher le
 // placeholder jaune en attendant.
