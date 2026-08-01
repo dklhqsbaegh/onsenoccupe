@@ -1770,3 +1770,44 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   }
   .faq .list { max-width: none; }
 }
+
+
+/* Tarif desktop : carte élargie, chiffres à gauche / réassurance à droite,
+   action en bas — la carte se lit en Z au lieu d'un empilement de 8 blocs */
+@media (min-width: 960px) {
+  .pricing .card {
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    column-gap: clamp(40px, 4.5vw, 64px);
+  }
+  .pricing .scarcity,
+  .pricing h2,
+  .pricing .offer-badge,
+  .pricing .cta-center { grid-column: 1 / -1; }
+  .pricing .setup-block { grid-column: 1; margin-top: 30px; }
+  .pricing .monthly-label { grid-column: 1; }
+  .pricing .price-rows { grid-column: 1; }
+  .pricing .included {
+    grid-column: 2;
+    grid-row: 4 / span 3;
+    align-self: start;
+    margin-top: 30px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .pricing .included [role="listitem"] {
+    font-size: 14.5px;
+    padding: 10px 16px;
+    border-radius: 12px;
+  }
+  .pricing .included [role="listitem"]::before {
+    content: "✓";
+    font-weight: 800;
+    color: var(--accent);
+    margin-right: 10px;
+  }
+  .pricing .context { grid-column: 2; align-self: end; margin-top: 18px; }
+  .pricing .cta-center { margin-top: 34px; }
+}
