@@ -10,7 +10,7 @@ const FORM_ENDPOINT = "";
 // Lien Calendly (ex. "https://calendly.com/onsenoccupe/15min"), intégré
 // directement sous les résultats. Laisser vide ("") pour afficher le
 // placeholder jaune en attendant.
-const CALL_URL = "";
+const CALL_URL = "https://calendly.com/onsenoccupe/15min";
 const CONTACT_EMAIL = "hugo@onsenoccupe.net";
 // Adresse où le prospect transfère ses emails clients
 const ESSAI_EMAIL = "essai@onsenoccupe.net";
@@ -378,7 +378,8 @@ const buildCallCta = () => {
     const frame = document.createElement("iframe");
     frame.className = "calendly-embed";
     frame.src = CALL_URL + (CALL_URL.includes("?") ? "&" : "?") +
-      "hide_gdpr_banner=1&background_color=fffdf9&primary_color=c4552d&text_color=1a1a18";
+      "embed_domain=" + location.hostname + "&embed_type=Inline" +
+      "&hide_gdpr_banner=1&background_color=fffdf9&primary_color=c4552d&text_color=1a1a18";
     frame.title = "Réserver un appel";
     frame.loading = "lazy";
     cta.append(frame);
