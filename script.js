@@ -75,9 +75,11 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   const RANGE = mobile ? 340 : 520;           // pixels de scroll pour l'effet complet
   let startY = 0;
   if (mobile) {
-    const proof = document.querySelector(".proof");
-    if (proof) {
-      startY = Math.max(0, proof.getBoundingClientRect().top + window.scrollY - window.innerHeight);
+    // Départ : quand la ligne bénéfice (sous les cartes) entre par le bas
+    // de l'écran — les cartes ont été vues, l'effet accompagne la suite.
+    const repere = document.querySelector(".scene-benefit") || document.querySelector(".proof");
+    if (repere) {
+      startY = Math.max(0, repere.getBoundingClientRect().top + window.scrollY - window.innerHeight);
     } else {
       const r = cardL.getBoundingClientRect();
       startY = Math.max(0, r.top + window.scrollY - 96);
