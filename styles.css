@@ -1125,20 +1125,34 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 .price-row .amount small { font-size: 0.55em; font-family: var(--sans); font-weight: 600; color: var(--ink-soft); }
 .included { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
 .included .row-break { display: none; }
-@media (max-width: 600px) {
-  .pricing .card { padding-inline: 14px; }
-  .pricing .included { justify-content: center; gap: 6px; }
-  .pricing .included li,
-  .pricing .included [role="listitem"] { font-size: 10.5px; padding: 5px 9px; }
-  .pricing .included .row-break {
-    display: block;
-    flex-basis: 100%;
-    width: 100%;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
+@media (max-width: 700px) {
+  .pricing .card { padding-inline: 16px; }
+  /* Pastilles → checklist compacte alignée à gauche (comme sur desktop) */
+  .pricing .included {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .pricing .included [role="listitem"] {
     background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .pricing .included [role="listitem"]::before {
+    content: "✓";
+    font-weight: 800;
+    color: var(--accent);
+    margin-right: 9px;
+  }
+  /* Comparaison → petite note discrète */
+  .pricing .card .context {
+    font-size: 12px;
+    color: #6F6A5E;
+    margin-top: 14px;
   }
 }
 .included li,
