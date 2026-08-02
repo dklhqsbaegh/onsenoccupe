@@ -84,8 +84,11 @@ arrivent un jour, la réintroduire avec le format crainte nommée + profil bouti
   campagnes. Ne jamais inventer.
 - **`[Photo d'Hugo à intégrer]`** en S9 — ne pas inventer non plus.
 
-Les pages `mentions-legales.html` et `confidentialite.html` conservent aussi leurs
-placeholders : raison sociale, SIREN, hébergeur, base légale, durée de conservation.
+Les pages `mentions-legales.html` et `confidentialite.html` sont passées en
+**version intérimaire propre** (02/08) : entrepreneur individuel, société en cours
+d'immatriculation, hébergeur Hostinger, base légale et durées renseignées. Seul
+`[NOM]` reste à remplacer (2 occurrences dans mentions-legales) — puis raison
+sociale + SIREN dès l'immatriculation.
 
 ## 8. Compteur de places (Tarif) — automatique
 

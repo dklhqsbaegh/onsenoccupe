@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" href="img/icon-180.png" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=76" />
+  <link rel="stylesheet" href="styles.css?v=77" />
   <script>document.documentElement.classList.replace("no-js","js");</script>
 </head>
 <body>
@@ -99,7 +99,10 @@
             <p><span class="txt-full">remboursé ou promis sans votre accord — l'IA n'a techniquement pas accès à l'argent</span><span class="txt-short">remboursé sans votre accord — l'IA n'a pas accès à l'argent</span></p>
           </aside>
         </div>
-        <p class="src">Chiffres mesurés sur nos +30 boutiques · <a href="#methode">d'où viennent-ils&nbsp;?</a></p>
+        <p class="src">Chiffres mesurés en <span data-dyn="mois-dernier">le mois dernier</span> sur nos +30 boutiques · <button type="button" class="src-toggle" id="methode-toggle" aria-expanded="false" aria-controls="methode">d'où viennent-ils&nbsp;?</button></p>
+        <div class="methode" id="methode" hidden>
+          <p>Chiffres agrégés sur l'ensemble de nos +30 boutiques clientes, mesurés en <span data-dyn="mois-dernier">le mois dernier</span>&nbsp;: total de tickets traités, part traitée sans intervention du gérant (hors 3 premières semaines de démarrage supervisé), temps médian de première réponse. Les conversations affichées sur ce site sont réelles&nbsp;; noms, boutiques et liens sont modifiés pour préserver l'anonymat de nos clients.</p>
+        </div>
       </div>
     </section>
 
@@ -107,7 +110,7 @@
     <section class="problem" id="probleme">
       <div class="wrap">
         <div class="section-intro">
-          <h2>Pendant que vous répondez aux mêmes questions, vos concurrents avancent.</h2>
+          <h2>Vous n'avez pas monté votre boutique pour ça.</h2>
         </div>
         <div class="problem-grid">
           <article class="problem-card big reveal">
@@ -122,11 +125,11 @@
             </div>
             <div class="big-text">
               <h3>La même journée, en boucle</h3>
-              <p>Où est ma commande, quand serai-je livré, comment renvoyer un article. Matin, midi, 22&nbsp;h — la même journée se répète, et elle ne fait pas grandir votre boutique.</p>
+              <p>Où est ma commande, quand serai-je livré, comment renvoyer un article — matin, midi, 22&nbsp;h. Et ça ne fait pas grandir votre boutique.</p>
             </div>
           </article>
         </div>
-        <p class="transition-line">Vous savez que l'IA sait faire — mais pas à n'importe quelles conditions. Cette méfiance est saine&nbsp;: <span class="brandword">On S'en Occupe</span> est construit autour d'elle. <a href="#comment">La suite vous montre comment.</a></p>
+        <p class="transition-line">Vous savez que l'IA sait faire — mais pas à n'importe quelles conditions. <span class="brandword">On S'en Occupe</span> est construit autour de cette méfiance. <a href="#comment">La suite vous montre comment.</a></p>
       </div>
     </section>
 
@@ -153,7 +156,7 @@
             <div class="n">2</div>
             <div>
               <h3>L'IA rédige, notre équipe valide.</h3>
-              <p>Les trois premières semaines, 100&nbsp;% des réponses sont validées par un humain avant envoi. Ensuite, seules les réponses sans risque partent seules. Le reste — environ 1 email sur 10 — vous revient avec une suggestion de réponse prête&nbsp;: les cas où c'est VOTRE voix qui compte.</p>
+              <p>Trois premières semaines&nbsp;: 100&nbsp;% relu par un humain avant envoi. Ensuite, seules les réponses sans risque partent seules — le reste vous revient avec une suggestion prête.</p>
               <div class="artifact mini-exchange" aria-hidden="true">
                 <div class="me-line">
                   <span class="me-who">Léa B. · 21 h 07</span>
@@ -173,7 +176,7 @@
             <div class="n">3</div>
             <div>
               <h3>Chaque mois, un rapport chiffré.</h3>
-              <p>Tickets traités, temps récupéré — et les motifs qui reviennent anormalement. Quand des dizaines de clients posent la même question, c'est une information qui manque sur votre site&nbsp;: vous corrigez une fois, ces tickets-là disparaissent.</p>
+              <p>Tickets traités, temps récupéré, motifs récurrents. Des dizaines de clients posent la même question&nbsp;? Vous corrigez votre site une fois, ces tickets disparaissent.</p>
               <div class="artifact report" aria-hidden="true">
                 <div class="r-head">
                   <span class="r-label">Rapport de juin</span>
@@ -305,8 +308,7 @@
           </article>
         </div>
         <div class="rail-dots" aria-hidden="true"></div>
-        <p class="rail-note">Échanges réels. Noms des boutiques et des clients modifiés à leur demande — leurs gérants répondent volontiers par téléphone, demandez-nous.</p>
-        <p class="methode" id="methode">Ces chiffres agrègent les tickets traités sur l'ensemble de nos boutiques clientes en juin 2026. 89&nbsp;% = réponses parties sans intervention du gérant&nbsp;; le reste lui est escaladé avec une suggestion de réponse.</p>
+        <p class="rail-note">Conversations réelles de nos boutiques clientes — noms, boutiques et liens modifiés pour préserver leur anonymat.</p>
       </div>
     </section>
 
@@ -377,6 +379,7 @@
 
         </div>
 
+        <p class="rail-note case-note">Conversations réelles de nos boutiques clientes — noms, boutiques et liens modifiés pour préserver leur anonymat.</p>
         <p class="case-cta">Votre boutique ressemble à ça&nbsp;? <a href="#essai">Essayer sur mes emails →</a></p>
       </div>
     </section>
@@ -387,7 +390,7 @@
     <section class="pricing" id="tarif">
       <div class="wrap">
         <div class="card reveal">
-          <p class="scarcity"><strong><span class="js-places">10 places restantes</span></strong> en <span class="js-mois">ce mois-ci</span></p>
+          <p class="scarcity"><strong><span data-dyn="places">10 places restantes</span></strong> en <span data-dyn="mois-courant">ce mois-ci</span> — la supervision humaine ne se scale pas.</p>
           <h2>Sans engagement. Vous arrêtez quand vous voulez.</h2>
           <p class="offer-badge">7 jours de test avant tout abonnement</p>
 
@@ -435,9 +438,11 @@
           <div class="letter-body">
             <span class="letter-eyebrow">La personne derrière On S'en Occupe</span>
             <h2 class="letter-title">Bonjour, moi c'est Hugo.</h2>
-            <p>Il est 23&nbsp;h, vos colis sont enfin étiquetés, et là&nbsp;: «&nbsp;où est ma commande&nbsp;???&nbsp;». Cette heure-là, je la connais par cœur — en plus de 6&nbsp;ans, j'ai créé plus de 30 boutiques e-commerce, et le SAV, c'était moi. Le soir, le week-end.</p>
-            <p>J'ai voulu déléguer&nbsp;: des équipes à former des semaines, des salaires chargés, des erreurs qui abîment l'image, et le turnover qui fait tout recommencer. Alors j'ai conçu mon propre système, que j'ai perfectionné au fil de l'expérience. Aujourd'hui, il gère seul le SAV de mes 6 boutiques — <strong>sans mes soirées, et sans jamais raconter n'importe quoi à mes clients.</strong></p>
-            <p>Je le propose maintenant aux e-commerçants dans la même situation que moi. <strong>Votre SAV ne devrait pas vous coûter vos soirées.</strong> Écrivez-moi&nbsp;: c'est moi qui réponds.</p>
+            <p>Il est 23&nbsp;h, les colis sont enfin étiquetés, et là&nbsp;: «&nbsp;où est ma commande&nbsp;???&nbsp;». En 6&nbsp;ans et plus de 30 boutiques créées, le SAV, c'était moi — soirs et week-ends.</p>
+            <p>Déléguer&nbsp;? Des semaines de formation, des salaires chargés, du turnover qui fait tout recommencer.</p>
+            <p>Alors j'ai conçu mon propre système, perfectionné d'abord sur mes 6 boutiques — sans mes soirées, et sans jamais raconter n'importe quoi à mes clients.</p>
+            <p>Aujourd'hui, plus de 30 boutiques nous confient leur SAV.</p>
+            <p><strong>Votre SAV ne devrait pas vous coûter vos soirées.</strong> Écrivez-moi&nbsp;: c'est moi qui réponds.</p>
             <div class="letter-sign">
               <span class="sign-name">Hugo</span>
               <span class="sign-role">Fondateur d'On S'en Occupe</span>
@@ -528,6 +533,7 @@
               <button type="submit" class="btn btn-primary">Voir les réponses de mon agent</button>
               <div class="form-status" role="status" aria-live="polite"></div>
               <p class="rgpd">Vos coordonnées servent uniquement à vous renvoyer votre essai. Pas de newsletter.</p>
+              <p class="cta-echo">Onboarding limité&nbsp;: <span data-dyn="places-court">10 places</span> en <span data-dyn="mois-courant">ce mois-ci</span>.</p>
               <noscript><p class="rgpd"><strong>JavaScript est désactivé&nbsp;:</strong> envoyez simplement 3 à 10 emails clients à essai@onsenoccupe.net — vous recevrez vos réponses en retour.</p></noscript>
             </div>
           </form>
@@ -561,6 +567,6 @@
     <a class="btn btn-primary" href="#essai">Essayer sur ma boutique — gratuit</a>
   </div>
 
-  <script src="script.js?v=72" defer></script>
+  <script src="script.js?v=73" defer></script>
 </body>
 </html>

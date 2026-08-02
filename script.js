@@ -103,24 +103,45 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   onScroll();
 })();
 
-/* ---------- Mois courant (rareté tarif) : se met à jour tout seul ---------- */
-const moisEls = document.querySelectorAll(".js-mois");
-if (moisEls.length) {
+/* ---------- Valeurs dynamiques (source unique) : mois + places ----------
+   Injectées dans tous les [data-dyn] : mois-courant, mois-dernier
+   (janvier → « décembre » de l'année précédente), places, places-court. */
+function moisFr(offset, base) {
+  const d = base || new Date();
+  const m = new Date(d.getFullYear(), d.getMonth() + offset, 1);
   try {
-    const mois = new Intl.DateTimeFormat("fr-FR", { month: "long" }).format(new Date());
-    moisEls.forEach((el) => (el.textContent = mois));
+    return new Intl.DateTimeFormat("fr-FR", { month: "long" }).format(m);
   } catch (e) {
-    /* le texte de repli « ce mois-ci » reste affiché */
+    return null;
   }
 }
-
-/* ---------- Places restantes : rendu du chiffre édité à la main ---------- */
-const placesEls = document.querySelectorAll(".js-places");
-if (placesEls.length) {
+(() => {
   const n = placesRestantes();
-  const texte = n === 1 ? "1 place restante" : n + " places restantes";
-  placesEls.forEach((el) => (el.textContent = texte));
-}
+  const valeurs = {
+    "mois-courant": moisFr(0),
+    "mois-dernier": moisFr(-1),
+    "places": n === 1 ? "1 place restante" : n + " places restantes",
+    "places-court": n === 1 ? "1 place" : n + " places",
+  };
+  document.querySelectorAll("[data-dyn]").forEach((el) => {
+    const v = valeurs[el.dataset.dyn];
+    if (v) el.textContent = v;
+  });
+})();
+// Vérifiable en console : __dyn.moisFr(-1, new Date(2026, 0, 15)) → "décembre"
+window.__dyn = { moisFr, placesRestantes };
+
+/* ---------- « d'où viennent-ils ? » : bloc méthodologie repliable ---------- */
+(() => {
+  const btn = document.getElementById("methode-toggle");
+  const bloc = document.getElementById("methode");
+  if (!btn || !bloc) return;
+  btn.addEventListener("click", () => {
+    const ouvert = bloc.hidden;
+    bloc.hidden = !ouvert;
+    btn.setAttribute("aria-expanded", String(ouvert));
+  });
+})();
 
 /* ---------- Rail d'échanges : flèches + points de position ---------- */
 const rail = document.querySelector(".exchange-rail");
