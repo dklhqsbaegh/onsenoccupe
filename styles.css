@@ -1888,3 +1888,22 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   text-align: center;
   margin-top: 6px;
 }
+
+
+/* Hero mobile : animation d'entrée en cascade — titre, question, puis la
+   réponse qui prend le dessus. Uniquement si JS actif et animations permises. */
+@media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+  html.js .scene-stack .scene-title,
+  html.js .scene-stack .tilt-l,
+  html.js .scene-stack .tilt-r {
+    opacity: 0;
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  html.js .scene-stack .scene-title { transform: translateY(14px); }
+  html.js .scene-stack .tilt-l { transform: translateY(26px) rotate(-5deg); }
+  html.js .scene-stack .tilt-r { transform: translateY(38px) rotate(5deg) scale(0.96); transition-duration: 0.65s; }
+
+  html.js .scene-stack.scene-in .scene-title { opacity: 1; transform: none; }
+  html.js .scene-stack.scene-in .tilt-l { opacity: 1; transform: rotate(-2deg); transition-delay: 0.1s; }
+  html.js .scene-stack.scene-in .tilt-r { opacity: 1; transform: rotate(1.4deg); transition-delay: 0.4s; }
+}

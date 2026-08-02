@@ -68,23 +68,30 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   const cardR = document.querySelector(".tilt-r");
   if (!cardL || !cardR) return;
 
-  // Mobile : l'effet ne démarre que lorsque le bas de l'écran atteint la
-  // fin du hero (la carte reste lisible tant qu'on est dessus, l'animation
-  // accompagne la sortie). Desktop : inchangé, dès le début du scroll.
+  // Mobile : pas d'effet de sortie — une animation d'ENTRÉE unique quand
+  // les cartes arrivent à l'écran (classe .scene-in, transitions en CSS).
+  // Desktop : effet de scroll inchangé.
   const mobile = window.matchMedia("(max-width: 899px)").matches;
-  const RANGE = mobile ? 340 : 520;           // pixels de scroll pour l'effet complet
-  let startY = 0;
   if (mobile) {
-    // Départ : quand la ligne bénéfice (sous les cartes) entre par le bas
-    // de l'écran — les cartes ont été vues, l'effet accompagne la suite.
-    const repere = document.querySelector(".scene-benefit") || document.querySelector(".proof");
-    if (repere) {
-      startY = Math.max(0, repere.getBoundingClientRect().top + window.scrollY - window.innerHeight);
-    } else {
-      const r = cardL.getBoundingClientRect();
-      startY = Math.max(0, r.top + window.scrollY - 96);
+    const scene = document.querySelector(".scene-stack");
+    if (scene && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            scene.classList.add("scene-in");
+            io.disconnect();
+          }
+        },
+        { threshold: 0.25 }
+      );
+      io.observe(scene);
+    } else if (scene) {
+      scene.classList.add("scene-in");
     }
+    return;
   }
+  const RANGE = 520;                          // pixels de scroll pour l'effet complet
+  const startY = 0;
   const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
   let target = 0;
   let current = 0;
