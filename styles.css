@@ -1034,19 +1034,44 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   color: var(--ink-soft);
 }
 .scarcity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
   text-align: center;
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 600;
-  color: #fff;
-  background: var(--accent);
-  border: 1px solid var(--accent-deep);
-  border-radius: var(--r-pill);
-  padding: 9px 18px;
+  color: var(--accent-deep);
   width: fit-content;
-  margin: 0 auto 20px;
-  box-shadow: 0 6px 18px -6px rgba(196, 85, 45, 0.5);
+  margin: 0 auto 2px;
 }
-.scarcity strong { color: #fff; }
+.scarcity strong { font-weight: 750; }
+
+/* Dot « live » : ce chiffre est vivant, pas un décor */
+.live-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+  animation: live-pulse 2s ease-in-out infinite;
+}
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(196, 85, 45, 0.45); }
+  50% { opacity: 0.55; box-shadow: 0 0 0 5px rgba(196, 85, 45, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-dot { animation: none; }
+}
+
+/* Justification factuelle, discrète — l'urgence reste courte */
+.scarcity-why {
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--ink-soft);
+  text-align: center;
+  margin: 0 auto 18px;
+}
 .scarcity strong { font-weight: 700; }
 .price-row .amount-link {
   color: var(--accent-deep);
@@ -1784,6 +1809,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
     padding: 30px 44px 34px;
   }
   .pricing .scarcity,
+  .pricing .scarcity-why,
   .pricing h2,
   .pricing .offer-badge,
   .pricing .cta-center { grid-column: 1 / -1; }
