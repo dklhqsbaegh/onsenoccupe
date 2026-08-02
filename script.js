@@ -68,7 +68,16 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   const cardR = document.querySelector(".tilt-r");
   if (!cardL || !cardR) return;
 
-  const RANGE = 520;                          // pixels de scroll pour l'effet complet
+  // Mobile : l'effet ne démarre que quand la carte quitte l'écran par le
+  // haut (sinon elle est déjà estompée quand on arrive dessus). Desktop :
+  // comportement inchangé, dès le début du scroll.
+  const mobile = window.matchMedia("(max-width: 899px)").matches;
+  const RANGE = mobile ? 340 : 520;           // pixels de scroll pour l'effet complet
+  let startY = 0;
+  if (mobile) {
+    const r = cardL.getBoundingClientRect();  // mesuré avant toute transformation
+    startY = Math.max(0, r.top + window.scrollY - 96);
+  }
   const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
   let target = 0;
   let current = 0;
@@ -95,7 +104,7 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   };
 
   const onScroll = () => {
-    target = Math.min(Math.max(window.scrollY / RANGE, 0), 1);
+    target = Math.min(Math.max((window.scrollY - startY) / RANGE, 0), 1);
     if (rafId === null) rafId = requestAnimationFrame(render);
   };
 
