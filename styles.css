@@ -1902,14 +1902,25 @@ section { padding-block: clamp(56px, 8vw, 88px); }
       transform 1s cubic-bezier(0.22, 1, 0.36, 1),
       filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  /* Le pivot : chaque carte tourne autour d'un coin pour se poser sur son
+     inclinaison naturelle, avec un léger dépassement (easing à rebond doux) */
+  html.js .scene-stack .tilt-l,
+  html.js .scene-stack .tilt-r {
+    transition:
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1.05s cubic-bezier(0.3, 1.25, 0.42, 1),
+      filter 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  }
   html.js .scene-stack .scene-title { transform: translateY(12px); }
   html.js .scene-stack .tilt-l {
-    transform: translateY(18px) rotate(-3.4deg) scale(0.985);
-    filter: blur(6px);
+    transform-origin: 6% 18%;
+    transform: translateY(10px) rotate(-9deg) scale(0.985);
+    filter: blur(5px);
   }
   html.js .scene-stack .tilt-r {
-    transform: translateY(26px) rotate(3deg) scale(0.975);
-    filter: blur(6px);
+    transform-origin: 10% 88%;
+    transform: translateY(14px) rotate(8deg) scale(0.975);
+    filter: blur(5px);
   }
 
   html.js .scene-stack.scene-in .scene-title { opacity: 1; transform: none; }
