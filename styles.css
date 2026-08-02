@@ -1040,12 +1040,11 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   gap: 9px;
   text-align: center;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 750;
   color: var(--accent-deep);
   width: fit-content;
   margin: 0 auto 2px;
 }
-.scarcity strong { font-weight: 750; }
 
 /* Dot « live » : ce chiffre est vivant, pas un décor */
 .live-dot {
