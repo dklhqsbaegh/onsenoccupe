@@ -68,15 +68,20 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   const cardR = document.querySelector(".tilt-r");
   if (!cardL || !cardR) return;
 
-  // Mobile : l'effet ne démarre que quand la carte quitte l'écran par le
-  // haut (sinon elle est déjà estompée quand on arrive dessus). Desktop :
-  // comportement inchangé, dès le début du scroll.
+  // Mobile : l'effet ne démarre que lorsque le bas de l'écran atteint la
+  // fin du hero (la carte reste lisible tant qu'on est dessus, l'animation
+  // accompagne la sortie). Desktop : inchangé, dès le début du scroll.
   const mobile = window.matchMedia("(max-width: 899px)").matches;
   const RANGE = mobile ? 340 : 520;           // pixels de scroll pour l'effet complet
   let startY = 0;
   if (mobile) {
-    const r = cardL.getBoundingClientRect();  // mesuré avant toute transformation
-    startY = Math.max(0, r.top + window.scrollY - 96);
+    const proof = document.querySelector(".proof");
+    if (proof) {
+      startY = Math.max(0, proof.getBoundingClientRect().top + window.scrollY - window.innerHeight);
+    } else {
+      const r = cardL.getBoundingClientRect();
+      startY = Math.max(0, r.top + window.scrollY - 96);
+    }
   }
   const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
   let target = 0;
