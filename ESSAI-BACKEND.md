@@ -38,7 +38,7 @@ cassé.
 | Constante | Valeur |
 |---|---|
 | `FORM_ENDPOINT` | URL du webhook Make (scénario ci-dessous) |
-| `CALL_URL` | Lien Calendly (ex. `https://calendly.com/onsenoccupe/15min`), intégré en iframe sous les résultats ; placeholder jaune si vide |
+| `CALL_URL` | Lien Calendly (ex. `https://calendly.com/onsenoccupe/15min`) — ouvert dans un nouvel onglet par le bouton du bloc de réservation (plus d'iframe depuis le 06/08) ; placeholder jaune si vide |
 
 Après modification : bump du `?v=` de `script.js` dans `index.html`.
 
