@@ -211,6 +211,13 @@ booster) :
   « Essayer sur mes emails ».
 - **Confirmation mailto** : ne sert plus que si le webhook tombe.
 
+## 6 bis. Aperçu de la page résultats sans consommer de crédits
+
+**https://onsenoccupe.net/resultats.html?demo** — rend la page complète avec
+3 échanges d'exemple, sans aucun appel au webhook Make (donc 0 crédit IA).
+Un bandeau jaune « Aperçu interne » signale que les échanges sont fictifs.
+À utiliser pour toute revue de design de cette page.
+
 ## 6. Test sans backend
 
 Sur resultats.html, dans la console du navigateur :

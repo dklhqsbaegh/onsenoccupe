@@ -525,6 +525,60 @@ const renderFallback = (lead) => {
 
 /* ---------- Page resultats.html : chargement → génération → affichage ---------- */
 if (document.body.classList.contains("page-resultats") && loadingEl && resultsEl) {
+  // ── Mode aperçu : resultats.html?demo — rend la page avec des échanges
+  //    d'exemple, sans appeler le webhook (aucun crédit consommé). ──
+  if (new URLSearchParams(location.search).has("demo")) {
+    showResults({
+      prenom: "Camille",
+      exchanges: [
+        {
+          from: "Client — Léa",
+          subject: "Où est ma commande ?",
+          body:
+            "Bonjour, j'ai commandé le coffret céramique dimanche dernier et je n'ai " +
+            "toujours aucune nouvelle. Pouvez-vous me dire où elle en est ? J'en ai " +
+            "besoin pour un anniversaire samedi. Merci d'avance.",
+          reply_body:
+            "Bonjour Léa,\n\nMerci pour votre message, et désolé pour cette attente. " +
+            "Votre commande [numéro de commande] a été expédiée le [date d'expédition] " +
+            "via [transporteur] — vous pouvez suivre son acheminement ici : [lien de suivi]. " +
+            "La livraison est estimée pour le [date estimée de livraison], donc avant samedi.\n\n" +
+            "Belle journée,\nL'équipe de la boutique",
+        },
+        {
+          from: "Client — Marc",
+          subject: "Demande d'échange",
+          body:
+            "Bonjour, j'ai reçu ma commande mais la teinte de la tasse ne correspond pas " +
+            "à celle du site. Le produit n'a pas servi : un échange est-il possible ?",
+          reply_body:
+            "Bonjour Marc,\n\nBien sûr, et navré pour cette différence. Pourriez-vous me " +
+            "confirmer votre [numéro de commande] ainsi que la référence reçue ? Je vous " +
+            "envoie ensuite la marche à suivre pour l'échange, selon nos conditions de retour.\n\n" +
+            "Dans l'attente de votre retour,\nL'équipe de la boutique",
+        },
+        {
+          from: "Client — Anna",
+          subject: "Question sur le vase Terra",
+          body:
+            "Bonjour, je souhaite offrir le vase Terra. Passe-t-il au lave-vaisselle ? " +
+            "Et est-il livré dans un emballage cadeau ?",
+          reply_body:
+            "Bonjour Anna,\n\nMerci pour votre intérêt ! D'après notre fiche produit, le " +
+            "vase Terra se nettoie à la main : l'émail n'apprécie pas le lave-vaisselle. " +
+            "Pour l'emballage cadeau, je vérifie ce qu'il est possible de faire sur votre " +
+            "commande et je reviens vers vous rapidement.\n\nBelle idée de cadeau,\n" +
+            "L'équipe de la boutique",
+        },
+      ],
+    });
+    const flag = document.createElement("p");
+    flag.className = "demo-flag";
+    flag.textContent = "Aperçu interne — échanges d'exemple, aucun appel à l'agent";
+    resultsEl.prepend(flag);
+    window.scrollTo(0, 0);
+  } else {
+
   let lead = null;
   try {
     lead = JSON.parse(sessionStorage.getItem("essai-lead") || "null");
@@ -560,6 +614,7 @@ if (document.body.classList.contains("page-resultats") && loadingEl && resultsEl
         try { sessionStorage.removeItem("essai-lead"); } catch (e) {}
       }
     })();
+  }
   }
 }
 

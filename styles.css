@@ -2046,3 +2046,17 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   line-height: 1.6;
   color: var(--ink-soft);
 }
+
+
+/* Bandeau du mode aperçu (resultats.html?demo) — interne, jamais vu par un lead */
+.demo-flag {
+  display: block;
+  margin-bottom: 14px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--mark, #FFE58A);
+  color: #4A3B10;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-align: center;
+}
