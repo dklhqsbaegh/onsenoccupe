@@ -2040,7 +2040,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 .prod-note {
   margin: 22px auto 26px;
   max-width: 68ch;
-  font-size: 12.5px;
+  font-size: 11px;
   font-style: italic;
   line-height: 1.6;
   color: var(--ink-soft);
