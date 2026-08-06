@@ -1718,59 +1718,6 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 .sticky-cta.sticky-call[hidden] { display: none; }
 
 
-/* Upgrade « collez vos vrais emails » (resultats.html) */
-.paste-block {
-  margin-top: 26px;
-  padding-top: 22px;
-  border-top: 1px solid var(--line);
-}
-.paste-title {
-  font-family: var(--serif);
-  font-size: clamp(17px, 2.2vw, 20px);
-  font-weight: 650;
-  text-align: center;
-  max-width: 46ch;
-  margin: 0 auto 16px;
-}
-.paste-block textarea {
-  width: 100%;
-  font-size: 15px;
-  color: var(--ink);
-  background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: 10px;
-  padding: 12px 14px;
-  resize: vertical;
-  min-height: 110px;
-  font-family: var(--sans);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.paste-block textarea::placeholder { color: #7A7468; }
-.paste-block textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(196, 85, 45, 0.18);
-}
-.paste-actions {
-  margin-top: 12px;
-  text-align: center;
-}
-.paste-note {
-  margin-top: 10px;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-}
-.paste-out { margin-top: 20px; }
-.draft-note {
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  text-align: center;
-  background: var(--accent-tint);
-  border-radius: 10px;
-  padding: 10px 14px;
-}
 
 
 /* 4. Frontière rail → cas client resserrée sur mobile (le double padding
@@ -2019,6 +1966,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   scroll-behavior: smooth;
   margin-inline: -20px;
   padding: 4px 20px 16px;
+  scroll-padding-left: 20px;
   scrollbar-width: thin;
   scrollbar-color: var(--line) transparent;
 }
@@ -2032,17 +1980,18 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   margin-bottom: 0;
   align-content: start;
 }
-.results-rail-nav {
-  display: none;
-  gap: 8px;
-  justify-content: flex-end;
-  margin-top: 4px;
+/* Flèches en tête de slider, alignées à gauche */
+.results-rail-head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
 }
+.results-rail-nav { display: flex; gap: 8px; }
+.results-rail-nav .rail-btn { width: 38px; height: 38px; font-size: 18px; }
+.results-rail-wrap .rail-dots { display: flex; margin-top: 4px; }
 @media (min-width: 900px) {
-  .results-rail-nav { display: flex; }
   .results-rail-wrap .rail-dots { display: none; }
 }
-.results-rail-wrap .rail-dots { margin-top: 8px; }
 
 /* --- CTA de réservation (bouton, plus d'iframe) --- */
 .results-cta-sub {
@@ -2058,3 +2007,29 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   font-size: 12.5px;
   color: var(--ink-soft);
 }
+
+
+/* Indice de défilement du bandeau résultats */
+.rh-scroll {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent-deep);
+  opacity: 0.85;
+}
+.rh-chev {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  animation: rh-bob 1.8s ease-in-out infinite;
+}
+@keyframes rh-bob {
+  0%, 100% { transform: translateY(-1px) rotate(45deg); opacity: 0.6; }
+  50% { transform: translateY(2px) rotate(45deg); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .rh-chev { animation: none; } }
