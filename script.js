@@ -496,8 +496,8 @@ const buildCallCta = () => {
   const stats = document.createElement("ul");
   stats.className = "results-stats";
   [
-    ["22 h", "récupérées par mois, en moyenne"],
-    ["+18 %", "de satisfaction client après 3 mois"],
+    ["54 h", "récupérées par mois, en moyenne"],
+    ["+60 %", "de satisfaction client après 3 mois"],
     ["100 %", "relu par un humain les 3 premières semaines"],
   ].forEach(([v, k]) => {
     const li = document.createElement("li");
@@ -511,7 +511,7 @@ const buildCallCta = () => {
     stats.append(li);
   });
 
-  cta.append(rarete, hook, sub, stats);
+  cta.append(rarete, hook, sub);
 
   if (CALL_URL) {
     const a = document.createElement("a");
@@ -524,7 +524,9 @@ const buildCallCta = () => {
     micro.className = "results-cta-micro";
     micro.textContent = "Créneaux cette semaine · sans engagement";
     cta.append(a, micro);
-  } else {
+  }
+  cta.append(stats);
+  if (!CALL_URL) {
     const ph = document.createElement("p");
     ph.className = "calendly-ph";
     const mark = document.createElement("mark");

@@ -22,13 +22,18 @@ Elles doivent être remplacées par des données réelles avant publication.
 
 | Affiché | Nature | À faire |
 |---|---|---|
-| **22 h** récupérées par mois, en moyenne | inventé | moyenne réelle sur les boutiques équipées (cohérent avec le rapport mensuel : 412 tickets → 19 h) |
-| **+18 %** de satisfaction client après 3 mois | inventé | ⚠️ aucune mesure n'existe aujourd'hui. Définir la méthode (note post-SAV ? avis ?), mesurer chez les premiers pilotes, puis afficher le vrai chiffre |
+| **54 h** récupérées par mois, en moyenne | chiffre d'Hugo (06/08) : ~2 h/jour de SAV × 30 j × 90 % économisés | confirmer sur les données réelles |
+| **+60 %** de satisfaction client après 3 mois | chiffre d'Hugo | ⚠️ définir la **base de mesure** (note post-SAV ? avis ? +60 % de quoi à quoi ?) et la documenter — un pourcentage sans base est contestable |
 | **100 %** relu par un humain les 3 premières semaines | vrai (fait de fonctionnement) | rien à faire |
 
 Ces chiffres sont présentés comme des **moyennes agrégées** sur les boutiques
-clientes — les afficher avant de les avoir mesurés est le risque DGCCRF le plus
-direct de la page. À remplacer en priorité, avant tout envoi de trafic.
+clientes. Ils doivent être justifiables sur demande (DGCCRF) : conserver le
+calcul et les relevés qui les fondent.
+
+⚠️ **Incohérence à résoudre** : l'artefact « Rapport de juin » de la page
+d'accueil (étape 3) affiche « 412 tickets · **19 h récupérées** », soit très
+en dessous des 54 h/mois annoncées ici. Aligner ce rapport (≈ 50 h) ou
+l'expliquer, sinon un prospect attentif verra la contradiction.
 
 ## 2. Mécanisme (S5)
 
