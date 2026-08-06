@@ -445,12 +445,12 @@ const buildCallCta = () => {
   cta.id = "reserver";
   const hook = document.createElement("p");
   hook.className = "results-hook";
-  hook.textContent = "Envie de voir ça tourner sur vos vrais emails, avec vos vraies commandes ?";
+  hook.textContent = "Est-ce que ça marcherait sur VOTRE boutique ? Parlons-en 15 minutes.";
   const sub = document.createElement("p");
   sub.className = "results-cta-sub";
   sub.textContent =
-    "15 minutes avec Hugo : on passe en revue ce que l'agent a écrit pour votre boutique, " +
-    "et vous repartez avec le temps que ça vous rend chaque mois, chiffré.";
+    "Vos questions, sans filtre : comment ça marche vraiment, ce que ça change dans " +
+    "votre quotidien, et si je le recommande pour votre boutique.";
   cta.append(hook, sub);
 
   if (CALL_URL) {
