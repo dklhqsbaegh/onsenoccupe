@@ -262,33 +262,123 @@ const showResults = (data) => {
   if (!resultsEl || !data || !Array.isArray(data.exchanges) || !data.exchanges.length) return false;
   resultsEl.textContent = "";
 
-  const title = document.createElement("h3");
-  title.className = "results-title";
-  title.textContent = "Voici ce que vos clients recevraient" + (data.prenom ? ", " + data.prenom : "") + ".";
-  const sub = document.createElement("p");
-  sub.className = "results-sub";
-  sub.textContent =
-    "Trois emails clients typiques de votre boutique — et la réponse que notre agent enverrait, " +
-    "rédigée à partir des seules infos publiques de votre site.";
-  const note = document.createElement("p");
-  note.className = "results-sub";
-  note.textContent =
-    "En production, votre système SAV aura été entraîné sur la manière dont vous répondez et " +
-    "interagissez avec vos clients — pour des réponses 100 % pertinentes et cohérentes avec votre " +
-    "entreprise et la question de chaque client — avec, en plus, le statut exact de chaque commande " +
-    "sous les yeux.";
-  resultsEl.append(title, sub, note);
-
-  data.exchanges.slice(0, 3).forEach((x) => {
-    resultsEl.append(buildExchange(x, "Réponse de votre agent"));
-  });
-
+  resultsEl.append(buildResultsHero(data.prenom, data.exchanges.length));
+  resultsEl.append(buildRail(data.exchanges.slice(0, 3), "Réponse de votre agent"));
   resultsEl.append(buildPasteBlock(), buildCallCta());
 
   resultsEl.hidden = false;
   resultsEl.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
   setupStickyCall();
   return true;
+};
+
+/* Bandeau d'en-tête de la page résultats : statut « prêt », titre,
+   3 puces de contexte, et la promesse production en encadré. */
+const buildResultsHero = (prenom, nb) => {
+  const hero = document.createElement("header");
+  hero.className = "results-hero";
+
+  const badge = document.createElement("p");
+  badge.className = "rh-badge";
+  const dot = document.createElement("span");
+  dot.className = "live-dot";
+  dot.setAttribute("aria-hidden", "true");
+  badge.append(dot, document.createTextNode("Votre essai est prêt"));
+
+  const title = document.createElement("h1");
+  title.className = "rh-title";
+  title.textContent = "Voici ce que vos clients recevraient" + (prenom ? ", " + prenom : "") + ".";
+
+  const sub = document.createElement("p");
+  sub.className = "rh-sub";
+  sub.textContent =
+    (nb > 1 ? nb + " échanges typiques" : "Un échange typique") +
+    " de votre boutique — et la réponse que notre agent enverrait, rédigée à partir des seules infos publiques de votre site.";
+
+  const facts = document.createElement("ul");
+  facts.className = "rh-facts";
+  [
+    ["Généré à l'instant", "sur vos pages publiques"],
+    ["Sans aucun accès", "à votre boîte ni à vos commandes"],
+    ["Le minimum", "de ce que l'agent sait faire"],
+  ].forEach(([fort, reste]) => {
+    const li = document.createElement("li");
+    const b = document.createElement("strong");
+    b.textContent = fort;
+    li.append(b, document.createTextNode(" " + reste));
+    facts.append(li);
+  });
+
+  const note = document.createElement("p");
+  note.className = "rh-note";
+  note.textContent =
+    "En production, votre système SAV aura été entraîné sur la manière dont vous répondez et " +
+    "interagissez avec vos clients — pour des réponses 100 % pertinentes et cohérentes avec votre " +
+    "entreprise — avec, en plus, le statut exact de chaque commande sous les yeux.";
+
+  hero.append(badge, title, sub, facts, note);
+  return hero;
+};
+
+/* Slider des échanges — même mécanique que le rail de la page d'accueil */
+const buildRail = (exchanges, badgeText) => {
+  const wrap = document.createElement("div");
+  wrap.className = "results-rail-wrap";
+
+  const rail = document.createElement("div");
+  rail.className = "results-rail";
+  rail.tabIndex = 0;
+  rail.setAttribute("aria-label", "Vos échanges générés — faites défiler");
+  exchanges.forEach((x) => rail.append(buildExchange(x, badgeText)));
+
+  const dots = document.createElement("div");
+  dots.className = "rail-dots";
+  dots.setAttribute("aria-hidden", "true");
+  const puces = exchanges.map(() => {
+    const d = document.createElement("span");
+    d.className = "dot";
+    dots.append(d);
+    return d;
+  });
+
+  const nav = document.createElement("div");
+  nav.className = "results-rail-nav";
+  const mkBtn = (dir, label) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "rail-btn";
+    b.dataset.dir = String(dir);
+    b.setAttribute("aria-label", label);
+    b.textContent = dir < 0 ? "‹" : "›";
+    return b;
+  };
+  const prev = mkBtn(-1, "Échange précédent");
+  const next = mkBtn(1, "Échange suivant");
+  nav.append(prev, next);
+
+  const pas = () => {
+    const carte = rail.querySelector(".result-exchange");
+    if (!carte) return rail.clientWidth * 0.9;
+    const gap = parseFloat(getComputedStyle(rail).columnGap) || 16;
+    return carte.getBoundingClientRect().width + gap;
+  };
+  const maj = () => {
+    const max = rail.scrollWidth - rail.clientWidth - 2;
+    prev.disabled = rail.scrollLeft <= 2;
+    next.disabled = rail.scrollLeft >= max;
+    const idx = Math.min(puces.length - 1, Math.round(rail.scrollLeft / pas()));
+    puces.forEach((d, i) => d.classList.toggle("on", i === idx));
+  };
+  [prev, next].forEach((b) =>
+    b.addEventListener("click", () => {
+      rail.scrollBy({ left: Number(b.dataset.dir) * pas(), behavior: prefersReduced ? "auto" : "smooth" });
+    })
+  );
+  rail.addEventListener("scroll", maj, { passive: true });
+
+  wrap.append(rail, dots, nav);
+  requestAnimationFrame(maj);
+  return wrap;
 };
 
 /* Une paire email client → réponse de l'agent */
@@ -417,21 +507,29 @@ const buildCallCta = () => {
   const hook = document.createElement("p");
   hook.className = "results-hook";
   hook.textContent = "Envie de voir ça tourner sur vos vrais emails, avec vos vraies commandes ?";
-  cta.append(hook);
+  const sub = document.createElement("p");
+  sub.className = "results-cta-sub";
+  sub.textContent =
+    "15 minutes avec Hugo : on passe en revue ce que l'agent a écrit pour votre boutique, " +
+    "et vous repartez avec le temps que ça vous rend chaque mois, chiffré.";
+  cta.append(hook, sub);
+
   if (CALL_URL) {
-    const frame = document.createElement("iframe");
-    frame.className = "calendly-embed";
-    frame.src = CALL_URL + (CALL_URL.includes("?") ? "&" : "?") +
-      "embed_domain=" + location.hostname + "&embed_type=Inline" +
-      "&hide_gdpr_banner=1&background_color=fffdf9&primary_color=c4552d&text_color=1a1a18";
-    frame.title = "Réserver un appel";
-    frame.loading = "lazy";
-    cta.append(frame);
+    const a = document.createElement("a");
+    a.className = "btn btn-primary";
+    a.href = CALL_URL;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "Réserver mon appel de 15 minutes";
+    const micro = document.createElement("p");
+    micro.className = "results-cta-micro";
+    micro.textContent = "Créneaux cette semaine · sans engagement";
+    cta.append(a, micro);
   } else {
     const ph = document.createElement("p");
     ph.className = "calendly-ph";
     const mark = document.createElement("mark");
-    mark.textContent = "[Intégration Calendly — remplir CALL_URL en haut de script.js]";
+    mark.textContent = "[Lien Calendly — remplir CALL_URL en haut de script.js]";
     ph.append(mark);
     cta.append(ph);
   }
