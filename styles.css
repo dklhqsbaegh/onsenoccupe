@@ -1936,7 +1936,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 }
 .rh-facts li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 9px;
   font-size: 13px;
   color: var(--ink-soft);
@@ -1950,7 +1950,6 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   height: 15px;
   flex: none;
   color: var(--accent);
-  margin-top: 2px;
 }
 .rh-facts li span { min-width: 0; }
 .rh-facts strong { color: var(--ink); font-weight: 700; }
@@ -2039,7 +2038,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 
 /* Note de production — sous le slider des échanges */
 .prod-note {
-  margin: 4px auto 26px;
+  margin: 22px auto 26px;
   max-width: 68ch;
   font-size: 12.5px;
   font-style: italic;
