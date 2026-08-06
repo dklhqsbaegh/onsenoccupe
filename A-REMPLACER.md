@@ -18,6 +18,18 @@ Elles doivent être remplacées par des données réelles avant publication.
 | < 15 min de première réponse | inventé | délai médian réel |
 | « +30 boutiques » (titre S7 et note S3) | à confirmer | nombre exact au moment de la mise en ligne |
 
+## 1 bis. Moyennes clients — CTA de la page résultats (02/08)
+
+| Affiché | Nature | À faire |
+|---|---|---|
+| **22 h** récupérées par mois, en moyenne | inventé | moyenne réelle sur les boutiques équipées (cohérent avec le rapport mensuel : 412 tickets → 19 h) |
+| **+18 %** de satisfaction client après 3 mois | inventé | ⚠️ aucune mesure n'existe aujourd'hui. Définir la méthode (note post-SAV ? avis ?), mesurer chez les premiers pilotes, puis afficher le vrai chiffre |
+| **100 %** relu par un humain les 3 premières semaines | vrai (fait de fonctionnement) | rien à faire |
+
+Ces chiffres sont présentés comme des **moyennes agrégées** sur les boutiques
+clientes — les afficher avant de les avoir mesurés est le risque DGCCRF le plus
+direct de la page. À remplacer en priorité, avant tout envoi de trafic.
+
 ## 2. Mécanisme (S5)
 
 | Affiché | À faire |

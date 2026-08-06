@@ -2059,3 +2059,51 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   font-weight: 700;
   text-align: center;
 }
+
+
+/* CTA résultats : rareté + moyennes clients */
+.results-rarete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--accent-deep);
+  margin-bottom: 12px;
+}
+.results-stats {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 22px 0 26px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.results-stats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.results-stats .rs-v {
+  font-family: var(--serif);
+  font-size: clamp(21px, 3.2vw, 27px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--accent-deep);
+  line-height: 1;
+}
+.results-stats .rs-k {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 19ch;
+}
+@media (max-width: 430px) {
+  .results-stats { gap: 6px; }
+  .results-stats .rs-k { font-size: 10.5px; }
+}

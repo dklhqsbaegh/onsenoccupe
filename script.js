@@ -469,6 +469,20 @@ const buildCallCta = () => {
   const cta = document.createElement("div");
   cta.className = "results-cta";
   cta.id = "reserver";
+  // Rareté — même source que la page tarif (chiffre identique partout)
+  const rarete = document.createElement("p");
+  rarete.className = "results-rarete";
+  const dot = document.createElement("span");
+  dot.className = "live-dot";
+  dot.setAttribute("aria-hidden", "true");
+  const n = placesRestantes();
+  rarete.append(
+    dot,
+    document.createTextNode(
+      "Plus que " + (n === 1 ? "1 place" : n + " places") + " en " + (moisFr(0) || "ce mois-ci")
+    )
+  );
+
   const hook = document.createElement("p");
   hook.className = "results-hook";
   hook.textContent = "Est-ce que ça marcherait sur VOTRE boutique ? Parlons-en 15 minutes.";
@@ -477,7 +491,27 @@ const buildCallCta = () => {
   sub.textContent =
     "Vos questions, sans filtre : comment ça marche vraiment, ce que ça change dans " +
     "votre quotidien, et si je le recommande pour votre boutique.";
-  cta.append(hook, sub);
+
+  // Ce que ça donne chez nos boutiques clientes (moyennes agrégées)
+  const stats = document.createElement("ul");
+  stats.className = "results-stats";
+  [
+    ["22 h", "récupérées par mois, en moyenne"],
+    ["+18 %", "de satisfaction client après 3 mois"],
+    ["100 %", "relu par un humain les 3 premières semaines"],
+  ].forEach(([v, k]) => {
+    const li = document.createElement("li");
+    const val = document.createElement("span");
+    val.className = "rs-v";
+    val.textContent = v;
+    const lib = document.createElement("span");
+    lib.className = "rs-k";
+    lib.textContent = k;
+    li.append(val, lib);
+    stats.append(li);
+  });
+
+  cta.append(rarete, hook, sub, stats);
 
   if (CALL_URL) {
     const a = document.createElement("a");
