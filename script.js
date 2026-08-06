@@ -264,12 +264,32 @@ const showResults = (data) => {
 
   resultsEl.append(buildResultsHero(data.prenom, data.exchanges.length));
   resultsEl.append(buildRail(data.exchanges.slice(0, 3), "Réponse de votre agent"));
+  resultsEl.append(buildProdNote());
   resultsEl.append(buildCallCta());
 
   resultsEl.hidden = false;
   resultsEl.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
   setupStickyCall();
   return true;
+};
+
+/* Petites icônes de la page résultats — même style que les SVG du site */
+const ICONES = {
+  eclair: '<path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>',
+  cadenas: '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  courbe: '<polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/>',
+};
+const icone = (nom) => {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("fill", "none");
+  svg.setAttribute("stroke", "currentColor");
+  svg.setAttribute("stroke-width", "2");
+  svg.setAttribute("stroke-linecap", "round");
+  svg.setAttribute("stroke-linejoin", "round");
+  svg.setAttribute("aria-hidden", "true");
+  svg.innerHTML = ICONES[nom] || "";
+  return svg;
 };
 
 /* Bandeau d'en-tête de la page résultats : statut « prêt », titre,
@@ -298,23 +318,18 @@ const buildResultsHero = (prenom, nb) => {
   const facts = document.createElement("ul");
   facts.className = "rh-facts";
   [
-    ["Généré à l'instant", "sur vos pages publiques"],
-    ["Sans aucun accès", "à votre boîte ni à vos commandes"],
-    ["Le minimum", "de ce que l'agent sait faire"],
-  ].forEach(([fort, reste]) => {
+    ["eclair", "Généré à l'instant", "sur vos pages publiques"],
+    ["cadenas", "Sans aucun accès", "à votre boîte ni à vos commandes"],
+    ["courbe", "Le minimum", "de ce que l'agent sait faire"],
+  ].forEach(([ico, fort, reste]) => {
     const li = document.createElement("li");
+    const txt = document.createElement("span");
     const b = document.createElement("strong");
     b.textContent = fort;
-    li.append(b, document.createTextNode(" " + reste));
+    txt.append(b, document.createTextNode(" " + reste));
+    li.append(icone(ico), txt);
     facts.append(li);
   });
-
-  const note = document.createElement("p");
-  note.className = "rh-note";
-  note.textContent =
-    "En production, votre système SAV aura été entraîné sur la manière dont vous répondez et " +
-    "interagissez avec vos clients — pour des réponses 100 % pertinentes et cohérentes avec votre " +
-    "entreprise — avec, en plus, le statut exact de chaque commande sous les yeux.";
 
   const scrollHint = document.createElement("p");
   scrollHint.className = "rh-scroll";
@@ -323,8 +338,19 @@ const buildResultsHero = (prenom, nb) => {
   chev.className = "rh-chev";
   scrollHint.append(document.createTextNode("Vos échanges juste en dessous"), chev);
 
-  hero.append(badge, title, sub, facts, note, scrollHint);
+  hero.append(badge, title, sub, facts, scrollHint);
   return hero;
+};
+
+/* Note de production — sous le slider, en petit et en italique */
+const buildProdNote = () => {
+  const note = document.createElement("p");
+  note.className = "prod-note";
+  note.textContent =
+    "En production, votre système SAV aura été entraîné sur la manière dont vous répondez et " +
+    "interagissez avec vos clients — pour des réponses 100 % pertinentes et cohérentes avec votre " +
+    "entreprise — avec, en plus, le statut exact de chaque commande sous les yeux.";
+  return note;
 };
 
 /* Slider des échanges — même mécanique que le rail de la page d'accueil */

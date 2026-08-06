@@ -1935,6 +1935,9 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   padding: 0;
 }
 .rh-facts li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
   font-size: 13px;
   color: var(--ink-soft);
   background: var(--bg);
@@ -1942,16 +1945,15 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   border-radius: var(--r-pill);
   padding: 7px 14px;
 }
-.rh-facts strong { color: var(--ink); font-weight: 700; }
-.rh-note {
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  max-width: 68ch;
+.rh-facts li svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  color: var(--accent);
+  margin-top: 2px;
 }
+.rh-facts li span { min-width: 0; }
+.rh-facts strong { color: var(--ink); font-weight: 700; }
 
 /* --- Slider des échanges --- */
 .results-rail-wrap { position: relative; }
@@ -2033,3 +2035,14 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   50% { transform: translateY(2px) rotate(45deg); opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) { .rh-chev { animation: none; } }
+
+
+/* Note de production — sous le slider des échanges */
+.prod-note {
+  margin: 4px auto 26px;
+  max-width: 68ch;
+  font-size: 12.5px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
