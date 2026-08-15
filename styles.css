@@ -2219,9 +2219,11 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   gap: 8px;
   font-size: 12.5px;
   font-weight: 700;
+  line-height: 1.45;
   color: var(--accent-deep);
   margin-bottom: 14px;
 }
+.hf-rarete-txt { min-width: 0; }
 .hf-title {
   font-family: var(--serif);
   font-size: clamp(20px, 2.6vw, 25px);
@@ -2236,13 +2238,32 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   color: var(--ink-soft);
   margin-bottom: 18px;
 }
-.hero-form { gap: 12px; }
-.hero-form .actions { margin-top: 2px; }
+/* Dans le hero, le formulaire n'a plus son propre habillage de carte
+   (sinon : carte dans une carte → hauteur excessive et débordement mobile) */
+.hero-form {
+  margin-top: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+.hero-form .span-2 { grid-column: auto; }
+.hero-form .actions { margin-top: 4px; }
 .hero-form .actions .btn { width: 100%; }
 .hero-form .micro {
   margin-top: 10px;
   font-size: 12px;
+  line-height: 1.5;
   color: var(--ink-soft);
   text-align: center;
 }
 .hero .badges { margin-top: 18px; }
+
+/* Équilibre des deux colonnes sur grand écran */
+@media (min-width: 980px) {
+  .hero .wrap { grid-template-columns: 1fr 1fr; align-items: center; }
+  .hero-form-card { max-width: 460px; margin-left: auto; }
+}
