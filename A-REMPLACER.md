@@ -37,6 +37,14 @@ l'expliquer, sinon un prospect attentif verra la contradiction.
 
 ## 2. Mécanisme (S5)
 
+⚠️ **Nouveau (06/08)** : l'étape 3 met en scène une **notification Slack**.
+À confirmer : le rapport mensuel est-il vraiment livré par Slack (à câbler
+dans Make) ou par email ? Si c'est l'email, adapter le visuel.
+Tarif : passé en **commandes/mois** (490 € ≤ 500 · 590 € 500-2 000 · devis
+au-delà). Le ratio commandes→tickets (≈ 5-20 %) doit rester tenable :
+surveiller sur les premiers clients que 500 commandes ne génèrent pas plus
+de tickets que prévu.
+
 | Affiché | À faire |
 |---|---|
 | setup en **5 jours** | délai réel moyen |

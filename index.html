@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" href="img/icon-180.png" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=92" />
+  <link rel="stylesheet" href="styles.css?v=94" />
   <script>document.documentElement.classList.replace("no-js","js");</script>
 </head>
 <body>
@@ -42,8 +42,8 @@
       <div class="wrap">
         <div class="hero-copy">
           <span class="eyebrow">SAV email pour boutiques e-commerce</span>
-          <h1>Vous répondez encore aux «&nbsp;où est ma commande&nbsp;?&nbsp;» <span class="accent">à 22&nbsp;h&nbsp;?</span></h1>
-          <p class="lede">On s'en occupe. Une IA rédige les réponses, un humain de notre équipe vérifie chaque envoi — et rien qui touche à l'argent ne part sans vous. À partir de 390&nbsp;€/mois, sans engagement.</p>
+          <h1>Le SAV que vous voudriez leur offrir. <span class="accent">Sans rien à gérer.</span></h1>
+          <p class="lede">Votre agent apprend sur vos anciens emails — pas sur vos clients. Un humain relit chaque réponse les premières semaines, et rien qui touche à l'argent ne part sans vous. À partir de 490&nbsp;€/mois, sans engagement.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#essai">Essayer sur ma boutique</a>
             <p class="micro">Gratuit · 2 minutes · sans accès à votre boîte · sans engagement</p>
@@ -110,26 +110,27 @@
     <section class="problem" id="probleme">
       <div class="wrap">
         <div class="section-intro">
-          <h2>Vous n'avez pas monté votre boutique pour ça.</h2>
+          <h2>Déléguer son SAV, c'est trois impasses.</h2>
+          <p>Vous y avez déjà pensé. Vous avez sûrement déjà essayé. Voilà pourquoi ça coince.</p>
         </div>
-        <div class="problem-grid">
-          <article class="problem-card big reveal">
-            <div class="echo-wrap" aria-hidden="true">
-              <div class="echo-stack">
-                <div class="echo e3"><span class="from">Client — 9 h 12</span>Où est ma commande&nbsp;?</div>
-                <div class="echo e2"><span class="from">Client — 14 h 36</span>Où est ma commande&nbsp;?</div>
-                <div class="echo e1"><span class="from">Client — 22 h 05</span>Où est ma commande&nbsp;?</div>
-              </div>
-              <div class="times">×&nbsp;80&nbsp;%</div>
-              <div class="times-cap">8 emails sur 10&nbsp;: les mêmes questions</div>
-            </div>
-            <div class="big-text">
-              <h3>La même journée, en boucle</h3>
-              <p>Où est ma commande, quand serai-je livré, comment renvoyer un article — matin, midi, 22&nbsp;h. Et ça ne fait pas grandir votre boutique.</p>
-            </div>
+        <div class="impasses">
+          <article class="impasse reveal">
+            <span class="imp-label">Un salarié</span>
+            <h3>Cher, long à former — et il finit par partir.</h3>
+            <p>Deux à quatre mois pour qu'il comprenne votre façon de répondre, 2&nbsp;000 à 2&nbsp;500&nbsp;€/mois chargés. Le jour où il s'en va, tout est à recommencer.</p>
+          </article>
+          <article class="impasse reveal">
+            <span class="imp-label">Un chatbot</span>
+            <h3>Il ne l'apprendra jamais.</h3>
+            <p>Il répond à côté dès que la question sort du script, et vos clients le sentent en trois secondes. Vous reprenez la main — donc vous n'avez rien délégué.</p>
+          </article>
+          <article class="impasse reveal">
+            <span class="imp-label">Une agence</span>
+            <h3>Elle répondra avec ses mots, pas les vôtres.</h3>
+            <p>Vos clients reconnaissent votre ton. Une réponse générique et polie, ce n'est pas la vôtre — et c'est votre nom qui est en bas de l'email.</p>
           </article>
         </div>
-        <p class="transition-line">Vous savez que l'IA sait faire — mais pas à n'importe quelles conditions. <span class="brandword">On S'en Occupe</span> est construit autour de cette méfiance. <a href="#comment">La suite vous montre comment.</a></p>
+        <p class="transition-line">La quatrième voie&nbsp;: un agent qui apprend <strong>sur vos propres réponses</strong>, relu par un humain, sans jamais toucher à l'argent. <a href="#comment">Voilà comment ça marche.</a></p>
       </div>
     </section>
 
@@ -139,57 +140,85 @@
         <div class="section-intro">
           <h2>Une IA rédige. Un humain vérifie. Vous gardez la main.</h2>
         </div>
-        <div class="steps">
+        <div class="steps" id="steps">
+          <div class="steps-track" aria-hidden="true"><span class="steps-fill" id="steps-fill"></span></div>
+
           <div class="step reveal">
             <div class="n">1</div>
-            <div>
+            <div class="step-body">
               <h3>On la branche pour vous. Zéro process à monter.</h3>
-              <p class="frise"><strong>Jour 1</strong>&nbsp;: connexion — 15 min de votre temps, en visio avec nous → <strong>Jours 2-4</strong>&nbsp;: l'IA apprend de vos réponses passées, votre ton, vos règles → <strong>Jour 5</strong>&nbsp;: premières réponses supervisées.</p>
               <p>Boîte mail SAV et WooCommerce en lecture seule. C'est le seul temps qu'on vous demande&nbsp;: 15 minutes.</p>
+              <ol class="timeline">
+                <li>
+                  <span class="tl-when">Jour 1</span>
+                  <span class="tl-what">Connexion en visio — 15 min de votre temps</span>
+                </li>
+                <li>
+                  <span class="tl-when">Jours 2 à 4</span>
+                  <span class="tl-what">L'agent apprend vos réponses passées, votre ton, vos règles</span>
+                </li>
+                <li>
+                  <span class="tl-when">Jour 5</span>
+                  <span class="tl-what">Premières réponses, relues une par une avant envoi</span>
+                </li>
+              </ol>
               <div class="artifact chips-row" aria-hidden="true">
                 <span class="a-chip ok">✓ Boîte mail SAV connectée</span>
                 <span class="a-chip">WooCommerce · lecture seule</span>
               </div>
             </div>
           </div>
+
           <div class="step reveal">
             <div class="n">2</div>
-            <div>
+            <div class="step-body">
               <h3>L'IA rédige, notre équipe valide.</h3>
               <p>Trois premières semaines&nbsp;: 100&nbsp;% relu par un humain avant envoi. Ensuite, seules les réponses sans risque partent seules — le reste vous revient avec une suggestion prête.</p>
-              <div class="artifact mini-exchange" aria-hidden="true">
-                <div class="me-line">
-                  <span class="me-who">Léa B. · 21 h 07</span>
-                  <p class="me-subject">Objet&nbsp;: échange de taille</p>
-                  <p>Bonjour, la robe est trop grande. Puis-je l'échanger contre une taille en dessous&nbsp;?</p>
+              <details class="exemple">
+                <summary>Voir un exemple</summary>
+                <div class="ex-mail">
+                  <div class="ex-head">
+                    <span class="ex-from">Léa B.</span>
+                    <span class="ex-time">21 h 07</span>
+                  </div>
+                  <p class="ex-subject">Objet&nbsp;: échange de taille</p>
+                  <p class="ex-body">Bonjour, j'ai reçu la robe hier mais elle est trop grande. Est-ce que je peux l'échanger contre la taille en dessous&nbsp;? Je n'ai pas retiré l'étiquette. Merci&nbsp;!</p>
                 </div>
-                <div class="me-line reply">
-                  <span class="me-who">Réponse envoyée · 21 h 19</span>
-                  <p class="me-subject">Objet&nbsp;: Re: échange de taille</p>
-                  <p>Bonjour Léa, bien sûr — l'échange est possible sous 30 jours. Voici votre étiquette de retour prépayée…</p>
+                <div class="ex-mail reply">
+                  <div class="ex-head">
+                    <span class="ex-from">Votre boutique</span>
+                    <span class="ex-time">21 h 19</span>
+                  </div>
+                  <p class="ex-subject">Objet&nbsp;: Re: échange de taille</p>
+                  <p class="ex-body">Bonjour Léa,<br /><br />Merci pour votre message — et bonne nouvelle&nbsp;: l'échange est possible pendant 30 jours, étiquette conservée comme c'est le cas ici.<br /><br />Voici votre étiquette de retour prépayée&nbsp;: [lien]. Dès que le colis nous revient, nous expédions la taille en dessous sans frais supplémentaires. Comptez 3 à 5 jours ouvrés au total.<br /><br />Si la nouvelle taille ne convenait pas non plus, dites-le-nous&nbsp;: on trouvera une solution.<br /><br />Belle soirée,<br />L'équipe</p>
                   <span class="badge-check">✓ Vérifié avant envoi</span>
                 </div>
-              </div>
+              </details>
             </div>
           </div>
+
           <div class="step reveal">
             <div class="n">3</div>
-            <div>
+            <div class="step-body">
               <h3>Chaque mois, un rapport chiffré.</h3>
               <p>Tickets traités, temps récupéré, motifs récurrents. Des dizaines de clients posent la même question&nbsp;? Vous corrigez votre site une fois, ces tickets disparaissent.</p>
-              <div class="artifact report" aria-hidden="true">
-                <div class="r-head">
-                  <span class="r-label">Rapport de juin</span>
-                  <span class="r-stats">412 tickets · 19 h récupérées</span>
+              <div class="artifact slack" aria-hidden="true">
+                <div class="sl-head">
+                  <span class="sl-avatar">OS</span>
+                  <span class="sl-name">On S'en Occupe</span>
+                  <span class="sl-app">APP</span>
+                  <span class="sl-time">1er août, 09:02</span>
                 </div>
-                <div class="r-signal">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-                  <p><strong>Motif anormal&nbsp;:</strong> 37 questions sur le délai de livraison de la collection Été — l'information n'apparaît pas sur la fiche produit.</p>
+                <p class="sl-line"><strong>Votre rapport de juillet est prêt 📊</strong></p>
+                <p class="sl-line">412 tickets traités · <strong>54 h récupérées</strong> · 0 réponse à corriger</p>
+                <div class="sl-alert">
+                  <strong>⚠️ Motif récurrent :</strong> 37 questions sur le délai de livraison de la collection Été — l'information n'apparaît pas sur la fiche produit.
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <aside class="guardrail reveal">
           <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           <p><strong>Ce que notre agent ne peut PAS faire&nbsp;:</strong> rembourser, modifier une commande, promettre un geste commercial. L'accès à vos commandes est en lecture seule. Ce n'est pas une promesse, c'est une impossibilité technique.</p>
@@ -405,12 +434,16 @@
           <p class="monthly-label">L'abonnement — selon votre volume&nbsp;:</p>
           <div class="price-rows">
             <div class="price-row">
-              <span class="what">Jusqu'à 500 tickets/mois</span>
-              <span class="amount">390&nbsp;€<small>/mois</small></span>
+              <span class="what">Jusqu'à 500 commandes/mois</span>
+              <span class="amount">490&nbsp;€<small>/mois</small></span>
             </div>
             <div class="price-row">
-              <span class="what">Au-delà de 500 tickets/mois</span>
+              <span class="what">De 500 à 2 000 commandes/mois</span>
               <span class="amount">590&nbsp;€<small>/mois</small></span>
+            </div>
+            <div class="price-row">
+              <span class="what">Plus de 2 000 commandes/mois</span>
+              <span class="amount"><a class="amount-link" href="mailto:hugo@onsenoccupe.net?subject=Volume%20%3E%202000%20commandes%2Fmois">Sur devis</a></span>
             </div>
           </div>
           </div>
@@ -487,8 +520,8 @@
             <p class="answer">Justement, il n'y a pas de chantier de votre côté. L'installation, c'est notre équipe qui la fait en 5 jours, à partir de vos réponses passées — vous n'avez rien à configurer. Et pour démarrer l'essai, vous entrez l'adresse de votre boutique&nbsp;: 30 secondes, c'est tout.</p>
           </details>
           <details>
-            <summary>« 390&nbsp;€ par mois, c'est trop cher pour une boutique de ma taille. » <span class="plus" aria-hidden="true">+</span></summary>
-            <p class="answer">Regardez d'abord ce que ça remplace&nbsp;: un mi-temps au SAV coûte bien plus, sans compter vos soirées passées dessus. C'est 990&nbsp;€ de setup une fois — 495&nbsp;€ pour démarrer, les 495&nbsp;€ restants après vos 7 jours de test, si votre agent vous a convaincu — puis 390&nbsp;€/mois jusqu'à 500 tickets, facturés seulement à partir de votre feu vert. Sans engagement&nbsp;: si le calcul ne tombe pas juste, vous arrêtez par un email.</p>
+            <summary>« 490&nbsp;€ par mois, c'est trop cher pour une boutique de ma taille. » <span class="plus" aria-hidden="true">+</span></summary>
+            <p class="answer">Regardez d'abord ce que ça remplace&nbsp;: un mi-temps au SAV coûte bien plus, sans compter vos soirées passées dessus. C'est 990&nbsp;€ de setup une fois — 495&nbsp;€ pour démarrer, les 495&nbsp;€ restants après vos 7 jours de test, si votre agent vous a convaincu — puis 490&nbsp;€/mois jusqu'à 500 commandes, facturés seulement à partir de votre feu vert. Sans engagement&nbsp;: si le calcul ne tombe pas juste, vous arrêtez par un email.</p>
           </details>
           <details>
             <summary>« Et mes données clients dans tout ça&nbsp;? Je ne veux pas me mettre en tort. » <span class="plus" aria-hidden="true">+</span></summary>
@@ -568,6 +601,6 @@
     <a class="btn btn-primary" href="#essai">Essayer sur ma boutique — gratuit</a>
   </div>
 
-  <script src="script.js?v=86" defer></script>
+  <script src="script.js?v=87" defer></script>
 </body>
 </html>

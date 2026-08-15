@@ -126,6 +126,35 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   onScroll();
 })();
 
+/* ---------- Timeline des étapes : la barre se remplit au défilement ---------- */
+(() => {
+  const steps = document.getElementById("steps");
+  const fill = document.getElementById("steps-fill");
+  if (!steps || !fill) return;
+  const items = [...steps.querySelectorAll(".step")];
+
+  const render = () => {
+    const r = steps.getBoundingClientRect();
+    const ancre = window.innerHeight * 0.55;          // ligne de lecture
+    const p = Math.min(Math.max((ancre - r.top) / r.height, 0), 1);
+    fill.style.height = (p * 100).toFixed(1) + "%";
+    items.forEach((el) => {
+      const c = el.getBoundingClientRect();
+      el.classList.toggle("is-active", c.top <= ancre);
+    });
+  };
+
+  let tick = false;
+  const onScroll = () => {
+    if (tick) return;
+    tick = true;
+    requestAnimationFrame(() => { render(); tick = false; });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  render();
+})();
+
 /* ---------- Valeurs dynamiques (source unique) : mois + places ----------
    Injectées dans tous les [data-dyn] : mois-courant, mois-dernier
    (janvier → « décembre » de l'année précédente), places, places-court. */
