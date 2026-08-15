@@ -37,9 +37,10 @@ l'expliquer, sinon un prospect attentif verra la contradiction.
 
 ## 2. Mécanisme (S5)
 
-⚠️ **Nouveau (06/08)** : l'étape 3 met en scène une **notification Slack**.
-À confirmer : le rapport mensuel est-il vraiment livré par Slack (à câbler
-dans Make) ou par email ? Si c'est l'email, adapter le visuel.
+✅ **Confirmé (06/08)** : le rapport SAV est livré **chaque semaine sur Slack**
+(chiffres + motifs récurrents). L'étape 3 le met en scène. ⚠️ Côté technique,
+rien ne poste sur Slack aujourd'hui : à câbler dans Make (webhook Slack) avant
+les premiers clients. Chiffres du visuel (96 tickets, 12 h 30) = inventés.
 Tarif : passé en **commandes/mois** (490 € ≤ 500 · 590 € 500-2 000 · devis
 au-delà). Le ratio commandes→tickets (≈ 5-20 %) doit rester tenable :
 surveiller sur les premiers clients que 500 commandes ne génèrent pas plus

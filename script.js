@@ -58,73 +58,8 @@ if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   revealEls.forEach((el) => el.classList.add("in"));
 }
 
-/* ---------- Effet scroll du hero : « la réponse prend le dessus » ----------
-   En scrollant : la question recule et s'estompe, la réponse vérifiée
-   se redresse et vient au premier plan. Lissage à inertie (lerp). */
-(() => {
-  if (prefersReduced) return;
-  const title = document.querySelector(".scene-title");
-  const cardL = document.querySelector(".tilt-l");
-  const cardR = document.querySelector(".tilt-r");
-  if (!cardL || !cardR) return;
-
-  // Mobile : pas d'effet de sortie — une animation d'ENTRÉE unique quand
-  // les cartes arrivent à l'écran (classe .scene-in, transitions en CSS).
-  // Desktop : effet de scroll inchangé.
-  const mobile = window.matchMedia("(max-width: 899px)").matches;
-  if (mobile) {
-    const scene = document.querySelector(".scene-stack");
-    if (scene && "IntersectionObserver" in window) {
-      const io = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            scene.classList.add("scene-in");
-            io.disconnect();
-          }
-        },
-        { threshold: 0.25 }
-      );
-      io.observe(scene);
-    } else if (scene) {
-      scene.classList.add("scene-in");
-    }
-    return;
-  }
-  const RANGE = 520;                          // pixels de scroll pour l'effet complet
-  const startY = 0;
-  const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
-  let target = 0;
-  let current = 0;
-  let rafId = null;
-
-  const render = () => {
-    current += (target - current) * 0.14;     // inertie douce
-    if (Math.abs(target - current) < 0.001) current = target;
-    const p = ease(current);
-
-    if (title) {
-      title.style.transform = `translate3d(0, ${(-10 * p).toFixed(1)}px, 0)`;
-      title.style.opacity = (1 - 0.35 * p).toFixed(3);
-    }
-    // La question recule : monte, s'incline, rétrécit, s'estompe
-    cardL.style.transform =
-      `translate3d(0, ${(-54 * p).toFixed(1)}px, 0) rotate(${(-2 - 2.8 * p).toFixed(2)}deg) scale(${(1 - 0.06 * p).toFixed(3)})`;
-    cardL.style.opacity = (1 - 0.55 * p).toFixed(3);
-    // La réponse prend le dessus : se redresse et grossit légèrement
-    cardR.style.transform =
-      `translate3d(0, ${(-12 * p).toFixed(1)}px, 0) rotate(${(1.4 - 1.4 * p).toFixed(2)}deg) scale(${(1 + 0.055 * p).toFixed(3)})`;
-
-    rafId = current === target ? null : requestAnimationFrame(render);
-  };
-
-  const onScroll = () => {
-    target = Math.min(Math.max((window.scrollY - startY) / RANGE, 0), 1);
-    if (rafId === null) rafId = requestAnimationFrame(render);
-  };
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-})();
+/* L'ancienne scène de démonstration du hero a été remplacée par le
+   formulaire d'essai : plus d'effet de scroll ni d'entrée à animer. */
 
 /* ---------- Timeline des étapes : la barre se remplit au défilement ---------- */
 (() => {
@@ -684,8 +619,7 @@ if (document.body.classList.contains("page-resultats") && loadingEl && resultsEl
 }
 
 /* ---------- Formulaire essai gratuit : validation + POST ou fallback mailto ---------- */
-const form = document.getElementById("essai-form");
-if (form) {
+document.querySelectorAll("[data-essai-form]").forEach((form) => {
   const statusEl = form.querySelector(".form-status");
 
   const setStatus = (msg, kind) => {
@@ -806,4 +740,4 @@ if (form) {
       showConfirmation(data.prenom);
     }
   });
-}
+});

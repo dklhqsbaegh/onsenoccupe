@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>On S'en Occupe — SAV e-commerce rédigé par une IA, vérifié par un humain</title>
-  <meta name="description" content="Le SAV email de votre boutique — rédigé par une IA, vérifié par un humain. Essai gratuit : transférez vos 10 derniers emails clients, réponses instantanées." />
-  <meta property="og:title" content="On S'en Occupe — SAV e-commerce rédigé par une IA, vérifié par un humain" />
-  <meta property="og:description" content="Le SAV email de votre boutique — rédigé par une IA, vérifié par un humain. Essai gratuit sur vos 10 derniers emails clients." />
+  <title>On S'en Occupe — le SAV email de votre boutique, rédigé par une IA, supervisé par notre équipe</title>
+  <meta name="description" content="Le SAV email de votre boutique : une IA rédige, notre équipe supervise, rien qui touche à l'argent ne part sans vous. Essai gratuit — l'adresse de votre boutique suffit." />
+  <meta property="og:title" content="Le SAV que vous voudriez leur offrir. Sans rien à gérer." />
+  <meta property="og:description" content="Une IA rédige, notre équipe supervise. Essai gratuit : l'adresse de votre boutique suffit, 3 échanges en 30 secondes." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://onsenoccupe.net/" />
   <meta property="og:image" content="https://onsenoccupe.net/og-image.png" />
@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" href="img/icon-180.png" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=94" />
+  <link rel="stylesheet" href="styles.css?v=96" />
   <script>document.documentElement.classList.replace("no-js","js");</script>
 </head>
 <body>
@@ -44,33 +44,40 @@
           <span class="eyebrow">SAV email pour boutiques e-commerce</span>
           <h1>Le SAV que vous voudriez leur offrir. <span class="accent">Sans rien à gérer.</span></h1>
           <p class="lede">Votre agent apprend sur vos anciens emails — pas sur vos clients. Un humain relit chaque réponse les premières semaines, et rien qui touche à l'argent ne part sans vous. À partir de 490&nbsp;€/mois, sans engagement.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#essai">Essayer sur ma boutique</a>
-            <p class="micro">Gratuit · 2 minutes · sans accès à votre boîte · sans engagement</p>
-            <p class="badges">🇫🇷 Équipe française&nbsp;· Données hébergées en UE&nbsp;· +30 boutiques accompagnées</p>
-          </div>
+          <p class="badges">🇫🇷 Équipe française&nbsp;· Données hébergées en UE&nbsp;· +30 boutiques accompagnées</p>
         </div>
 
-        <div class="scene-stack" aria-label="Un email client reçu à 22 h 31, traité et vérifié à 22 h 47, sans vous">
-          <p class="scene-title">Votre SAV répond. <span class="pasvous">Pas vous.</span></p>
-          <article class="mail-card tilt-l">
-              <div class="mail-meta">
-                <span class="mail-from">Julie R.</span>
-                <span class="mail-time late">22 h 31</span>
-              </div>
-              <p class="mail-subject">Objet&nbsp;: commande n° 2843</p>
-              <p class="mail-body">Bonjour, je n'ai aucune nouvelle de ma commande passée dimanche… Vous pouvez me dire où elle en est&nbsp;?</p>
-          </article>
-          <article class="mail-card reply tilt-r">
-              <div class="mail-meta">
-                <span class="mail-from">Votre boutique</span>
-                <span class="mail-time late">22 h 47</span>
-              </div>
-              <p class="mail-subject">Objet&nbsp;: Re: commande n° 2843</p>
-              <p class="mail-body">Bonjour Julie,<br />Votre commande a été expédiée <strong>hier soir</strong> par Colissimo, elle arrive <strong>jeudi au plus tard</strong>. Voici votre lien de suivi.<br />Belle soirée,<br />L'équipe</p>
-              <span class="badge-check">✓ Vérifié — Hugo</span>
-          </article>
-          <p class="scene-benefit">Parti en 16 minutes, relu par un humain. <strong>Vous, vous aviez déjà décroché.</strong></p>
+        <div class="hero-form-card" id="essai-hero">
+          <p class="hf-rarete"><span class="live-dot" aria-hidden="true"></span>Onboarding limité&nbsp;: <span data-dyn="places">10 places restantes</span> en <span data-dyn="mois-courant">ce mois-ci</span></p>
+          <h2 class="hf-title">Voyez ce que notre agent répondrait à VOS clients.</h2>
+          <p class="hf-sub">L'adresse de votre boutique suffit. En 30 secondes, vous lisez 3 échanges complets — vos produits, vos délais, votre ton.</p>
+
+          <form class="essai-form hero-form" data-essai-form method="post" novalidate>
+            <div class="field span-2">
+              <label for="h-prenom">Prénom</label>
+              <input type="text" id="h-prenom" name="prenom" autocomplete="given-name" required placeholder="Camille" aria-describedby="h-err-prenom" />
+              <span class="error" id="h-err-prenom">Indiquez votre prénom.</span>
+            </div>
+            <div class="field span-2">
+              <label for="h-email">Email</label>
+              <input type="email" id="h-email" name="email" autocomplete="email" required placeholder="vous@votreboutique.fr" aria-describedby="h-err-email" />
+              <span class="error" id="h-err-email">Indiquez un email valide.</span>
+            </div>
+            <div class="field span-2">
+              <label for="h-url">URL de la boutique</label>
+              <input type="url" id="h-url" name="boutique" inputmode="url" required placeholder="https://votreboutique.fr" aria-describedby="h-err-url" />
+              <span class="error" id="h-err-url">Indiquez l'adresse de votre boutique.</span>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label for="h-site">Site web</label>
+              <input type="text" id="h-site" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="actions span-2">
+              <button type="submit" class="btn btn-primary">Voir les réponses de mon agent</button>
+              <div class="form-status" role="status" aria-live="polite"></div>
+              <p class="micro">Gratuit · 2 min · sans accès à votre boîte · pas de newsletter</p>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -200,19 +207,19 @@
           <div class="step reveal">
             <div class="n">3</div>
             <div class="step-body">
-              <h3>Chaque mois, un rapport chiffré.</h3>
-              <p>Tickets traités, temps récupéré, motifs récurrents. Des dizaines de clients posent la même question&nbsp;? Vous corrigez votre site une fois, ces tickets disparaissent.</p>
+              <h3>Chaque semaine, votre rapport SAV sur Slack.</h3>
+              <p>Tickets traités, temps récupéré, et les questions qui reviennent le plus. Des dizaines de clients butent sur la même chose&nbsp;? Vous corrigez votre site une fois, ces tickets disparaissent.</p>
               <div class="artifact slack" aria-hidden="true">
                 <div class="sl-head">
                   <span class="sl-avatar">OS</span>
                   <span class="sl-name">On S'en Occupe</span>
                   <span class="sl-app">APP</span>
-                  <span class="sl-time">1er août, 09:02</span>
+                  <span class="sl-time">Lundi, 09:02</span>
                 </div>
-                <p class="sl-line"><strong>Votre rapport de juillet est prêt 📊</strong></p>
-                <p class="sl-line">412 tickets traités · <strong>54 h récupérées</strong> · 0 réponse à corriger</p>
+                <p class="sl-line"><strong>Votre rapport de la semaine 📊</strong></p>
+                <p class="sl-line">96 tickets traités · <strong>12 h 30 récupérées</strong> · 0 réponse à corriger</p>
                 <div class="sl-alert">
-                  <strong>⚠️ Motif récurrent :</strong> 37 questions sur le délai de livraison de la collection Été — l'information n'apparaît pas sur la fiche produit.
+                  <strong>⚠️ Motif récurrent :</strong> 11 questions cette semaine sur le délai de livraison de la collection Été — l'information n'apparaît pas sur la fiche produit.
                 </div>
               </div>
             </div>
@@ -452,7 +459,7 @@
             <span role="listitem">Réponses 7j/7, 24h/24</span>
             <span role="listitem">100&nbsp;% relu les 3 premières semaines</span>
             <span role="listitem">Escalade avec suggestion de réponse</span>
-            <span role="listitem">Rapport mensuel + motifs récurrents</span>
+            <span role="listitem">Rapport hebdo sur Slack + motifs récurrents</span>
             <span role="listitem">Résiliation par simple email</span>
           </div>
           <p class="context">En comparaison&nbsp;: un mi-temps SAV salarié coûte 2&nbsp;000 à 2&nbsp;500&nbsp;€/mois chargés — à recruter, former et manager.</p>
@@ -542,7 +549,7 @@
           <h2>Voyez ce que notre agent répondrait à VOS clients.</h2>
           <p class="pitch">Indiquez l'adresse de votre boutique&nbsp;: notre agent lit vos pages publiques et rédige sous vos yeux 3 échanges clients complets — vos produits, vos délais, votre ton. Gratuit. Sans accès à votre boîte. Sans engagement.</p>
 
-          <form class="essai-form" id="essai-form" method="post" novalidate>
+          <form class="essai-form" id="essai-form" data-essai-form method="post" novalidate>
             <div class="field">
               <label for="f-prenom">Prénom</label>
               <input type="text" id="f-prenom" name="prenom" autocomplete="given-name" required placeholder="Camille" aria-describedby="err-prenom" />
@@ -583,7 +590,7 @@
       <div class="cols">
         <div>
           <img class="footer-logo" src="img/logo-noir.webp" srcset="img/logo-noir.webp 1x, img/logo-noir@2x.webp 2x" width="178" height="30" alt="On S'en Occupe" />
-          <p class="tagline">Le SAV email de votre boutique, rédigé par une IA, vérifié par un humain.</p>
+          <p class="tagline">Le SAV email de votre boutique&nbsp;: une IA rédige, notre équipe supervise.</p>
           <p class="transparency">Nos réponses clients sont générées avec assistance d'une IA et supervisées par notre équipe — conformément au règlement européen sur l'IA (art. 50).</p>
           <p class="transparency"><a href="mailto:hugo@onsenoccupe.net">hugo@onsenoccupe.net</a></p>
         </div>
@@ -601,6 +608,6 @@
     <a class="btn btn-primary" href="#essai">Essayer sur ma boutique — gratuit</a>
   </div>
 
-  <script src="script.js?v=87" defer></script>
+  <script src="script.js?v=88" defer></script>
 </body>
 </html>
