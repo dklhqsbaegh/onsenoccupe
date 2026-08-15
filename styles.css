@@ -342,78 +342,56 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 .proof { padding-block: 0; }
 .proof .proof-grid {
   border-block: 1px solid var(--line);
-  padding-block: clamp(30px, 4.5vw, 48px);
+  padding-block: clamp(26px, 3.6vw, 40px);
   display: grid;
-  gap: 26px 20px;
+  gap: 12px;
   grid-template-columns: 1fr 1fr;
 }
-/* Version courte du texte garde-fou (mobile uniquement) */
-.proof .guard .txt-short { display: none; }
-
-/* Mobile : grille 2×2 symétrique — 4 cellules-cartes égales */
-@media (max-width: 899px) {
-  .proof .proof-grid { gap: 14px; padding-block: 28px; }
-  .proof .stat {
-    background: var(--bg-raised);
-    border: 1px solid var(--line);
-    border-radius: var(--r-card);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .proof .stat .num { font-size: 30px; }
-  .proof .stat.guard { padding: 16px; }
-  .proof .stat.guard .num { font-size: 26px; gap: 9px; }
-  .proof .stat.guard .lock { width: 20px; height: 20px; }
-  .proof .stat p { font-size: 13px; margin-top: 5px; max-width: none; }
-  .proof .guard .txt-full { display: none; }
-  .proof .guard .txt-short { display: inline; }
+/* Les 4 cellules ont la même carte, la même hauteur, le même rythme */
+.proof .stat {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  min-height: 108px;
 }
 .proof .stat .num {
   font-family: var(--serif);
-  font-size: clamp(34px, 4.6vw, 42px);
+  font-size: clamp(26px, 3.4vw, 34px);
   font-weight: 700;
   letter-spacing: -0.025em;
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
-.proof .stat .num mark { font-family: inherit; }
 .proof .stat p {
-  font-size: 14.5px;
+  font-size: 12.5px;
+  line-height: 1.4;
   color: var(--ink-soft);
-  margin-top: 7px;
-  max-width: 24ch;
-  line-height: 1.45;
+  margin: 0;
+  max-width: 20ch;
 }
-/* Carte garde-fou : le différenciateur, mis en scène */
+/* Carte garde-fou : même gabarit, teinte d'accent */
 .proof .stat.guard {
   background: var(--accent-tint);
-  border: 1px solid #EBD2C3;
-  border-radius: var(--r-card);
-  padding: 22px 24px;
+  border-color: #EBD2C3;
 }
 .proof .stat.guard .num {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: clamp(28px, 3.4vw, 36px);
+  gap: 9px;
   color: var(--accent-deep);
 }
-.proof .stat.guard .lock { width: 25px; height: 25px; flex: none; }
-.proof .stat.guard p { max-width: none; }
+.proof .stat.guard .lock { width: 21px; height: 21px; flex: none; }
 @media (min-width: 900px) {
-  .proof .proof-grid {
-    grid-template-columns: 1fr 1fr 1.05fr 1.5fr;
-    gap: 0 36px;
-    align-items: center;
-  }
-  .proof .stat:not(.guard) {
-    border-right: 1px solid var(--line);
-    padding-right: 34px;
-  }
-  .proof .stat:nth-child(3) { border-right: none; }
+  .proof .proof-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .proof .stat { padding: 22px 18px; min-height: 132px; }
 }
 .proof .src {
   margin-top: 20px;
@@ -1960,19 +1938,36 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   flex-direction: column;
   gap: 8px;
 }
-/* la croix discrète : cette voie est bouchée */
-.impasse::after {
-  content: "";
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 16px;
-  height: 16px;
-  background:
-    linear-gradient(to bottom right, transparent 44%, var(--accent) 44%, var(--accent) 56%, transparent 56%),
-    linear-gradient(to bottom left, transparent 44%, var(--accent) 44%, var(--accent) 56%, transparent 56%);
-  opacity: 0.5;
+/* Icône du canal de délégation */
+.imp-ico {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  margin-bottom: 4px;
 }
+.imp-ico svg { width: 21px; height: 21px; }
+/* La croix : badge net en haut à droite — cette voie est bouchée */
+.imp-x {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  border: 1px solid #EBD2C3;
+  color: var(--accent);
+}
+.imp-x svg { width: 14px; height: 14px; }
 .imp-label {
   font-size: 11.5px;
   font-weight: 800;
@@ -1984,7 +1979,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   font-size: clamp(17px, 2.2vw, 19px);
   line-height: 1.25;
   margin: 0;
-  padding-right: 22px;
+  padding-right: 26px;
 }
 .impasse p {
   font-size: 14.5px;
