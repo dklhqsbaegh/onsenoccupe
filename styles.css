@@ -2157,28 +2157,27 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   flex-wrap: wrap;
   margin-bottom: 8px;
 }
-.sl-avatar {
+/* Canaux de livraison du rapport, en pastilles empilées */
+.sl-canaux { display: flex; align-items: center; }
+.sl-canaux .canal {
   width: 26px;
   height: 26px;
-  border-radius: 6px;
-  background: var(--accent);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 800;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(84, 62, 44, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
+/* Le premier passe au-dessus : chaque logo garde son côté identifiable */
+.sl-canaux .canal + .canal { margin-left: -7px; }
+.sl-canaux .canal:nth-child(1) { z-index: 3; }
+.sl-canaux .canal:nth-child(2) { z-index: 2; }
+.sl-canaux .canal:nth-child(3) { z-index: 1; }
+.sl-canaux .canal svg { width: 100%; height: 100%; display: block; }
 .sl-name { font-size: 14px; font-weight: 800; color: var(--ink); }
-.sl-app {
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--ink-soft);
-  background: var(--line);
-  border-radius: 4px;
-  padding: 2px 5px;
-}
 .sl-time { font-size: 11.5px; color: var(--ink-soft); }
 .sl-line { font-size: 14px !important; line-height: 1.55; margin-bottom: 4px; }
 .sl-line strong { color: var(--ink); }
