@@ -48,7 +48,7 @@ de tickets que prévu.
 
 | Affiché | À faire |
 |---|---|
-| setup en **5 jours** | délai réel moyen |
+| setup en **5 jours** | ✅ confirmé par Hugo (06/08) sur ses installations réelles — désormais promis en H1 |
 | **trois premières semaines** de validation à 100 % | durée réelle de rodage |
 | Rapport de juin · **412 tickets · 19 h récupérées** | rapport réel d'une boutique |
 | Motif anormal : **37 questions** sur la collection Été | exemple réel de motif détecté |

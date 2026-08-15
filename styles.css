@@ -349,17 +349,14 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 }
 /* Les 4 cellules ont la même carte, la même hauteur, le même rythme */
 .proof .stat {
-  background: var(--bg-raised);
-  border: 1px solid var(--line);
-  border-radius: var(--r-card);
-  padding: 18px 16px;
+  padding: 6px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  gap: 6px;
-  min-height: 108px;
+  gap: 8px;
+  min-height: 132px;
 }
 .proof .stat .num {
   font-family: var(--serif);
@@ -377,34 +374,24 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   margin: 0;
   max-width: 20ch;
 }
-/* Carte garde-fou : même gabarit, teinte d'accent */
-.proof .stat.guard {
-  background: var(--accent-tint);
-  border-color: #EBD2C3;
-}
+/* Garde-fou : distingué par la couleur, plus par une boîte */
 .proof .stat.guard .num { color: var(--accent-deep); }
-/* Icône de chaque chiffre */
+.proof .stat.guard p { color: var(--accent-deep); }
+/* Icône de chaque chiffre — nue, plus grande */
 .stat-ico {
-  width: 34px;
-  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background: var(--bg);
-  border: 1px solid var(--line);
   color: var(--accent);
-  margin-bottom: 2px;
 }
-.stat-ico svg { width: 18px; height: 18px; }
-.proof .stat.guard .stat-ico {
-  background: #fff;
-  border-color: #EBD2C3;
-  color: var(--accent-deep);
-}
+.stat-ico svg { width: 30px; height: 30px; }
 @media (min-width: 900px) {
-  .proof .proof-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .proof .stat { padding: 22px 18px; min-height: 132px; }
+  .stat-ico svg { width: 34px; height: 34px; }
+}
+.proof .stat.guard .stat-ico { color: var(--accent-deep); }
+@media (min-width: 900px) {
+  .proof .proof-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .proof .stat { padding: 8px 12px; min-height: 148px; }
 }
 .proof .src {
   margin-top: 20px;
