@@ -382,13 +382,26 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   background: var(--accent-tint);
   border-color: #EBD2C3;
 }
-.proof .stat.guard .num {
+.proof .stat.guard .num { color: var(--accent-deep); }
+/* Icône de chaque chiffre */
+.stat-ico {
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
-  gap: 9px;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.stat-ico svg { width: 18px; height: 18px; }
+.proof .stat.guard .stat-ico {
+  background: #fff;
+  border-color: #EBD2C3;
   color: var(--accent-deep);
 }
-.proof .stat.guard .lock { width: 21px; height: 21px; flex: none; }
 @media (min-width: 900px) {
   .proof .proof-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
   .proof .stat { padding: 22px 18px; min-height: 132px; }

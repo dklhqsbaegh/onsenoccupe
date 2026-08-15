@@ -13,7 +13,7 @@ Elles doivent être remplacées par des données réelles avant publication.
 
 | Affiché | Nature | À faire |
 |---|---|---|
-| 11 620 tickets traités le mois dernier | inventé | total réel sur les boutiques équipées |
+| ~~11 620 tickets traités~~ → **+30 boutiques nous font confiance** (06/08) | à confirmer | nombre réel de boutiques équipées au lancement |
 | 89 % sans votre intervention | inventé | taux réel |
 | < 15 min de première réponse | inventé | délai médian réel |
 | « +30 boutiques » (titre S7 et note S3) | à confirmer | nombre exact au moment de la mise en ligne |
