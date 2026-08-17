@@ -515,9 +515,10 @@ const renderFallback = (lead) => {
   const sub = document.createElement("p");
   sub.className = "results-sub";
   sub.textContent =
-    "Petit imprévu technique : vos échanges n'ont pas pu s'afficher ici. On vous les envoie " +
-    "par email très vite. Pour accélérer, vous pouvez transférer 3 à 10 emails clients récents à " +
-    ESSAI_EMAIL + " — réponses rédigées par l'agent et vérifiées par un humain.";
+    "Vos échanges n'ont pas pu s'afficher ici — un imprévu technique de notre côté, " +
+    "pas de la vôtre. Pour voir les réponses que notre agent aurait envoyées à vos " +
+    "clients, réservez un appel gratuit de 15 minutes : on les parcourt ensemble, " +
+    "sur vos propres cas.";
   resultsEl.append(title, sub, buildCallCta());
   resultsEl.hidden = false;
   setupStickyCall();
