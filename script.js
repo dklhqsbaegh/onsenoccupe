@@ -411,7 +411,7 @@ const buildExchange = (x, badgeText) => {
   return ex;
 };
 
-/* Lead courant (page resultats) : sert au second appel « vrais emails » */
+/* Lead courant (page resultats) : prénom et boutique pour l'affichage */
 let currentLead = null;
 
 /* CTA flottant « Réserver un appel » : apparaît une fois les résultats
@@ -662,8 +662,8 @@ document.querySelectorAll("[data-essai-form]").forEach((form) => {
 
     const consigne = document.createElement("p");
     consigne.textContent =
-      "Dernière étape (2 minutes) : transférez 3 à 10 emails clients récents à " +
-      ESSAI_EMAIL + ". Vos réponses partent instantanément.";
+      "Pour découvrir les réponses que notre agent enverrait à vos clients, " +
+      "réservez un appel gratuit de 15 minutes : on les parcourt ensemble.";
 
     const actions = document.createElement("div");
     actions.className = "confirm-actions";
