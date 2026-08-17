@@ -604,7 +604,15 @@ if (document.body.classList.contains("page-resultats") && loadingEl && resultsEl
           signal: ctrl ? ctrl.signal : undefined,
         });
         if (!res.ok) throw new Error("HTTP " + res.status);
-        const json = await res.json().catch(() => null);
+        // Le modèle encadre parfois sa réponse de balises ```json : on lit le
+        // texte brut et on retire ces balises avant de parser.
+        const json = await res.text().then((t) => {
+          try {
+            return JSON.parse(t.trim().replace(/^```[a-z]*\s*/i, "").replace(/```\s*$/, ""));
+          } catch (e) {
+            return null;
+          }
+        }).catch(() => null);
         stopLoading();
         if (!(json && showResults({ ...json, prenom: lead.prenom }))) renderFallback(lead);
       } catch (err) {
