@@ -2265,3 +2265,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   margin-top: 14px;
   font-size: 13px;
 }
+
+/* Page d'échec : le bouton suit directement la phrase */
+.fallback-cta { display: inline-flex; margin-top: 22px; }
+.fallback-cta + .results-cta-micro { margin-top: 10px; }

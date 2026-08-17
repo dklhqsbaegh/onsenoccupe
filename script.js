@@ -515,11 +515,26 @@ const renderFallback = (lead) => {
   const sub = document.createElement("p");
   sub.className = "results-sub";
   sub.textContent =
-    "Vos échanges n'ont pas pu s'afficher ici — un imprévu technique de notre côté, " +
-    "pas de la vôtre. Pour voir les réponses que notre agent aurait envoyées à vos " +
-    "clients, réservez un appel gratuit de 15 minutes : on les parcourt ensemble, " +
-    "sur vos propres cas.";
-  resultsEl.append(title, sub, buildCallCta());
+    "Pour découvrir les réponses que notre agent enverrait à vos clients, réservez " +
+    "un appel gratuit de 15 minutes : on les parcourt ensemble, sur vos propres cas.";
+  resultsEl.append(title, sub);
+
+  // CTA réduit au bouton : sur cette page, tout ce qui s'intercale entre la
+  // phrase et Calendly éloigne du seul geste utile.
+  if (CALL_URL) {
+    const a = document.createElement("a");
+    a.className = "btn btn-primary fallback-cta";
+    a.href = CALL_URL;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "Réserver mon appel de 15 minutes";
+    const micro = document.createElement("p");
+    micro.className = "results-cta-micro";
+    micro.textContent = "Créneaux cette semaine · sans engagement";
+    resultsEl.append(a, micro);
+  } else {
+    resultsEl.append(buildCallCta());
+  }
   resultsEl.hidden = false;
   setupStickyCall();
 };
