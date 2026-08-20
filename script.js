@@ -636,7 +636,22 @@ const renderFallback = (lead) => {
 if (document.body.classList.contains("page-resultats") && loadingEl && resultsEl) {
   // ── Mode aperçu : resultats.html?demo — rend la page avec des échanges
   //    d'exemple, sans appeler le webhook (aucun crédit consommé). ──
-  if (new URLSearchParams(location.search).has("demo")) {
+  const apercu = new URLSearchParams(location.search).get("demo");
+
+  // ── resultats.html?demo=chargement — rejoue l'écran d'attente en boucle,
+  //    sans appeler le webhook (aucun crédit consommé). Sert à relire cet
+  //    écran, qui n'existe autrement que 20 secondes pendant un vrai essai. ──
+  if (apercu === "chargement") {
+    (function boucle() {
+      const stop = showLoading({ prenom: "Camille", boutique: "https://mondevanille.com/" });
+      const flag = document.createElement("p");
+      flag.className = "demo-flag";
+      flag.textContent = "Aperçu interne — écran d'attente, aucun appel à l'agent";
+      loadingEl.prepend(flag);
+      setTimeout(function () { stop(); boucle(); }, (DUREE_ATTENDUE + 6) * 1000);
+    })();
+    window.scrollTo(0, 0);
+  } else if (apercu !== null) {
     showResults({
       prenom: "Camille",
       exchanges: [
