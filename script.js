@@ -226,7 +226,7 @@ const showLoading = (lead) => {
 
   // Chaque ligne cochée est une preuve visible d'avancement.
   const etapes = [
-    ["Connexion à votre boutique", 0],
+    ["Ouverture de votre site, comme un visiteur", 0],
     ["Lecture de vos pages produits, livraison, retours", 3],
     ["Repérage des questions que vos clients posent le plus", 8],
     ["Rédaction des trois réponses, dans votre ton", 13],
@@ -266,18 +266,45 @@ const showLoading = (lead) => {
   rTitre.textContent = "Pendant ce temps, ce qu'on ne fait pas";
   rass.append(rTitre);
 
+  // Une icône par promesse : lue avant le texte, elle porte déjà le message.
+  const ICONES = {
+    oeil: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+    cloche: '<path d="M8.7 3A6 6 0 0 1 18 8a21.3 21.3 0 0 0 .6 5"/><path d="M17 17H3s3-2 3-9a4.67 4.67 0 0 1 .3-1.7"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/><path d="m2 2 20 20"/>',
+    bouclier: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+  };
+
+  // Sur desktop les trois tiennent sur une ligne : trois promesses vues d'un
+  // coup rassurent mieux qu'une liste qu'il faut parcourir.
+  const grille = document.createElement("div");
+  grille.className = "load-rass-grille";
+
   [
-    ["On ne touche à rien", "On lit vos pages publiques, exactement comme le ferait un visiteur. Aucun accès à votre boutique, à votre boîte mail ni à vos commandes."],
-    ["On ne vous inscrit à rien", "Pas de newsletter, pas de relance automatique. Votre adresse sert à vous envoyer ces réponses, rien d'autre."],
-    ["On ne garde rien pour entraîner des modèles", "Vos données restent hébergées dans l'Union européenne."],
+    ["oeil", "On ne touche à rien", "On lit vos pages publiques, exactement comme le ferait un visiteur. Aucun accès à votre boutique, à votre boîte mail ni à vos commandes."],
+    ["cloche", "On ne vous inscrit à rien", "Pas de newsletter, pas de relance automatique. Votre adresse sert à vous envoyer ces réponses, rien d'autre."],
+    ["bouclier", "On ne garde rien pour entraîner des modèles", "Vos données restent hébergées dans l'Union européenne."],
   ].forEach(function (r) {
-    const li = document.createElement("p");
+    const li = document.createElement("div");
     li.className = "load-rass-item";
+
+    const icone = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    icone.setAttribute("viewBox", "0 0 24 24");
+    icone.setAttribute("fill", "none");
+    icone.setAttribute("stroke", "currentColor");
+    icone.setAttribute("stroke-width", "1.7");
+    icone.setAttribute("stroke-linecap", "round");
+    icone.setAttribute("stroke-linejoin", "round");
+    icone.setAttribute("aria-hidden", "true");
+    icone.innerHTML = ICONES[r[0]];
+
+    const txt = document.createElement("p");
     const f = document.createElement("strong");
-    f.textContent = r[0] + ". ";
-    li.append(f, document.createTextNode(r[1]));
-    rass.append(li);
+    f.textContent = r[1] + ". ";
+    txt.append(f, document.createTextNode(r[2]));
+
+    li.append(icone, txt);
+    grille.append(li);
   });
+  rass.append(grille);
 
   loadingEl.append(kicker, titre, barre, compteur, liste, desir, rass);
   loadingEl.hidden = false;

@@ -2155,9 +2155,8 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 }
 /* Le premier passe au-dessus : chaque logo garde son côté identifiable */
 .sl-canaux .canal + .canal { margin-left: -7px; }
-.sl-canaux .canal:nth-child(1) { z-index: 3; }
-.sl-canaux .canal:nth-child(2) { z-index: 2; }
-.sl-canaux .canal:nth-child(3) { z-index: 1; }
+.sl-canaux .canal:nth-child(1) { z-index: 2; }
+.sl-canaux .canal:nth-child(2) { z-index: 1; }
 .sl-canaux .canal svg { width: 100%; height: 100%; display: block; }
 .sl-name { font-size: 14px; font-weight: 800; color: var(--ink); }
 .sl-time { font-size: 11.5px; color: var(--ink-soft); }
@@ -2359,7 +2358,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   padding-top: 24px;
   border-top: 1px solid var(--line);
   text-align: left;
-  max-width: 40em;
+  max-width: 48em;
   margin-left: auto;
   margin-right: auto;
 }
@@ -2371,22 +2370,39 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   color: var(--ink-soft);
   margin: 0 0 12px;
 }
+.load-rass-grille { display: grid; gap: 13px; }
+/* Desktop uniquement : les trois promesses sur une seule ligne. La colonne de
+   texte fait 660 px, trop étroit pour trois colonnes lisibles — ce bloc seul
+   s'élargit au-delà, recentré sur son parent. */
+@media (min-width: 860px) {
+  .load-rass {
+    max-width: none;
+    width: min(900px, calc(100vw - 64px));
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .load-rass-grille { grid-template-columns: repeat(3, 1fr); gap: 26px; }
+}
 .load-rass-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
   font-size: 13.5px;
   line-height: 1.55;
   color: var(--ink-soft);
-  margin: 0 0 9px;
-  padding-left: 20px;
-  position: relative;
+  margin: 0;
 }
-.load-rass-item::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 7px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
+.load-rass-item svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-top: 1px;
+  color: var(--accent);
+}
+.load-rass-item p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 .load-rass-item strong { color: var(--ink); font-weight: 700; }
