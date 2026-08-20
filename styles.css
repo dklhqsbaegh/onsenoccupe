@@ -1404,27 +1404,9 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   text-align: center;
   padding: 34px 10px 26px;
 }
-.load-spin {
-  width: 34px;
-  height: 34px;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  border: 3px solid var(--accent-tint);
-  border-top-color: var(--accent);
-  animation: essai-spin 0.9s linear infinite;
-}
 @keyframes essai-spin { to { transform: rotate(360deg); } }
-.load-step {
-  font-size: 14.5px;
-  color: var(--ink-soft);
-  opacity: 0.35;
-  transition: opacity 0.4s ease;
-  margin-top: 7px;
-}
-.load-step.on { opacity: 1; font-weight: 600; color: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
-  .load-spin { animation: none; border-top-color: var(--accent-tint); }
-}
+  }
 
 .essai-results { text-align: left; }
 .results-title {
@@ -2269,3 +2251,103 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 /* Page d'échec : le bouton suit directement la phrase */
 .fallback-cta { display: inline-flex; margin-top: 22px; }
 .fallback-cta + .results-cta-micro { margin-top: 10px; }
+
+/* ══ Écran d'attente de l'essai ══
+   ~20 s de génération : c'est là qu'on perd le visiteur. Progression réelle,
+   travail visible, et de quoi entretenir l'envie de voir le résultat. */
+.load-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 6px;
+}
+.load-titre {
+  font-family: var(--font-title, inherit);
+  font-size: clamp(20px, 4.4vw, 27px);
+  line-height: 1.22;
+  margin: 0 0 22px;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.load-bar {
+  height: 6px;
+  border-radius: 99px;
+  background: var(--accent-tint);
+  overflow: hidden;
+}
+.load-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 99px;
+  background: var(--accent);
+  transition: width 0.25s linear;
+}
+.load-time {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 10px 0 24px;
+}
+.load-list {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  text-align: left;
+  display: inline-block;
+}
+.load-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  opacity: 0.4;
+  margin-bottom: 11px;
+  transition: opacity 0.45s ease, color 0.45s ease;
+}
+.load-list li.on { opacity: 1; color: var(--ink); }
+/* La puce se remplit et se coche quand l'étape est atteinte */
+.load-puce {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  position: relative;
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+.load-list li.on .load-puce {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.load-list li.on .load-puce::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(43deg);
+}
+/* L'étape en cours respire doucement — le reste est figé */
+.load-list li.on:last-of-type:not(:only-child) { animation: none; }
+.load-desir {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  font-style: italic;
+  max-width: 34em;
+  margin: 0 auto;
+  transition: opacity 0.26s ease;
+}
+.load-desir.fade { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .load-fill, .load-list li, .load-puce, .load-desir { transition: none; }
+}

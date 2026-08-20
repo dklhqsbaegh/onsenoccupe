@@ -193,31 +193,100 @@ if (rail) {
 const loadingEl = document.getElementById("essai-loading");
 const resultsEl = document.getElementById("essai-results");
 
-const showLoading = () => {
+const DUREE_ATTENDUE = 25; // secondes annoncées au visiteur
+
+/* Écran d'attente : la génération prend ~20 s et c'est là qu'on perd le plus
+   de monde. On montre une progression réelle, le travail accompli, et de quoi
+   entretenir l'envie de voir le résultat. */
+const showLoading = (lead) => {
   if (!loadingEl) return () => {};
   loadingEl.textContent = "";
-  const spin = document.createElement("div");
-  spin.className = "load-spin";
-  const steps = [
-    "On lit votre boutique…",
-    "On repère vos produits, vos délais, vos conditions de retour…",
-    "Notre agent rédige les 3 échanges de votre boutique…",
-  ].map((txt) => {
-    const li = document.createElement("p");
-    li.className = "load-step";
-    li.textContent = txt;
+
+  const kicker = document.createElement("p");
+  kicker.className = "load-kicker";
+  kicker.textContent = "Analyse en cours";
+
+  // C'est SA boutique qu'on analyse : on l'affiche.
+  const titre = document.createElement("h2");
+  titre.className = "load-titre";
+  let domaine = "";
+  try {
+    domaine = new URL(lead && lead.boutique ? lead.boutique : "").hostname.replace(/^www\./, "");
+  } catch (e) {}
+  titre.textContent = domaine ? "On lit " + domaine : "On lit votre boutique";
+
+  const barre = document.createElement("div");
+  barre.className = "load-bar";
+  const fill = document.createElement("span");
+  fill.className = "load-fill";
+  barre.append(fill);
+
+  const compteur = document.createElement("p");
+  compteur.className = "load-time";
+
+  // Chaque ligne cochée est une preuve visible d'avancement.
+  const etapes = [
+    ["Connexion à votre boutique", 0],
+    ["Lecture de vos pages produits, livraison, retours", 3],
+    ["Repérage des questions que vos clients posent le plus", 8],
+    ["Rédaction des trois réponses, dans votre ton", 13],
+    ["Vérification : aucune information inventée", 20],
+  ];
+  const liste = document.createElement("ul");
+  liste.className = "load-list";
+  const lis = etapes.map(function (e) {
+    const li = document.createElement("li");
+    const puce = document.createElement("span");
+    puce.className = "load-puce";
+    const lbl = document.createElement("span");
+    lbl.textContent = e[0];
+    li.append(puce, lbl);
+    liste.append(li);
     return li;
   });
-  loadingEl.append(spin, ...steps);
+
+  const desirs = [
+    "Ce que vous allez lire, vos clients pourraient le recevoir dès la semaine prochaine.",
+    "Chaque réponse est rédigée à partir de VOS pages — jamais d'un modèle générique.",
+    "Les questions qui reviennent chez vous reviennent partout : ce sont les plus simples à déléguer.",
+    "L'objectif : que vos soirées commencent à 19 h, pas après le dernier email.",
+  ];
+  const desir = document.createElement("p");
+  desir.className = "load-desir";
+  desir.textContent = desirs[0];
+
+  loadingEl.append(kicker, titre, barre, compteur, liste, desir);
   loadingEl.hidden = false;
-  let i = 0;
-  steps[0].classList.add("on");
-  const timer = setInterval(() => {
-    i = Math.min(i + 1, steps.length - 1);
-    steps.forEach((s, k) => s.classList.toggle("on", k <= i));
-  }, 8000);
-  return () => {
-    clearInterval(timer);
+
+  const depart = Date.now();
+  let iDesir = 0;
+
+  const tick = setInterval(function () {
+    const ecoule = (Date.now() - depart) / 1000;
+
+    // La barre plafonne à 96 % : une barre pleine sur un écran figé est pire
+    // que pas de barre du tout.
+    fill.style.width = Math.min(96, (ecoule / DUREE_ATTENDUE) * 96).toFixed(1) + "%";
+
+    const reste = Math.ceil(DUREE_ATTENDUE - ecoule);
+    compteur.textContent = reste > 0
+      ? "Environ " + reste + " seconde" + (reste > 1 ? "s" : "") + " — ne fermez pas cette page"
+      : "Encore quelques instants, on y est presque";
+
+    lis.forEach(function (li, k) { li.classList.toggle("on", ecoule >= etapes[k][1]); });
+
+    if (ecoule > 6 * (iDesir + 1) && iDesir < desirs.length - 1) {
+      iDesir += 1;
+      desir.classList.add("fade");
+      setTimeout(function () {
+        desir.textContent = desirs[iDesir];
+        desir.classList.remove("fade");
+      }, 260);
+    }
+  }, 200);
+
+  return function () {
+    clearInterval(tick);
     loadingEl.hidden = true;
   };
 };
@@ -608,7 +677,7 @@ if (document.body.classList.contains("page-resultats") && loadingEl && resultsEl
     renderFallback(lead);
   } else {
     (async () => {
-      const stopLoading = showLoading();
+      const stopLoading = showLoading(lead);
       const ctrl = "AbortController" in window ? new AbortController() : null;
       const timeout = ctrl ? setTimeout(() => ctrl.abort(), 150000) : null;
       try {
