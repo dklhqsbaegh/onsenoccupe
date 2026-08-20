@@ -2351,3 +2351,42 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 @media (prefers-reduced-motion: reduce) {
   .load-fill, .load-list li, .load-puce, .load-desir { transition: none; }
 }
+
+/* Réassurance sous le loader : discrète, elle ne doit pas voler la vedette
+   à la progression — mais elle est là si le doute monte pendant l'attente. */
+.load-rass {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  text-align: left;
+  max-width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.load-rass-titre {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+.load-rass-item {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 9px;
+  padding-left: 20px;
+  position: relative;
+}
+.load-rass-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+}
+.load-rass-item strong { color: var(--ink); font-weight: 700; }

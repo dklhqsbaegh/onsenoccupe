@@ -255,7 +255,31 @@ const showLoading = (lead) => {
   desir.className = "load-desir";
   desir.textContent = desirs[0];
 
-  loadingEl.append(kicker, titre, barre, compteur, liste, desir);
+  /* Réassurance — à cet instant le prospect vient de livrer l'URL de sa
+     boutique et son email, et une machine « lit » son site. Sa crainte n'est
+     pas le prix : c'est l'intrusion. On répond à celle-là, en nommant ce
+     qu'on NE fait pas. */
+  const rass = document.createElement("div");
+  rass.className = "load-rass";
+  const rTitre = document.createElement("p");
+  rTitre.className = "load-rass-titre";
+  rTitre.textContent = "Pendant ce temps, ce qu'on ne fait pas";
+  rass.append(rTitre);
+
+  [
+    ["On ne touche à rien", "On lit vos pages publiques, exactement comme le ferait un visiteur. Aucun accès à votre boutique, à votre boîte mail ni à vos commandes."],
+    ["On ne vous inscrit à rien", "Pas de newsletter, pas de relance automatique. Votre adresse sert à vous envoyer ces réponses, rien d'autre."],
+    ["On ne garde rien pour entraîner des modèles", "Vos données restent hébergées dans l'Union européenne."],
+  ].forEach(function (r) {
+    const li = document.createElement("p");
+    li.className = "load-rass-item";
+    const f = document.createElement("strong");
+    f.textContent = r[0] + ". ";
+    li.append(f, document.createTextNode(r[1]));
+    rass.append(li);
+  });
+
+  loadingEl.append(kicker, titre, barre, compteur, liste, desir, rass);
   loadingEl.hidden = false;
 
   const depart = Date.now();
