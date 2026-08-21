@@ -858,7 +858,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
    S8 — Tarif
    ============================================================ */
 .pricing .card {
-  max-width: 620px;
+  max-width: 680px;
   margin-inline: auto;
   background: var(--bg-raised);
   border: 1.5px solid var(--ink);
@@ -870,7 +870,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 .pricing-sub {
   text-align: center;
   margin: 12px auto 0;
-  max-width: 46ch;
+  max-width: 62ch;
   font-size: 16px;
   color: var(--ink-soft);
 }
@@ -940,6 +940,160 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   font-weight: 620;
   white-space: nowrap;
 }
+/* Mobile : le titre et le montant tiennent la même ligne, la description
+   passe dessous sur toute la largeur au lieu d'être écrasée en colonne. */
+@media (max-width: 560px) {
+  .setup-line {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    column-gap: 12px;
+  }
+  .setup-line .what { display: contents; }
+  .setup-line .what strong { grid-column: 1; grid-row: 1; }
+  .setup-line .amount { grid-column: 2; grid-row: 1; }
+  .setup-line .what small { grid-column: 1 / -1; grid-row: 2; margin-top: 5px; }
+}
+/* Mise en place : le montant réellement engagé doit sauter aux yeux */
+.setup-start {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  background: var(--accent-tint);
+  border-radius: 12px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.setup-start strong { color: var(--accent-deep); font-weight: 800; }
+.setup-desc {
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.setup-after-label {
+  margin: 18px 0 8px;
+  font-size: 12.5px;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.setup-after { display: grid; gap: 8px; }
+.setup-after p {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  padding: 10px 13px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.setup-after strong { color: var(--ink); font-weight: 750; }
+.setup-after .after-go { border-left: 3px solid var(--accent); }
+.setup-after .after-stop { border-left: 3px solid #C9DFCB; }
+@media (min-width: 620px) {
+  .setup-after { grid-template-columns: 1fr 1fr; }
+}
+
+/* Intitulé de sous-bloc, même registre que les surtitres du site */
+.pricing .block-label {
+  margin: 30px 0 12px;
+  font-size: 12.5px;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Ce que comprend la mise en place — scannable, jamais un pavé */
+.setup-includes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 9px 26px;
+}
+.setup-includes li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.setup-includes li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 800;
+  color: var(--accent);
+}
+@media (min-width: 620px) {
+  .setup-includes { grid-template-columns: 1fr 1fr; }
+}
+
+/* Les quatre formules */
+.plans { display: grid; gap: 12px; }
+@media (min-width: 560px) { .plans { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .plans { grid-template-columns: repeat(4, 1fr); } }
+.plan {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: 16px 16px 18px;
+}
+.plan-name {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.plan-vol {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  /* Deux lignes réservées : les quatre prix restent alignés entre eux */
+  min-height: 2.8em;
+}
+.plan-price {
+  margin: 12px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.6vw, 25px);
+  font-weight: 620;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.plan-price small { font-size: 0.5em; font-family: var(--sans); font-weight: 600; color: var(--ink-soft); }
+.plan-price .amount-link {
+  font-family: var(--serif);
+  font-size: 0.82em;
+  font-weight: 620;
+  color: var(--accent-deep);
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+}
+.plan-price .amount-link:hover { color: var(--accent); }
+.plan-benefit {
+  /* Poussé en bas : les quatre filets se répondent d'une carte à l'autre */
+  margin: 12px 0 0;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
 .monthly-label {
   margin: 24px 0 12px;
   font-size: 14px;
@@ -964,7 +1118,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   font-variant-numeric: tabular-nums;
 }
 .price-row .amount small { font-size: 0.55em; font-family: var(--sans); font-weight: 600; color: var(--ink-soft); }
-.included { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.included { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px; }
 .included .row-break { display: none; }
 @media (max-width: 700px) {
   .pricing .card { padding-inline: 16px; }
@@ -1013,6 +1167,17 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   line-height: 1.55;
 }
 .pricing .cta-center { margin-top: 26px; text-align: center; }
+/* Ce CTA porte une phrase, pas deux mots : .btn est en nowrap par défaut,
+   il déborderait sur mobile. On l'autorise à passer à la ligne, ici seulement. */
+.pricing .cta-center .btn {
+  white-space: normal;
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.3;
+}
+@media (max-width: 520px) {
+  .pricing .cta-center .btn { width: 100%; padding-inline: 18px; }
+}
 
 /* ============================================================
    S9 — La lettre du fondateur
@@ -1548,58 +1713,21 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   .faq .list { max-width: none; }
 }
 
-/* Tarif desktop : carte élargie, chiffres à gauche / réassurance à droite,
-   action en bas — compacte pour tenir dans un écran */
+/* Tarif desktop : la carte s'élargit pour accueillir les quatre formules.
+   Lecture en une seule colonne — l'offre se raconte de haut en bas :
+   rareté, promesse, mise en place, ce qu'elle comprend, formules, bénéfices. */
 @media (min-width: 960px) {
   .pricing .card {
-    max-width: 960px;
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    column-gap: clamp(40px, 4.5vw, 60px);
-    padding: 30px 44px 34px;
+    max-width: 980px;
+    padding: 34px clamp(40px, 4.5vw, 52px) 38px;
   }
-  .pricing .scarcity,
-  .pricing .scarcity-why,
-  .pricing h2,
-  .pricing .offer-badge,
-  .pricing .cta-center { grid-column: 1 / -1; }
-  .pricing .scarcity { margin-bottom: 14px; }
-  .pricing h2 { margin-bottom: 2px; }
-  .pricing .offer-badge { margin-top: 10px; }
-
-  .price-col-left { grid-column: 1; margin-top: 26px; }
-  .price-col-right {
-    grid-column: 2;
-    margin-top: 26px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .pricing .setup-block { margin-top: 0; padding: 16px 18px; }
-  .pricing .monthly-label { margin: 18px 0 6px; }
-  .pricing .price-row { padding-block: 12px; }
-
-  .pricing .included {
-    margin-top: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-  }
-  .pricing .included [role="listitem"] {
-    font-size: 14.5px;
-    padding: 9px 15px;
-    border-radius: 12px;
-  }
-  .pricing .included [role="listitem"]::before {
-    content: "✓";
-    font-weight: 800;
-    color: var(--accent);
-    margin-right: 10px;
-  }
-  .pricing .context { margin-top: 16px; }
-  .pricing .cta-center { margin-top: 24px; }
+  .pricing .scarcity { margin-bottom: 6px; }
+  .pricing .setup-block { padding: 22px 24px; }
+  .pricing .setup-includes { gap: 10px 34px; }
+  .pricing .context { margin-top: 18px; text-align: center; }
+  .pricing .included { justify-content: center; }
+  .pricing .cta-center { margin-top: 26px; }
 }
-
 
 /* Ligne source de la barre de preuve + toggle méthodo */
 .src-toggle {
