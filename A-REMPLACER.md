@@ -35,6 +35,39 @@ d'accueil (étape 3) affiche « 412 tickets · **19 h récupérées** », soit t
 en dessous des 54 h/mois annoncées ici. Aligner ce rapport (≈ 50 h) ou
 l'expliquer, sinon un prospect attentif verra la contradiction.
 
+## 1 ter. 🔴 Heures économisées par formule — section Tarif (21/08)
+
+Ajoutées à la demande d'Hugo, qui avait initialement demandé de **ne pas** afficher
+de chiffres d'heures faute de données clients. Ces quatre valeurs sont **estimées**,
+pas mesurées. Elles engagent la responsabilité de l'annonceur au même titre que
+les moyennes du §1 bis.
+
+| Formule | Affiché | Base de l'estimation |
+|---|---|---|
+| Growth (≤ 500 cdes/mois) | ≈ **20 h** économisées par mois | ~350 commandes médianes × 20 % de contacts SAV × ~12 min par cas résolu × 80 % traités seuls |
+| Scale (501–1 500) | ≈ **45 h** | ~1 000 commandes médianes, même modèle |
+| Pro (1 501–3 000) | ≈ **75 h** | ~2 250 commandes médianes, même modèle, rendement décroissant assumé |
+| Custom (> 3 000) | **75 h et plus** | extrapolation |
+
+Le modèle est volontairement **sous-linéaire** : une grosse boutique a un SAV mieux
+outillé par commande. Les valeurs restent cohérentes avec les **54 h/mois** annoncées
+au §1 bis, qui correspondent à un client de gamme Scale.
+
+**À faire avant de pouvoir les défendre :**
+1. Mesurer le **taux de contact SAV réel** (emails reçus ÷ commandes) sur les
+   premiers clients — l'hypothèse à 20 % est la plus fragile des trois.
+2. Mesurer le **temps moyen par cas résolu** avant automatisation, chez le client,
+   au démarrage du pilote. C'est la seule mesure « avant » possible : après, elle
+   n'existe plus.
+3. Mesurer le **taux de traitement autonome** réel (hypothèse : 80 %).
+4. Remplacer les quatre valeurs, ou ajouter une note de bas de section indiquant
+   la base de calcul. Un ordre de grandeur documenté est défendable ; un chiffre
+   rond sans base ne l'est pas.
+
+⚠️ Tant que le point 4 n'est pas fait, ces chiffres sont le poste de risque
+DGCCRF le plus exposé de la page : ils sont chiffrés, précis en apparence, et
+directement adossés à un prix.
+
 ## 2. Mécanisme (S5)
 
 ✅ **Confirmé (06/08)** : le rapport SAV est livré **chaque semaine sur Slack**
