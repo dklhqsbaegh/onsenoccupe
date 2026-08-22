@@ -1111,6 +1111,15 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   border-bottom: 1.5px solid currentColor;
 }
 .pr-price .amount-link:hover { color: var(--accent); }
+/* Le plafond de tickets : ligne à part, un cran plus discret que le volume */
+.plan-row .pr-left .pr-cap { font-size: 11.5px; color: #8B857A; }
+/* Note de méthode sous l'ensemble des paliers */
+.pr-note {
+  margin: 14px 0 0;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #8B857A;
+}
 .pr-hours {
   margin-top: 4px;
   font-size: 11.5px;

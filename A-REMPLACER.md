@@ -54,7 +54,19 @@ Modèle d'origine : commandes médianes du palier × 20 % de contacts SAV
 sur les gros volumes.
 
 Historique d'affichage : ajoutées le 21/08, retirées le 21/08 lors de la refonte
-de la section, **remises le 22/08** à la demande d'Hugo, aux mêmes valeurs majorées.
+de la section, remises le 22/08, puis **révisées le 22/08 sur une base explicite**.
+
+✅ **Valeurs actuellement en ligne : 20 / 55 / 110 h**, avec la base de calcul
+affichée sous la grille : « ~10 % des commandes génèrent un échange client,
+~20 min par échange traité de bout en bout ». Le calcul se vérifie :
+500 × 10 % × 20 min = 16,7 h (affiché 20), 1 500 → 50 h (affiché 55),
+3 000 → 100 h (affiché 110). L'arrondi vers le haut reste de ~10-20 %, mais
+le modèle est désormais **public et contestable** — c'est ce qui distingue une
+estimation défendable d'un chiffre décidé. La majoration de 50 % du 21/08 est
+abandonnée.
+
+Restent à mesurer chez les premiers clients : le taux de contact réel (10 % est
+l'hypothèse) et le temps moyen par échange (20 min).
 
 🔴 **Les valeurs affichées ont été majorées de ~50 % le 21/08, à la demande
 d'Hugo, sans donnée nouvelle.** Ce n'est plus une estimation prudente : c'est
