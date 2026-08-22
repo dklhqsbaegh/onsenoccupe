@@ -1056,83 +1056,64 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   line-height: 1.5;
   color: var(--ink-soft);
 }
-@media (min-width: 700px) {
-  .feat-grid { grid-template-columns: 1fr 1fr; gap: 15px 30px; }
-}
-@media (min-width: 980px) {
-  .feat-grid { grid-template-columns: repeat(3, 1fr); }
-}
 
-/* ── Étape 2 : les trois formules ── */
-.plans { display: grid; gap: 14px; margin-top: 4px; }
-@media (min-width: 620px) { .plans { grid-template-columns: repeat(3, 1fr); } }
-.plan {
+/* ── Étape 2 : les quatre formules, dans une seule carte ──
+   Même gabarit que l'étape 1 : une carte à gauche, la liste à droite. */
+.plan-rows { display: grid; margin-top: 14px; }
+.plan-row {
   display: flex;
-  flex-direction: column;
-  background: var(--bg-raised);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 20px 20px 22px;
-  box-shadow: 0 1px 3px rgba(84, 62, 44, 0.05);
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 15px;
 }
-.plan-name {
-  margin: 0;
+.plan-row + .plan-row { border-top: 1px solid var(--line); }
+.plan-row .pr-left b {
+  display: block;
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 650;
   color: var(--ink);
 }
-.plan-vol {
-  margin: 4px 0 0;
-  font-size: 13px;
+.plan-row .pr-left span {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
   line-height: 1.4;
   color: var(--ink-soft);
 }
-/* Deux lignes réservées seulement quand les cartes sont côte à côte :
-   sur mobile, ce blanc n'aligne rien et se voit. */
-@media (min-width: 620px) { .plan-vol { min-height: 2.7em; } }
-.plan-price {
-  margin: 10px 0 0;
+.plan-row .pr-right { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+.pr-price {
   font-family: var(--serif);
-  font-size: clamp(28px, 3.4vw, 32px);
+  font-size: clamp(23px, 3vw, 27px);
   font-weight: 640;
   letter-spacing: -0.015em;
   color: var(--ink);
   white-space: nowrap;
 }
-.plan-price small { font-size: 0.44em; font-family: var(--sans); font-weight: 650; color: var(--ink-soft); }
-.plan-benefit {
-  margin: 14px 0 0;
-  margin-top: auto;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--ink-soft);
-}
-
-/* Custom : réel, mais volontairement discret */
-.plan-custom {
-  margin: 14px 0 0;
-  padding: 13px 18px;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-}
-.plan-custom b { color: var(--ink); font-weight: 750; }
-.plan-custom a {
+.pr-price small { font-size: 0.44em; font-family: var(--sans); font-weight: 650; color: var(--ink-soft); }
+.pr-price .amount-link {
+  font-family: var(--serif);
+  font-size: 0.8em;
+  font-weight: 640;
   color: var(--accent-deep);
-  font-weight: 700;
   text-decoration: none;
   border-bottom: 1.5px solid currentColor;
-  white-space: nowrap;
 }
-.plan-custom a:hover { color: var(--accent); }
+.pr-price .amount-link:hover { color: var(--accent); }
+.pr-hours {
+  margin-top: 4px;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+/* Sous 430 px, le couple prix + heures ne tient plus à côté du nom :
+   on laisse les heures revenir à la ligne plutôt que d'écraser le nom. */
+@media (max-width: 430px) {
+  .plan-row { gap: 12px; }
+  .pr-hours { white-space: normal; }
+}
 
-.incl { margin-top: clamp(32px, 4vw, 44px); }
 
 /* ── Positionnement, juste avant l'action ── */
 .stance {
