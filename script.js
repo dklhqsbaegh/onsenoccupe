@@ -534,7 +534,7 @@ const buildExchange = (x, badgeText) => {
 /* Lead courant (page resultats) : prénom et boutique pour l'affichage */
 let currentLead = null;
 
-/* CTA flottant « Réserver un appel » : apparaît une fois les résultats
+/* CTA flottant « appel découverte » : apparaît une fois les résultats
    rendus, s'efface quand le bloc Calendly est à l'écran */
 const setupStickyCall = () => {
   const bar = document.getElementById("sticky-call");
@@ -603,10 +603,10 @@ const buildCallCta = () => {
     a.href = CALL_URL;
     a.target = "_blank";
     a.rel = "noopener";
-    a.textContent = "Réserver mon appel de 15 minutes";
+    a.textContent = "Réserver mon appel découverte";
     const micro = document.createElement("p");
     micro.className = "results-cta-micro";
-    micro.textContent = "Créneaux cette semaine · sans engagement";
+    micro.textContent = "15 minutes · créneaux cette semaine · sans engagement";
     cta.append(a, micro);
   }
   cta.append(stats);
@@ -647,10 +647,10 @@ const renderFallback = (lead) => {
     a.href = CALL_URL;
     a.target = "_blank";
     a.rel = "noopener";
-    a.textContent = "Réserver mon appel de 15 minutes";
+    a.textContent = "Réserver mon appel découverte";
     const micro = document.createElement("p");
     micro.className = "results-cta-micro";
-    micro.textContent = "Créneaux cette semaine · sans engagement";
+    micro.textContent = "15 minutes · créneaux cette semaine · sans engagement";
     resultsEl.append(a, micro);
   } else {
     resultsEl.append(buildCallCta());
