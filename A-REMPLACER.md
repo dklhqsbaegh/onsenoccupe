@@ -42,12 +42,24 @@ de chiffres d'heures faute de données clients. Ces quatre valeurs sont **estim�
 pas mesurées. Elles engagent la responsabilité de l'annonceur au même titre que
 les moyennes du §1 bis.
 
-| Formule | Affiché | Base de l'estimation |
-|---|---|---|
-| Growth (≤ 500 cdes/mois) | ≈ **20 h** économisées par mois | ~350 commandes médianes × 20 % de contacts SAV × ~12 min par cas résolu × 80 % traités seuls |
-| Scale (501–1 500) | ≈ **45 h** | ~1 000 commandes médianes, même modèle |
-| Pro (1 501–3 000) | ≈ **75 h** | ~2 250 commandes médianes, même modèle, rendement décroissant assumé |
-| Custom (> 3 000) | **75 h et plus** | extrapolation |
+| Formule | Affiché | Estimation du modèle | Écart |
+|---|---|---|---|
+| Growth (≤ 500 cdes/mois) | ≈ **30h** | 20 h | **+50 %** |
+| Scale (501–1 500) | ≈ **70h** | 45 h | **+55 %** |
+| Pro (1 501–3 000) | ≈ **110h** | 75 h | **+47 %** |
+| Custom (> 3 000) | **110h et plus** | 75 h et plus | **+47 %** |
+
+Modèle d'origine : commandes médianes du palier × 20 % de contacts SAV
+× ~12 min par cas résolu × 80 % traités seuls, avec rendement décroissant assumé
+sur les gros volumes.
+
+🔴 **Les valeurs affichées ont été majorées de ~50 % le 21/08, à la demande
+d'Hugo, sans donnée nouvelle.** Ce n'est plus une estimation prudente : c'est
+une estimation volontairement haute. Growth à 30 h suppose ~18 min de SAV par
+email reçu, ce qui est au-dessus de tout ce qui est habituellement observé.
+En cas de contrôle, c'est cette majoration qui serait la plus difficile à
+justifier — un modèle documenté se défend, une majoration décidée ne se
+défend pas.
 
 Le modèle est volontairement **sous-linéaire** : une grosse boutique a un SAV mieux
 outillé par commande. Les valeurs restent cohérentes avec les **54 h/mois** annoncées
