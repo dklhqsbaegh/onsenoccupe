@@ -876,7 +876,8 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 }
 .pricing-sub {
   margin: 12px auto 0;
-  max-width: 60ch;
+  /* Même assise que le titre : les deux blocs partagent une seule mesure. */
+  max-width: 700px;
   font-size: 15.5px;
   line-height: 1.6;
   color: var(--ink-soft);
