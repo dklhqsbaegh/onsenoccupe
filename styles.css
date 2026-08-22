@@ -857,21 +857,20 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 /* ============================================================
    S8 — Tarif
    ============================================================ */
-.pricing .card {
-  max-width: 620px;
+.pricing-inner { max-width: 1000px; margin-inline: auto; }
+
+/* ── En-tête : compact, centré, une seule colonne de lecture ── */
+.pricing-head { text-align: center; }
+.pricing h2 {
+  font-size: clamp(26px, 4.6vw, 30px);
+  max-width: 26ch;
   margin-inline: auto;
-  background: var(--bg-raised);
-  border: 1.5px solid var(--ink);
-  border-radius: 24px;
-  padding: clamp(28px, 5vw, 44px);
-  box-shadow: var(--shadow-card);
 }
-.pricing h2 { text-align: center; }
 .pricing-sub {
-  text-align: center;
   margin: 12px auto 0;
-  max-width: 46ch;
-  font-size: 16px;
+  max-width: 60ch;
+  font-size: 15.5px;
+  line-height: 1.6;
   color: var(--ink-soft);
 }
 .scarcity {
@@ -884,7 +883,7 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   font-weight: 750;
   color: var(--accent-deep);
   width: fit-content;
-  margin: 0 auto 2px;
+  margin: 0 auto 4px;
 }
 
 /* Dot « live » : ce chiffre est vivant, pas un décor */
@@ -904,178 +903,252 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   .live-dot { animation: none; }
 }
 
-/* Justification factuelle, discrète — l'urgence reste courte */
+/* Justification de la rareté : secondaire, mais lisible */
 .scarcity-why {
-  font-size: 11.5px;
-  font-style: italic;
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--ink-soft);
   text-align: center;
-  margin: 0 auto 18px;
+  max-width: 62ch;
+  margin: 0 auto 20px;
 }
-.scarcity strong { font-weight: 700; }
-.price-row .amount-link {
-  color: var(--accent-deep);
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 700;
-  text-decoration: none;
-  border-bottom: 1.5px solid currentColor;
-  padding-bottom: 1px;
+
+/* ── Intertitre d'étape : numéro, titre, filet ── */
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(38px, 5vw, 54px);
 }
-.price-row .amount-link:hover { color: var(--accent); }
-.setup-block {
-  margin-top: 26px;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: var(--r-card);
-  padding: 20px 22px;
-}
-.setup-line { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-.setup-line .what { display: flex; flex-direction: column; gap: 2px; }
-.setup-line .what strong { font-size: 17px; font-weight: 700; color: var(--ink); }
-.setup-line .what small { font-size: 13.5px; color: var(--ink-soft); }
-.setup-line .amount {
+.step-num {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg-raised);
   font-family: var(--serif);
-  font-size: clamp(24px, 3.6vw, 26px);
-  font-weight: 620;
-  white-space: nowrap;
-}
-/* Mobile : le titre et le montant tiennent la même ligne, le détail du
-   paiement passe dessous sur toute la largeur au lieu d'être écrasé
-   en colonne étroite à côté du prix. Desktop inchangé. */
-@media (max-width: 560px) {
-  .setup-line {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: baseline;
-    column-gap: 12px;
-  }
-  .setup-line .what { display: contents; }
-  .setup-line .what strong { grid-column: 1; grid-row: 1; }
-  .setup-line .amount { grid-column: 2; grid-row: 1; }
-  .setup-line .what small { grid-column: 1 / -1; grid-row: 2; margin-top: 6px; }
-}
-.monthly-label {
-  margin: 24px 0 12px;
   font-size: 14px;
-  font-weight: 700;
-  color: var(--ink);
+  font-weight: 650;
+  display: grid;
+  place-items: center;
 }
-.price-rows { display: grid; gap: 0; }
-.price-row {
+.step-head h3 { font-size: clamp(18px, 2.6vw, 21px); }
+.step-rule { flex: 1; height: 1px; background: var(--line); }
+.step-note {
+  margin: 8px 0 18px 42px;
+  max-width: 68ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ── Étape 1 : la carte de mise en place et ce qu'elle comprend ── */
+.setup-grid { display: grid; gap: 22px; margin-top: 20px; }
+@media (min-width: 900px) {
+  .setup-grid { grid-template-columns: 1fr 1fr; gap: clamp(28px, 3.5vw, 44px); align-items: start; }
+}
+
+.setup-card {
+  background: var(--bg-raised);
+  border: 1.5px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: var(--shadow-card);
+  padding: clamp(22px, 3vw, 30px);
+}
+.card-eyebrow {
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* Le chiffre réellement engagé est le point focal de toute la section */
+.big-price {
+  margin: 8px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(42px, 6.4vw, 54px);
+  font-weight: 640;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 14px;
-  padding-block: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-.price-row + .price-row { border-top: 1px solid var(--line); }
-.price-row .what { font-size: 15.5px; color: var(--ink-soft); }
-.price-row .what strong { display: block; font-size: 15.5px; font-weight: 700; color: var(--ink); }
-.price-row .what small { display: block; margin-top: 2px; font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
-.setup-line .what small b { font-weight: 800; color: var(--accent-deep); }
-
-/* Ce que comprend la mise en place : coches sobres, pas de cartouche —
-   les pastilles restent réservées aux bénéfices mensuels juste en dessous. */
-.setup-includes {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 8px;
+.big-price span {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: 0;
+  color: var(--ink-soft);
 }
-.setup-includes li {
-  position: relative;
-  padding-left: 20px;
+.price-total {
+  margin: 8px 0 0;
   font-size: 13.5px;
   line-height: 1.5;
   color: var(--ink-soft);
 }
-.setup-includes li::before {
+.setup-lead {
+  margin: 16px 0 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* Le parcours réutilise le composant .timeline de la section « Comment ça
+   marche » : même chronologie segmentée, donc même vocabulaire visuel. */
+.setup-card .timeline { margin-top: 20px; }
+.setup-card .tl-what { font-size: 13.5px; }
+.setup-card .tl-what b { color: var(--ink); font-weight: 750; }
+
+/* La réponse à « et si l'IA dit une bêtise » — traitée comme un service, pas un aveu */
+.guarantee {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 20px 0 0;
+  padding: 13px 15px;
+  background: #E4EFE5;
+  border: 1px solid #C9DFCB;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #2F5A44;
+}
+.guarantee svg { width: 18px; height: 18px; flex: none; margin-top: 1px; color: #22563E; }
+.guarantee b { color: #1E4A34; font-weight: 800; }
+
+/* ── Listes de prestations : on doit pouvoir ne lire que les intitulés ── */
+.col-label {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.feat { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
+.feat li { position: relative; padding-left: 26px; }
+.feat li::before {
   content: "\2713";
   position: absolute;
   left: 0;
-  top: 0;
+  top: 1px;
+  font-size: 13px;
   font-weight: 800;
   color: var(--accent);
 }
-/* Chaque cellule porte son propre espacement : les marges des premiers
-   enfants sont neutralisées pour ne pas s'additionner. */
-.pcell { margin-top: 26px; }
-.pcell > :first-child { margin-top: 0; }
-.price-row .amount {
-  font-family: var(--serif);
-  font-size: clamp(22px, 3.4vw, 24px);
-  font-weight: 620;
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
+.feat b {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 750;
+  color: var(--ink);
+  line-height: 1.35;
 }
-.price-row .amount small { font-size: 0.55em; font-family: var(--sans); font-weight: 600; color: var(--ink-soft); }
-
-/* Le prix seul ne dit pas ce qu'il achète : le temps rendu se lit juste dessous. */
-.price-row .amount { display: inline-flex; flex-direction: column; align-items: flex-end; }
-.price-row .amount-main { white-space: nowrap; }
-.price-row .saving {
-  margin-top: 4px;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.3;
+.feat span {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--ink-soft);
+}
+@media (min-width: 700px) {
+  .feat-grid { grid-template-columns: 1fr 1fr; gap: 15px 30px; }
+}
+@media (min-width: 980px) {
+  .feat-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── Étape 2 : les trois formules ── */
+.plans { display: grid; gap: 14px; margin-top: 4px; }
+@media (min-width: 620px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+.plan {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px 20px 22px;
+  box-shadow: 0 1px 3px rgba(84, 62, 44, 0.05);
+}
+.plan-name {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.plan-vol {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+/* Deux lignes réservées seulement quand les cartes sont côte à côte :
+   sur mobile, ce blanc n'aligne rien et se voit. */
+@media (min-width: 620px) { .plan-vol { min-height: 2.7em; } }
+.plan-price {
+  margin: 10px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.4vw, 32px);
+  font-weight: 640;
+  letter-spacing: -0.015em;
+  color: var(--ink);
   white-space: nowrap;
 }
-@media (max-width: 380px) {
-  .price-row .saving { white-space: normal; text-align: right; }
+.plan-price small { font-size: 0.44em; font-family: var(--sans); font-weight: 650; color: var(--ink-soft); }
+.plan-benefit {
+  margin: 14px 0 0;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
-.included { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
-.included .row-break { display: none; }
-@media (max-width: 700px) {
-  .pricing .card { padding-inline: 16px; }
-  /* Pastilles → checklist compacte alignée à gauche (comme sur desktop) */
-  .pricing .included {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    margin-top: 18px;
-  }
-  .pricing .included [role="listitem"] {
-    background: none;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    font-size: 13.5px;
-    color: var(--ink-soft);
-  }
-  .pricing .included [role="listitem"]::before {
-    content: "✓";
-    font-weight: 800;
-    color: var(--accent);
-    margin-right: 9px;
-  }
-  /* Comparaison → petite note discrète */
-  .pricing .card .context {
-    font-size: 12px;
-    color: #6F6A5E;
-    margin-top: 14px;
-  }
-}
-.included li,
-.included [role="listitem"] {
-  list-style: none;
-  font-size: 13.5px;
+
+/* Custom : réel, mais volontairement discret */
+.plan-custom {
+  margin: 14px 0 0;
+  padding: 13px 18px;
   background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: var(--r-pill);
-  padding: 6px 13px;
-  color: var(--ink-soft);
-}
-.pricing .context {
-  margin-top: 20px;
-  font-size: 13px;
-  color: var(--ink-soft);
+  border-radius: 14px;
+  font-size: 13.5px;
   line-height: 1.55;
+  color: var(--ink-soft);
 }
-.pricing .cta-center { margin-top: 26px; text-align: center; }
+.plan-custom b { color: var(--ink); font-weight: 750; }
+.plan-custom a {
+  color: var(--accent-deep);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  white-space: nowrap;
+}
+.plan-custom a:hover { color: var(--accent); }
+
+.incl { margin-top: clamp(32px, 4vw, 44px); }
+
+/* ── Positionnement, juste avant l'action ── */
+.stance {
+  margin: clamp(30px, 4vw, 40px) auto 0;
+  max-width: 74ch;
+  padding: 16px 20px;
+  background: var(--bg);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 14px 14px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.stance b { color: var(--ink); font-weight: 750; }
+
+.pricing .cta-center { margin-top: clamp(26px, 3.5vw, 34px); text-align: center; }
 .pricing .cta-center .btn { white-space: normal; max-width: 100%; line-height: 1.3; }
 @media (max-width: 520px) {
   .pricing .cta-center .btn { width: 100%; padding-inline: 18px; }
@@ -1613,53 +1686,6 @@ section { padding-block: clamp(56px, 8vw, 88px); }
     margin-bottom: 0;
   }
   .faq .list { max-width: none; }
-}
-
-/* Tarif desktop : carte élargie, quatre cellules en deux lignes.
-   La grille place seule dans l'ordre du DOM — mise en place | ce qu'elle
-   comprend, puis abonnement | bénéfices mensuels. Les deux cellules d'une
-   même ligne démarrent au même Y, quelle que soit leur hauteur. */
-@media (min-width: 960px) {
-  .pricing .card {
-    max-width: 960px;
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    column-gap: clamp(40px, 4.5vw, 60px);
-    padding: 30px 44px 34px;
-  }
-  .pricing .scarcity,
-  .pricing .scarcity-why,
-  .pricing h2,
-  .pricing .offer-badge,
-  .pricing .cta-center { grid-column: 1 / -1; }
-  .pricing .scarcity { margin-bottom: 14px; }
-  .pricing h2 { margin-bottom: 2px; }
-  .pricing .offer-badge { margin-top: 10px; }
-
-  .pricing .pcell { align-self: start; margin-top: 26px; }
-
-  .pricing .setup-block { padding: 16px 18px; }
-  .pricing .monthly-label { margin: 0 0 10px; }
-  .pricing .price-row { padding-block: 12px; }
-
-  .pricing .included {
-    margin-top: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-  }
-  .pricing .included [role="listitem"] {
-    font-size: 14.5px;
-    padding: 9px 15px;
-    border-radius: 12px;
-  }
-  .pricing .included [role="listitem"]::before {
-    content: "\2713";
-    font-weight: 800;
-    color: var(--accent);
-    margin-right: 10px;
-  }
-  .pricing .cta-center { margin-top: 24px; }
 }
 
 /* Ligne source de la barre de preuve + toggle méthodo */

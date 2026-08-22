@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" href="img/icon-180.png" />
   <link rel="preload" href="fonts/bricolage-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=118" />
+  <link rel="stylesheet" href="styles.css?v=119" />
   <script>document.documentElement.classList.replace("no-js","js");</script>
 </head>
 <body>
@@ -441,71 +441,114 @@
     <!-- S8 — Tarif -->
     <section class="pricing" id="tarif">
       <div class="wrap">
-        <div class="card reveal">
-          <p class="scarcity"><span class="live-dot" aria-hidden="true"></span><span class="scarcity-text"><span data-dyn="places">10 places restantes</span> en <span data-dyn="mois-courant">ce mois-ci</span></span></p>
-          <p class="scarcity-why">Nous limitons volontairement les nouveaux déploiements pour superviser chaque agent à 100&nbsp;% pendant ses 3 premières semaines.</p>
-          <h2>Une IA SAV qui connaît vraiment votre boutique — et répond comme votre équipe.</h2>
-          <p class="offer-badge">7 jours sur vos vrais emails avant tout abonnement</p>
+        <div class="pricing-inner">
 
-          <div class="pcell">
-          <div class="setup-block">
-            <div class="setup-line">
-              <span class="what"><strong>Mise en place personnalisée — 990&nbsp;€, une seule fois.</strong><small><b>Vous ne réglez que 495&nbsp;€ pour démarrer.</b> Votre agent répond ensuite à vos vrais clients pendant 7 jours. À l'issue, vous décidez&nbsp;: continuer — les 495&nbsp;€ restants, puis l'abonnement — ou arrêter, sans rien payer de plus.</small></span>
-              <span class="amount">990&nbsp;€</span>
-            </div>
-          </div>
-          </div>
+          <header class="pricing-head reveal">
+            <p class="scarcity"><span class="live-dot" aria-hidden="true"></span><span class="scarcity-text"><span data-dyn="places">10 places restantes</span> en <span data-dyn="mois-courant">ce mois-ci</span></span></p>
+            <p class="scarcity-why">Nous limitons volontairement les nouveaux déploiements pour superviser chaque agent à 100&nbsp;% pendant ses 3 premières semaines.</p>
+            <h2>Une IA SAV qui connaît vraiment votre boutique — et répond comme votre équipe.</h2>
+            <p class="pricing-sub">Entraînée sur vos anciens emails, vos produits, vos politiques et votre façon de répondre. Connectée à Shopify ou WooCommerce pour utiliser les vraies informations de commande.</p>
+            <p class="offer-badge">7 jours sur vos vrais emails avant tout abonnement</p>
+          </header>
 
-          <div class="pcell">
-          <p class="monthly-label">Ce que comprend la mise en place</p>
-          <ul class="setup-includes">
-            <li>Entraînement de notre IA sur vos anciens emails et les informations de votre entreprise&nbsp;: votre ton, vos produits, vos délais, votre politique de livraison et de retours</li>
-            <li>Connexion Shopify ou WooCommerce, avec accès aux informations réelles de vos commandes</li>
-            <li>Règles d'escalade, et réponse suggérée sur les cas qui demandent votre validation</li>
-            <li>Rapports quotidiens ou hebdomadaires, et détection des motifs récurrents</li>
-            <li>Environnement privé et sécurisé, dédié à vos seules données</li>
-            <li>Reprise de votre automatisation SAV actuelle, si vous en avez déjà une</li>
-          </ul>
+          <div class="step-head reveal">
+            <span class="step-num">1</span>
+            <h3>La mise en place</h3>
+            <span class="step-rule" aria-hidden="true"></span>
           </div>
 
-          <div class="pcell">
-          <p class="monthly-label">L'abonnement — selon votre volume&nbsp;:</p>
-          <div class="price-rows">
-            <div class="price-row">
-              <span class="what"><strong>Growth</strong><small>Jusqu'à 500 commandes/mois</small></span>
-              <span class="amount"><span class="amount-main">490&nbsp;€<small>/mois</small></span><span class="saving">≈ 30h économisées par mois</span></span>
+          <div class="setup-grid reveal">
+            <div class="setup-card">
+              <p class="card-eyebrow">Mise en place personnalisée</p>
+              <p class="big-price">495&nbsp;€<span>pour démarrer</span></p>
+              <p class="price-total">990&nbsp;€ au total, une seule fois — le solde uniquement si vous continuez.</p>
+              <p class="setup-lead">Nous configurons entièrement votre agent, puis nous le faisons travailler 7 jours sur vos vrais emails.</p>
+
+              <ol class="timeline">
+                <li>
+                  <span class="tl-when">Aujourd'hui</span>
+                  <span class="tl-what"><b>495&nbsp;€</b> — configuration, connexion et entraînement de votre agent.</span>
+                </li>
+                <li>
+                  <span class="tl-when">7 jours</span>
+                  <span class="tl-what">Il répond à vos <b>vrais clients</b>. Vous jugez sur pièces, pas sur une promesse.</span>
+                </li>
+                <li>
+                  <span class="tl-when">Vous décidez</span>
+                  <span class="tl-what">Continuer&nbsp;: <b>495&nbsp;€</b> de solde, puis l'abonnement. Arrêter&nbsp;: <b>0&nbsp;€</b> de plus.</span>
+                </li>
+              </ol>
+
+              <p class="guarantee">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                <span><b>Supervision à 100&nbsp;% pendant les 3 premières semaines.</b> Nous relisons chaque conversation et ajustons le ton, les règles et les cas d'escalade.</span>
+              </p>
             </div>
-            <div class="price-row">
-              <span class="what"><strong>Scale</strong><small>501 à 1&nbsp;500 commandes/mois</small></span>
-              <span class="amount"><span class="amount-main">690&nbsp;€<small>/mois</small></span><span class="saving">≈ 70h économisées par mois</span></span>
+
+            <div class="setup-list">
+              <p class="col-label">Ce que comprend la mise en place</p>
+              <ul class="feat">
+                <li><b>Historique SAV analysé</b><span>Ton, réponses précédentes et manière de communiquer.</span></li>
+                <li><b>Shopify / WooCommerce connecté</b><span>Accès aux informations réelles des commandes.</span></li>
+                <li><b>Produits, livraison &amp; retours</b><span>Vos politiques, délais et règles intégrés à l'agent.</span></li>
+                <li><b>Escalades intelligentes</b><span>Les cas sensibles restent sous validation humaine.</span></li>
+                <li><b>Reporting automatique</b><span>Synthèses quotidiennes ou hebdomadaires et motifs récurrents.</span></li>
+                <li><b>Environnement privé</b><span>Vos données restent isolées dans votre environnement.</span></li>
+                <li><b>Automatisation existante</b><span>Reprise de votre workflow SAV actuel lorsque c'est nécessaire.</span></li>
+              </ul>
             </div>
-            <div class="price-row">
-              <span class="what"><strong>Pro</strong><small>1&nbsp;501 à 3&nbsp;000 commandes/mois</small></span>
-              <span class="amount"><span class="amount-main">890&nbsp;€<small>/mois</small></span><span class="saving">≈ 110h économisées par mois</span></span>
-            </div>
-            <div class="price-row">
-              <span class="what"><strong>Custom</strong><small>Plus de 3&nbsp;000 commandes/mois</small></span>
-              <span class="amount"><span class="amount-main"><a class="amount-link" href="mailto:hugo@onsenoccupe.net?subject=Volume%20%3E%203000%20commandes%2Fmois">Sur devis</a></span><span class="saving">110h économisées par mois et plus</span></span>
-            </div>
-          </div>
           </div>
 
-          <div class="pcell">
-          <p class="monthly-label">Puis, chaque mois</p>
-          <div class="included" role="list">
-            <span role="listitem">Réponses clients 24h/24, 7j/7</span>
-            <span role="listitem">Supervision à 100&nbsp;% pendant les 3 premières semaines</span>
-            <span role="listitem">Escalade automatique des cas sensibles, avec réponse suggérée</span>
-            <span role="listitem">Rapports quotidiens ou hebdomadaires sur Slack / Telegram</span>
-            <span role="listitem">Identification des motifs SAV récurrents</span>
-            <span role="listitem">Sans engagement — résiliation par simple email</span>
+          <div class="step-head reveal">
+            <span class="step-num">2</span>
+            <h3>Puis, choisissez selon votre volume</h3>
+            <span class="step-rule" aria-hidden="true"></span>
           </div>
+          <p class="step-note reveal">Même agent, mêmes fonctionnalités, même niveau de qualité. Seul votre volume de commandes fait évoluer le tarif.</p>
+
+          <div class="plans reveal">
+            <div class="plan">
+              <p class="plan-name">Growth</p>
+              <p class="plan-vol">Jusqu'à 500 commandes/mois</p>
+              <p class="plan-price">490&nbsp;€<small>/mois</small></p>
+              <p class="plan-benefit">Automatisez les demandes SAV récurrentes sans recruter.</p>
+            </div>
+            <div class="plan">
+              <p class="plan-name">Scale</p>
+              <p class="plan-vol">501 à 1&nbsp;500 commandes/mois</p>
+              <p class="plan-price">690&nbsp;€<small>/mois</small></p>
+              <p class="plan-benefit">Absorbez votre croissance sans agrandir proportionnellement votre équipe SAV.</p>
+            </div>
+            <div class="plan">
+              <p class="plan-name">Pro</p>
+              <p class="plan-vol">1&nbsp;501 à 3&nbsp;000 commandes/mois</p>
+              <p class="plan-price">890&nbsp;€<small>/mois</small></p>
+              <p class="plan-benefit">Gérez un SAV à fort volume tout en gardant l'humain sur les cas sensibles.</p>
+            </div>
           </div>
 
-          <div class="cta-center">
-            <a class="btn btn-primary" href="#essai">Voir comment l'IA répondrait à mes clients</a>
-            <p class="cta-risk">Gratuit · 2 minutes · aucune carte bancaire</p>
+          <p class="plan-custom reveal"><b>Custom</b> — plus de 3&nbsp;000 commandes/mois. Pour les volumes importants et les workflows SAV plus complexes. <a href="mailto:hugo@onsenoccupe.net?subject=Volume%20%3E%203000%20commandes%2Fmois">Demander un devis</a></p>
+
+          <div class="incl reveal">
+            <p class="col-label">Inclus dans toutes les formules</p>
+            <ul class="feat feat-grid">
+              <li><b>Réponses 24h/24, 7j/7</b><span>L'agent répond même lorsque votre équipe est absente.</span></li>
+              <li><b>Accès aux vraies commandes</b><span>Connexion Shopify ou WooCommerce avant de répondre.</span></li>
+              <li><b>Votre façon de communiquer</b><span>L'agent s'appuie sur votre historique SAV et votre ton.</span></li>
+              <li><b>Escalades intelligentes</b><span>Remboursements et cas sensibles restent sous contrôle humain.</span></li>
+              <li><b>Réponse suggérée</b><span>Votre équipe reçoit une réponse prête à être validée.</span></li>
+              <li><b>Reporting SAV</b><span>Rapports quotidiens ou hebdomadaires et motifs récurrents.</span></li>
+              <li><b>Sans engagement</b><span>Résiliation par simple email.</span></li>
+            </ul>
           </div>
+
+          <p class="stance reveal"><b>Pas un logiciel de plus à configurer.</b> Nous entraînons l'agent, connectons vos données, configurons vos règles et supervisons son démarrage. Vous recevez un agent SAV prêt à travailler.</p>
+
+          <div class="cta-center reveal">
+            <a class="btn btn-primary" href="#essai">Tester l'IA sur ma boutique</a>
+            <p class="cta-risk">Gratuit · 2 minutes · aucune carte bancaire · aucun accès à votre boutique</p>
+          </div>
+
         </div>
       </div>
     </section>
