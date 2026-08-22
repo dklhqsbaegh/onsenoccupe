@@ -866,6 +866,12 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   max-width: 26ch;
   margin-inline: auto;
 }
+/* Mobile : la largeur d'écran est la seule contrainte, le titre doit
+   l'occuper. Le clamp desktop l'avait rapetissé au passage. */
+@media (max-width: 640px) {
+  .pricing h2 { font-size: 31px; line-height: 1.12; max-width: none; }
+  .pricing .step-head h3 { font-size: 19.5px; }
+}
 .pricing-sub {
   margin: 12px auto 0;
   max-width: 60ch;
@@ -905,7 +911,8 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 
 /* Justification de la rareté : secondaire, mais lisible */
 .scarcity-why {
-  font-size: 13px;
+  font-size: 12px;
+  font-style: italic;
   line-height: 1.5;
   color: var(--ink-soft);
   text-align: center;
