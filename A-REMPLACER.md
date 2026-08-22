@@ -53,6 +53,9 @@ Modèle d'origine : commandes médianes du palier × 20 % de contacts SAV
 × ~12 min par cas résolu × 80 % traités seuls, avec rendement décroissant assumé
 sur les gros volumes.
 
+Historique d'affichage : ajoutées le 21/08, retirées le 21/08 lors de la refonte
+de la section, **remises le 22/08** à la demande d'Hugo, aux mêmes valeurs majorées.
+
 🔴 **Les valeurs affichées ont été majorées de ~50 % le 21/08, à la demande
 d'Hugo, sans donnée nouvelle.** Ce n'est plus une estimation prudente : c'est
 une estimation volontairement haute. Growth à 30 h suppose ~18 min de SAV par
