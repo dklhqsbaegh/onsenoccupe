@@ -863,7 +863,9 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 .pricing-head { text-align: center; }
 .pricing h2 {
   font-size: clamp(26px, 4.6vw, 30px);
-  max-width: 26ch;
+  /* Même largeur d'assise que les titres des autres sections : deux lignes,
+     avec la césure après « boutique — » plutôt qu'une colonne étroite. */
+  max-width: 700px;
   margin-inline: auto;
 }
 /* Mobile : la largeur d'écran est la seule contrainte, le titre doit
