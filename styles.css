@@ -940,6 +940,21 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   font-weight: 620;
   white-space: nowrap;
 }
+/* Mobile : le titre et le montant tiennent la même ligne, le détail du
+   paiement passe dessous sur toute la largeur au lieu d'être écrasé
+   en colonne étroite à côté du prix. Desktop inchangé. */
+@media (max-width: 560px) {
+  .setup-line {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    column-gap: 12px;
+  }
+  .setup-line .what { display: contents; }
+  .setup-line .what strong { grid-column: 1; grid-row: 1; }
+  .setup-line .amount { grid-column: 2; grid-row: 1; }
+  .setup-line .what small { grid-column: 1 / -1; grid-row: 2; margin-top: 6px; }
+}
 .monthly-label {
   margin: 24px 0 12px;
   font-size: 14px;
@@ -984,7 +999,10 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   font-weight: 800;
   color: var(--accent);
 }
-.pricing .monthly-label.first { margin-top: 0; }
+/* Chaque cellule porte son propre espacement : les marges des premiers
+   enfants sont neutralisées pour ne pas s'additionner. */
+.pcell { margin-top: 26px; }
+.pcell > :first-child { margin-top: 0; }
 .price-row .amount {
   font-family: var(--serif);
   font-size: clamp(22px, 3.4vw, 24px);
@@ -998,15 +1016,12 @@ section { padding-block: clamp(56px, 8vw, 88px); }
 .price-row .amount { display: inline-flex; flex-direction: column; align-items: flex-end; }
 .price-row .amount-main { white-space: nowrap; }
 .price-row .saving {
-  margin-top: 5px;
+  margin-top: 4px;
   font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 500;
   line-height: 1.3;
-  color: var(--accent-deep);
-  background: var(--accent-tint);
-  border-radius: var(--r-pill);
-  padding: 3px 9px;
+  color: var(--ink-soft);
   white-space: nowrap;
 }
 @media (max-width: 380px) {
@@ -1600,8 +1615,10 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   .faq .list { max-width: none; }
 }
 
-/* Tarif desktop : carte élargie, chiffres à gauche / réassurance à droite,
-   action en bas — compacte pour tenir dans un écran */
+/* Tarif desktop : carte élargie, quatre cellules en deux lignes.
+   La grille place seule dans l'ordre du DOM — mise en place | ce qu'elle
+   comprend, puis abonnement | bénéfices mensuels. Les deux cellules d'une
+   même ligne démarrent au même Y, quelle que soit leur hauteur. */
 @media (min-width: 960px) {
   .pricing .card {
     max-width: 960px;
@@ -1619,16 +1636,10 @@ section { padding-block: clamp(56px, 8vw, 88px); }
   .pricing h2 { margin-bottom: 2px; }
   .pricing .offer-badge { margin-top: 10px; }
 
-  .price-col-left { grid-column: 1; margin-top: 26px; }
-  .price-col-right {
-    grid-column: 2;
-    margin-top: 26px;
-    display: flex;
-    flex-direction: column;
-  }
+  .pricing .pcell { align-self: start; margin-top: 26px; }
 
-  .pricing .setup-block { margin-top: 0; padding: 16px 18px; }
-  .pricing .monthly-label { margin: 18px 0 6px; }
+  .pricing .setup-block { padding: 16px 18px; }
+  .pricing .monthly-label { margin: 0 0 10px; }
   .pricing .price-row { padding-block: 12px; }
 
   .pricing .included {
@@ -1643,15 +1654,13 @@ section { padding-block: clamp(56px, 8vw, 88px); }
     border-radius: 12px;
   }
   .pricing .included [role="listitem"]::before {
-    content: "✓";
+    content: "\2713";
     font-weight: 800;
     color: var(--accent);
     margin-right: 10px;
   }
-  .pricing .context { margin-top: 16px; }
   .pricing .cta-center { margin-top: 24px; }
 }
-
 
 /* Ligne source de la barre de preuve + toggle méthodo */
 .src-toggle {
