@@ -534,7 +534,7 @@ const buildExchange = (x, badgeText) => {
 /* Lead courant (page resultats) : prénom et boutique pour l'affichage */
 let currentLead = null;
 
-/* CTA flottant « appel découverte » : apparaît une fois les résultats
+/* CTA flottant « On en parle 15 minutes » : apparaît une fois les résultats
    rendus, s'efface quand le bloc Calendly est à l'écran */
 const setupStickyCall = () => {
   const bar = document.getElementById("sticky-call");
@@ -569,7 +569,7 @@ const buildCallCta = () => {
 
   const hook = document.createElement("p");
   hook.className = "results-hook";
-  hook.textContent = "Est-ce que ça marcherait sur VOTRE boutique ? Parlons-en 15 minutes.";
+  hook.textContent = "Est-ce que ça marcherait sur VOTRE boutique ?";
   const sub = document.createElement("p");
   sub.className = "results-cta-sub";
   sub.textContent =
@@ -603,10 +603,10 @@ const buildCallCta = () => {
     a.href = CALL_URL;
     a.target = "_blank";
     a.rel = "noopener";
-    a.textContent = "Réserver mon appel découverte";
+    a.textContent = "On en parle 15 minutes";
     const micro = document.createElement("p");
     micro.className = "results-cta-micro";
-    micro.textContent = "15 minutes · créneaux cette semaine · sans engagement";
+    micro.textContent = "Créneaux cette semaine · sans engagement";
     cta.append(a, micro);
   }
   cta.append(stats);
@@ -647,10 +647,10 @@ const renderFallback = (lead) => {
     a.href = CALL_URL;
     a.target = "_blank";
     a.rel = "noopener";
-    a.textContent = "Réserver mon appel découverte";
+    a.textContent = "On en parle 15 minutes";
     const micro = document.createElement("p");
     micro.className = "results-cta-micro";
-    micro.textContent = "15 minutes · créneaux cette semaine · sans engagement";
+    micro.textContent = "Créneaux cette semaine · sans engagement";
     resultsEl.append(a, micro);
   } else {
     resultsEl.append(buildCallCta());
