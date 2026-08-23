@@ -7,10 +7,10 @@
 // fallback mailto. Quand il est rempli, le formulaire affiche les 3 échanges
 // générés directement sur la page (écran de chargement puis résultats).
 const FORM_ENDPOINT = "https://hook.eu1.make.com/952lnbliumihchddjq7rk3fu2viwfoop";
-// Lien Calendly (ex. "https://calendly.com/onsenoccupe/15min"), intégré
+// Lien Calendly (ex. "https://calendly.com/onsenoccupe/debrief"), intégré
 // directement sous les résultats. Laisser vide ("") pour afficher le
 // placeholder jaune en attendant.
-const CALL_URL = "https://calendly.com/onsenoccupe/15min";
+const CALL_URL = "https://calendly.com/onsenoccupe/debrief";
 const CONTACT_EMAIL = "hugo@onsenoccupe.net";
 // Adresse où le prospect transfère ses emails clients
 const ESSAI_EMAIL = "essai@onsenoccupe.net";
