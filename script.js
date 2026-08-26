@@ -534,7 +534,7 @@ const buildExchange = (x, badgeText) => {
 /* Lead courant (page resultats) : prénom et boutique pour l'affichage */
 let currentLead = null;
 
-/* CTA flottant « On en parle 15 minutes » : apparaît une fois les résultats
+/* CTA flottant « On en parle 30 minutes » : apparaît une fois les résultats
    rendus, s'efface quand le bloc Calendly est à l'écran */
 const setupStickyCall = () => {
   const bar = document.getElementById("sticky-call");
@@ -603,7 +603,7 @@ const buildCallCta = () => {
     a.href = CALL_URL;
     a.target = "_blank";
     a.rel = "noopener";
-    a.textContent = "On en parle 15 minutes";
+    a.textContent = "On en parle 30 minutes";
     const micro = document.createElement("p");
     micro.className = "results-cta-micro";
     micro.textContent = "Créneaux cette semaine · sans engagement";
@@ -636,7 +636,7 @@ const renderFallback = (lead) => {
   sub.className = "results-sub";
   sub.textContent =
     "Pour découvrir les réponses que notre agent enverrait à vos clients, réservez " +
-    "un appel gratuit de 15 minutes : on les parcourt ensemble, sur vos propres cas.";
+    "un appel gratuit de 30 minutes : on les parcourt ensemble, sur vos propres cas.";
   resultsEl.append(title, sub);
 
   // CTA réduit au bouton : sur cette page, tout ce qui s'intercale entre la
@@ -647,7 +647,7 @@ const renderFallback = (lead) => {
     a.href = CALL_URL;
     a.target = "_blank";
     a.rel = "noopener";
-    a.textContent = "On en parle 15 minutes";
+    a.textContent = "On en parle 30 minutes";
     const micro = document.createElement("p");
     micro.className = "results-cta-micro";
     micro.textContent = "Créneaux cette semaine · sans engagement";
@@ -798,7 +798,7 @@ document.querySelectorAll("[data-essai-form]").forEach((form) => {
     const consigne = document.createElement("p");
     consigne.textContent =
       "Pour découvrir les réponses que notre agent enverrait à vos clients, " +
-      "réservez un appel gratuit de 15 minutes : on les parcourt ensemble.";
+      "réservez un appel gratuit de 30 minutes : on les parcourt ensemble.";
 
     const actions = document.createElement("div");
     actions.className = "confirm-actions";
