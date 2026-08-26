@@ -48,10 +48,15 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-}
+/* Pas de scroll-behavior: smooth sur <html>. Chrome tente le saut vers
+   l'ancre au chargement, le défilement fluide ne s'exécute pas à ce moment-là,
+   et la page reste en haut. Le fluide se fait au clic, en JS (script.js). */
+
+/* Le header est sticky et mesure 69 px : sans marge, la cible d'ancre se cale
+   dessous et son titre passe sous la barre. */
+:target { scroll-margin-top: 85px; }
+section[id],
+#reserver { scroll-margin-top: 85px; }
 
 body {
   font-family: var(--sans);

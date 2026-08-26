@@ -40,6 +40,51 @@ if (header && sentinel && "IntersectionObserver" in window) {
 
 /* ---------- Reveal on scroll (désactivé si prefers-reduced-motion) ---------- */
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- Navigation par ancre ----------
+   Deux problèmes, une seule cause. `scroll-behavior: smooth` sur <html> faisait
+   échouer le saut natif quand la page s'ouvre directement sur #comment : Chrome
+   lançait un défilement fluide qui ne s'exécutait pas, et laissait scrollY à 0.
+   La règle CSS est retirée ; on rejoue le saut nous-mêmes au chargement, et on
+   garde le fluide sur les clics — en JS, donc sans effet sur le chargement.
+   Le décalage compense le header sticky (69 px) et laisse respirer le titre. */
+const ANCRE_OFFSET = 85;
+
+const allerVers = (el) => {
+  window.scrollTo({
+    top: el.getBoundingClientRect().top + window.scrollY - ANCRE_OFFSET,
+    behavior: "instant",
+  });
+};
+
+// Page ouverte à froid sur une ancre. On saute tout de suite, puis on recale
+// une fois la peinture faite — polices et images déplacent la mise en page.
+// Les deux, parce que requestAnimationFrame ne s'exécute pas dans un onglet
+// ouvert en arrière-plan : le premier saut doit tenir sans lui.
+window.addEventListener("load", () => {
+  const id = location.hash.slice(1);
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  allerVers(el);
+  requestAnimationFrame(() => allerVers(el));
+});
+
+// Clics internes. Saut direct, jamais animé : `behavior: "smooth"` est inerte
+// sur cette page (mesuré), et c'est précisément ce qui cassait la navigation
+// par ancre au chargement. Le comportement visible est celui d'avant, à ceci
+// près que la cible se cale enfin sous le header au lieu de passer dessous.
+document.addEventListener("click", (e) => {
+  const lien = e.target.closest('a[href^="#"]');
+  if (!lien) return;
+  const id = lien.getAttribute("href").slice(1);
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  e.preventDefault();
+  allerVers(el);
+  history.pushState(null, "", "#" + id);
+});
 const revealEls = document.querySelectorAll(".reveal");
 if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
   const io = new IntersectionObserver(
